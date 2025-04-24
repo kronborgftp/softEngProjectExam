@@ -5,8 +5,12 @@ import java.util.List;
 
 public class Employee {
     private String initials;
-    private String name;
+    private String name; // ifølge sektion 5.1 i beskrivelsen behøver vi vel kun initialer og ikke navn?
     private List<Activity> assignedActivities;
+
+    public Employee(String initials) {
+        this.initials = (initials != null && initials.length() > 4) ? initials.substring(0, 4) : initials;
+    }
 
     public Employee(String initials, String name, List<Activity> assignedActivities) {
         this.initials = (initials != null && initials.length() > 4) ? initials.substring(0, 4) : initials;
