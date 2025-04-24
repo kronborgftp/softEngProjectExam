@@ -1,12 +1,11 @@
 package model;
 
 public class TimeEntry {
-
-    String entryID;
-    Employee employee;
-    Activity activity;
-    double hours;
-    String date;
+    private String entryID;
+    private Employee employee;
+    private Activity activity;
+    private double hours;
+    private String date;
 
     public TimeEntry(String entryID, Employee employee, Activity activity, double hours, String date) {
         this.entryID = entryID;
@@ -16,7 +15,51 @@ public class TimeEntry {
         this.date = date;
     }
 
-    public void editEntry(String entryID, Employee employee, Activity activity, double hours, String date) {
+    //  logic
+    public void editEntry(double hours, String date) {
+        this.hours = hours;
+        this.date = date;
+    }
 
+    // Getters
+    public String getEntryID() {
+        return entryID;
+    }
+
+    public Employee getEmployee() {
+        return employee;
+    }
+
+    public Activity getActivity() {
+        return activity;
+    }
+
+    public double getHours() {
+        return hours;
+    }
+
+    public String getDate() {
+        return date;
+    }
+
+    // Setters
+    public void setEntryID(String entryID) {
+        this.entryID = entryID;
+    }
+
+    public void setEmployee(Employee employee) {
+        this.employee = employee;
+    }
+
+    public void setActivity(Activity activity) {
+        this.activity = activity;
+    }
+
+    public void setHours(double hours) {
+        this.hours = hours;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
     }
 }
