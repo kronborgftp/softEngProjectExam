@@ -6,6 +6,7 @@ import view.AppView;
 import view.EmployeeView;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class EmployeeController {
@@ -13,6 +14,7 @@ public class EmployeeController {
     private final AppModel model;
     private final AppView appView;
     private final EmployeeView employeeView;
+    private List<Employee> employeeList = new ArrayList<>();
 
     public EmployeeController(Scanner scanner, AppModel model, AppView appView, EmployeeView employeeView) {
         this.scanner = scanner;
@@ -31,6 +33,22 @@ public class EmployeeController {
         model.addEmployee(e);
         employeeView.printEmployeeRegistered(e);
     }
+    
+    public boolean hasEmployee(String name) { // man kan bruge både initials og name
+        return employeeList.stream()
+            .anyMatch(Employee -> 
+                Employee.getInitials().equals(name) ||
+                Employee.getName().equals(name)
+            );
+    }   
+    
+    // public void logIn(String initials) {
+    //     loggedIn = initials;
+    // }
+
+    // public void logOut() {
+    //     loggedIn = null;
+    // }
 
     public void showAllEmployees() {
         employeeView.printEmployeeList(model.getAllEmployees());

@@ -3,11 +3,13 @@ package controller;
 import model.AppModel;
 import model.Employee;
 import model.Project;
+import model.Activity;
 import view.AppView;
 import view.EmployeeView;
 import view.ProjectView;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class ProjectController {
@@ -16,6 +18,8 @@ public class ProjectController {
     private final AppView appView;
     private final ProjectView projectView;
     private final EmployeeView employeeView;
+    private Project editProject; // nuværende valgte project at edit, så man ikke bhøver at indtaste det for hver kommando
+
 
     public ProjectController(Scanner scanner, AppModel model, AppView appView,
                           ProjectView projectView, EmployeeView employeeView) {
@@ -51,4 +55,16 @@ public class ProjectController {
     public void showAllProjects() {
         projectView.printProjectList(model.getAllProjects());
     }
+
+    public void editProject(Project p) {
+        editProject = p;
+    }
+
+    public void addActivity(Activity a) {
+        editProject.addActivity(a);
+    }
+
+
+
+
 }

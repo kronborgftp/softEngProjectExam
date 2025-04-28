@@ -6,6 +6,8 @@ import view.EmployeeView;
 import view.ProjectView;
 
 import java.util.Scanner;
+import java.util.ArrayList;
+import java.util.List;
 
 public class ActivityController {
     private final Scanner scanner;
@@ -13,6 +15,7 @@ public class ActivityController {
     private final AppView appView;
     private final ProjectView projectView;
     private final EmployeeView employeeView;
+    private List<Activity> activityList = new ArrayList<>();
 
     public ActivityController(Scanner scanner, AppModel model, AppView appView,
                            ProjectView projectView, EmployeeView employeeView) {

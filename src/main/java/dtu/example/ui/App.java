@@ -21,9 +21,7 @@ import java.util.List;
 public class App extends Application {
 
     private static Scene scene;
-    private static String loggedIn = null; // for at vise hvilken employee der på nuværende tid er logget in
-    private List<Employee> employeeList = new ArrayList<>();
-    private List<String> projectList = new ArrayList<>();
+
 
     @Override
     public void start(Stage stage) throws IOException {
@@ -45,27 +43,5 @@ public class App extends Application {
         launch();
     }
 
-
-    // employee handling
-    public void logIn(String initials) {
-        loggedIn = initials;
-    }
-
-    public void logOut() {
-        loggedIn = null;
-    }
-
-    public void registerEmployee(String initials) {
-        Employee newEmployee = new Employee(initials);
-        employeeList.add(newEmployee);
-    }
-
-    public boolean hasEmployee(String name) { // man kan bruge både initials og name
-        return employeeList.stream()
-            .anyMatch(Employee -> 
-                Employee.getInitials().equals(name) ||
-                Employee.getName().equals(name)
-            );
-    }   
 
 }
