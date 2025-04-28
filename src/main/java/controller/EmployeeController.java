@@ -15,6 +15,7 @@ public class EmployeeController {
     private final AppView appView;
     private final EmployeeView employeeView;
     private List<Employee> employeeList = new ArrayList<>();
+    private String loggedIn = null;
 
     public EmployeeController(Scanner scanner, AppModel model, AppView appView, EmployeeView employeeView) {
         this.scanner = scanner;
@@ -42,13 +43,17 @@ public class EmployeeController {
             );
     }   
     
-    // public void logIn(String initials) {
-    //     loggedIn = initials;
-    // }
+    public void logIn(String initials) {
+        loggedIn = initials;
+    }
 
-    // public void logOut() {
-    //     loggedIn = null;
-    // }
+    public void logOut() {
+        loggedIn = null;
+    }
+
+    public String isLoggedIn() {
+        return loggedIn;
+    }
 
     public void showAllEmployees() {
         employeeView.printEmployeeList(model.getAllEmployees());
