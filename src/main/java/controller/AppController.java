@@ -1,3 +1,5 @@
+//Dette er en kommentar
+
 package controller;
 
 import controller.*;
