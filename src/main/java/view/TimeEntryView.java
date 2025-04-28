@@ -22,7 +22,7 @@ public class TimeEntryView {
             return;
         }
 
-        System.out.println("\n📋 All Logged Hours:");
+        System.out.println("\nAll Logged Hours:");
 
         for (TimeEntry entry : entries) {
             Employee e = entry.getEmployee();

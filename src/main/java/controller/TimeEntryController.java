@@ -41,8 +41,12 @@ public class TimeEntryController {
         timeEntryView.printTimeLogged(new TimeEntry("...", employee, activity, hours, date)); // feedback
     }
 
-    public List<TimeEntry> getAllLoggedTime() {
+    private List<TimeEntry> getAllLoggedTime() {
         return model.getAllTimeEntries();
+    }
+
+    public void showAllLoggedHours() {
+        timeEntryView.printAllLoggedTime(getAllLoggedTime());
     }
 
 }

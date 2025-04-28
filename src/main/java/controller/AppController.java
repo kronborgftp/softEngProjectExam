@@ -1,5 +1,3 @@
-//Dette er en kommentar
-
 package controller;
 
 import controller.*;
@@ -42,7 +40,7 @@ public class AppController {
                 case "5" -> timeEntryController.logTime();
                 case "6" -> projectController.showAllProjects();
                 case "7" -> employeeController.showAllEmployees();
-                case "8" -> timeEntryController.getAllLoggedTime();
+                case "8" -> timeEntryController.showAllLoggedHours();
                 case "9" -> editMenu();
                 case "0" -> running = false;
                 default -> appView.printError("Invalid input.");
@@ -51,6 +49,8 @@ public class AppController {
 
         appView.printExit();
     }
+
+
 
     private void editMenu() {
         boolean editing = true;
