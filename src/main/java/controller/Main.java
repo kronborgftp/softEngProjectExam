@@ -35,10 +35,10 @@ public class Main {
         model.assignEmployeeToActivity(e3, a2);
 
         // Log time entries
-        model.logTimeEntry(e1, a1, 4.0, "11-03-2025");
-        model.logTimeEntry(e2, a1, 3.5, "11-03-2025");
-        model.logTimeEntry(e2, a2, 5.0, "12-03-2025");
-        model.logTimeEntry(e3, a2, 6.0, "24-03-2025");
+        model.logTimeEntry(e1, a1, 4.0, "2025-03-04");
+        model.logTimeEntry(e2, a1, 3.5, "2025-03-04");
+        model.logTimeEntry(e2, a2, 5.0, "2025-03-10");
+        model.logTimeEntry(e3, a2, 6.0, "2025-03-11");
 
 
         controller.run();

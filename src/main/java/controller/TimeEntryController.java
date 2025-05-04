@@ -30,7 +30,7 @@ public class TimeEntryController {
             return;
         }
 
-        appView.prompt("Date (DD-MM-YYYY)");
+        appView.prompt("Date (YYYY-MM-DD)"); // Has to be YYYY-MM-DD and not DD-MM-YYYY :(
         String date = scanner.nextLine();
 
         // Show activities the employee is assigned to
@@ -140,9 +140,9 @@ public class TimeEntryController {
 
         Activity activity = model.getOrCreateStandardActivity(id, name);
 
-        appView.prompt("Start Date (DD-MM-YYYY)");
+        appView.prompt("Start Date (YYYY-MM-DD)");
         String startStr = scanner.nextLine();
-        appView.prompt("End Date (DD-MM-YYYY)");
+        appView.prompt("End Date (YYYY-MM-DD)");
         String endStr = scanner.nextLine();
 
         LocalDate start, end;
