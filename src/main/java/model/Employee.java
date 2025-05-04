@@ -5,20 +5,22 @@ import java.util.List;
 
 public class Employee {
     private String initials;
-    private String name; // ifølge sektion 5.1 i beskrivelsen behøver vi vel kun initialer og ikke navn?
+    private String name;
     private List<Activity> assignedActivities;
 
-    public Employee(String initials) {
-        this.initials = (initials != null && initials.length() > 4) ? initials.substring(0, 4) : initials;
+    // %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    public Employee(String initials) { // er ik sikker på om initials.length() > 4 er rigtigt, det fuckede i register 
+        this.initials = (initials != null && initials.length() <= 4) ? initials.substring(0, 4) : initials;
     }
 
     public Employee(String initials, String name, List<Activity> assignedActivities) {
-        this.initials = (initials != null && initials.length() > 4) ? initials.substring(0, 4) : initials;
+        this.initials = (initials != null && initials.length() <= 4) ? initials.substring(0, 4) : initials;
         this.name = name;
         this.assignedActivities = assignedActivities != null ? assignedActivities : new ArrayList<>();
     }
 
-    // logic
+    // LOGIC
+    // %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     public void assignActivity(Activity activity) {
         if (!assignedActivities.contains(activity)) {
             assignedActivities.add(activity);
@@ -30,6 +32,7 @@ public class Employee {
     }
 
     // Getters
+    // %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     public String getInitials() {
         return initials;
     }
@@ -43,6 +46,7 @@ public class Employee {
     }
 
     // Setters
+    // %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     public void setInitials(String initials) {
         this.initials = (initials != null && initials.length() > 4) ? initials.substring(0, 4) : initials;
     }

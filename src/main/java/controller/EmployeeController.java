@@ -14,11 +14,11 @@ public class EmployeeController {
     private final AppModel model;
     private final AppView appView;
     private final EmployeeView employeeView;
-    private List<Employee> employeeList = new ArrayList<>();
-    private String loggedIn = null;
+    private Employee loggedIn = null;
 
-    public EmployeeController(Scanner scanner, AppModel model, AppView appView, EmployeeView employeeView) {
-        this.scanner = scanner;
+        // %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    public EmployeeController(Scanner scanner, AppModel model, AppView appView, EmployeeView employeeView) { 
+        this.scanner = scanner; 
         this.model = model;
         this.appView = appView;
         this.employeeView = employeeView;
@@ -27,35 +27,54 @@ public class EmployeeController {
     public void registerEmployee() {
         appView.prompt("Initials");
         String initials = scanner.nextLine();
-        appView.prompt("Full name");
-        String name = scanner.nextLine();
 
-        Employee e = new Employee(initials, name, new ArrayList<>());
-        model.addEmployee(e);
-        employeeView.printEmployeeRegistered(e);
+        if (initials.equals("0")) {
+            appView.setStatus("Register cancelled - Returning to start menu");
+        } else if (model.hasEmployee(initials)) {
+            appView.setStatus("ERROR: Register failed - Initials already registered");
+            // employeeView.printError("ERROR: Initials already found");
+        } else if (initials != null && initials.length() <= 4) {
+            appView.prompt("Full name");
+            String name = scanner.nextLine();
+    
+            Employee e = new Employee(initials, name, new ArrayList<>());
+            model.addEmployee(e);
+            employeeView.printEmployeeRegistered(e);
+
+        } else {
+            appView.setStatus("ERROR: Register failed - Invalid initials");;
+        }
+
     }
     
-    public boolean hasEmployee(String name) { // man kan bruge både initials og name
-        return employeeList.stream()
-            .anyMatch(Employee -> 
-                Employee.getInitials().equals(name) ||
-                Employee.getName().equals(name)
-            );
-    }   
-    
-    public void logIn(String initials) {
-        loggedIn = initials;
+    public void logIn() { 
+        System.out.println("\n--- Log In");
+        System.out.println("Insert initials to log in");
+        System.out.println("0. Exit");
+        appView.prompt("Input");
+        String initials = scanner.nextLine();
+
+        Employee e = model.getEmployeeByInitials(initials);
+
+        if (model.hasEmployee(initials)) {
+            setLoggedIn(e);
+            employeeView.printEmployeeLoggedIn(e);
+            
+        } else {
+            employeeView.printError("ERROR: input not recognized. Input correct initials or register new employee");
+        }
+
     }
 
-    public void logOut() {
-        loggedIn = null;
-    }
-
-    public String isLoggedIn() {
+    public Employee getLoggedIn() {
         return loggedIn;
+    }
+
+    public void setLoggedIn(Employee e) {
+        loggedIn = e;
     }
 
     public void showAllEmployees() {
         employeeView.printEmployeeList(model.getAllEmployees());
-    }
+    }    
 }

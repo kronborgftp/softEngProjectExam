@@ -29,11 +29,49 @@ public class AppController {
         boolean running = true;
 
         while (running) {
+            appView.printStartMenu();
+            String input = scanner.nextLine();
+
+            switch (input) {
+                case "1" -> {
+                    employeeController.logIn();
+                    if (employeeController.getLoggedIn() != null) {
+                        mainMenu(employeeController.getLoggedIn());
+                    }
+                }
+                case "2" -> employeeController.registerEmployee(); 
+                case "3" -> employeeController.showAllEmployees(); // skal ændres til horisontal liste
+                // case "9" -> testMenu();
+                case "0" -> running = false;
+            }
+
+
+        }
+
+        appView.printExit();
+    }
+
+    // private void logInMenu() {
+    //     Boolean logInAttempt = true;
+
+    //     while (logInAttempt) {
+    //         appView.printLogInMenu();
+    //         String input = scanner.nextLine();
+
+
+    //     } 
+    // }
+
+    private void mainMenu(Employee e) {
+        employeeController.setLoggedIn(e);
+
+        // boolean loggedIn = true; // loggedIn er også en variabel i employee controller... skal tjekkes
+        while (employeeController.getLoggedIn() == e) {
             appView.printMainMenu();
             String input = scanner.nextLine();
 
             switch (input) {
-                case "1" -> employeeController.registerEmployee();
+                case "1" -> projectController.createProject(); // employeeController.registerEmployee();
                 case "2" -> projectController.createProject();
                 case "3" -> activityController.addActivityToProject();
                 case "4" -> activityController.assignEmployeeToActivity();
@@ -42,14 +80,11 @@ public class AppController {
                 case "7" -> employeeController.showAllEmployees();
                 case "8" -> timeEntryController.showAllLoggedHours();
                 case "9" -> editMenu();
-                case "0" -> running = false;
+                // case "0" -> running = false; // running baseret på boolean i starten af mainMenu(), hvordan passer den boolean ind?
                 default -> appView.printError("Invalid input.");
             }
         }
-
-        appView.printExit();
     }
-
 
 
     private void editMenu() {

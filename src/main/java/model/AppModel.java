@@ -4,13 +4,17 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
+import view.EmployeeView;
+import view.AppView;
+
 public class AppModel {
     private final List<Employee> employees = new ArrayList<>();
     private final List<Project> projects = new ArrayList<>();
     private final List<TimeEntry> timeEntries = new ArrayList<>();
+    
 
-    // employees
-
+    // EMPLOYEES
+    // %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     public void addEmployee(Employee employee) {
         employees.add(employee);
     }
@@ -26,8 +30,16 @@ public class AppModel {
         return employees;
     }
 
-    // projects
+    public boolean hasEmployee(String name) { // man kan bruge både initials og name
+        return employees.stream()
+            .anyMatch(Employee -> 
+                Employee.getInitials().equals(name) ||
+                Employee.getName().equals(name)
+            );
+    }   
 
+    // PROJECTS
+    // %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     public void addProject(Project project) {
         projects.add(project);
     }
@@ -61,8 +73,8 @@ public class AppModel {
         project.addActivity(activity);
     }
 
-    // activities
-
+    // ACTIVITIES
+    // %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     public Activity getActivityInProject(Project project, String activityId) {
         return project.getActivityList().stream()
                 .filter(a -> a.getActivityId().equalsIgnoreCase(activityId))
@@ -99,8 +111,8 @@ public class AppModel {
         employee.assignActivity(activity);
     }
 
-    //time entry
-
+    // TIME ENTRY
+    // %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     public void logTimeEntry(Employee employee, Activity activity, double hours, String date) {
         TimeEntry entry = new TimeEntry(UUID.randomUUID().toString(), employee, activity, hours, date);
         timeEntries.add(entry);
