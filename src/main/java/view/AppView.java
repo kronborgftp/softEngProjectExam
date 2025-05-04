@@ -35,10 +35,10 @@ public class AppView {
         print("6. View All Employees");
         print("7. View All Logged Time");
         print("8. Edit Project/Activity/Time Entry");
-        System.out.println("10. Project Time Report");
-        System.out.println("11. Employee Time Report");
-        System.out.println("12. Log Vacation/Sick/Course");
-        System.out.println("13. Show Employee's Logged Hours");
+        print("10. Project Time Report");
+        print("11. Employee Time Report");
+        print("12. Log Vacation/Sick/Course");
+        print("13. Show Employee's Logged Hours");
         print("0. Log Out");
         newLine();
         status();
