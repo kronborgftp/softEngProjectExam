@@ -39,6 +39,13 @@
 			<version>7.20.1</version>
 		</dependency>
 
+		<!-- tilføjet fra libraryApp exercise -->
+		<dependency>
+			<groupId>io.cucumber</groupId>
+			<artifactId>cucumber-junit</artifactId>
+			<version>7.20.1</version>
+		</dependency>
+
 		<dependency>
 			<groupId>io.cucumber</groupId>
 			<artifactId>cucumber-java</artifactId>
@@ -57,11 +64,28 @@
 			<scope>test</scope>
 		</dependency>
 
+		<!-- tilføjet fra libraryApp exercise -->
+		<!-- This is JUnit 5 aka Jupiter -->
 		<dependency>
 			<groupId>org.junit.jupiter</groupId>
-			<artifactId>junit-jupiter</artifactId>
+			<artifactId>junit-jupiter-engine</artifactId>
+			<version>5.11.4</version>
 			<scope>test</scope>
 		</dependency>
+		<!--  These two dependencies allow to run JUnit 4 tests and Cucumber tests. -->
+		<dependency>
+			<groupId>org.junit.vintage</groupId>
+			<artifactId>junit-vintage-engine</artifactId>
+			<version>5.11.4</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.junit.platform</groupId>
+			<artifactId>junit-platform-runner</artifactId>
+			<version>1.11.4</version>
+			<scope>test</scope>
+		</dependency>
+		<!--  -->
 		<dependency>
 			<groupId>org.mockito</groupId>
 			<artifactId>mockito-core</artifactId>

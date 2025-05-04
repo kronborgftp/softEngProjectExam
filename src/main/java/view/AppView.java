@@ -4,7 +4,7 @@ public class AppView {
     private String statusMessage;
 
     public void printStartMenu() {
-        printMenu("start menu");
+        menuTitle("start menu");
         option(1,"Log In");
         option(2,"Register");
         option(3,"View all employees"); // WIP, horisontal menu
@@ -26,7 +26,7 @@ public class AppView {
     }
 
     public void printMainMenu() {
-        printMenu("time management system");
+        menuTitle("time management system");
         print("1. Create Project");
         print("2. Add Activity to Project");
         print("3. Assign Employee to Activity");
@@ -46,6 +46,7 @@ public class AppView {
     }
 
     public void printEditSelectionMenu() {
+        menuTitle("edit menu");
         print("\n--- Edit Menu ---");
         print("1. Edit Project");
         print("2. Edit Activity");
@@ -55,7 +56,6 @@ public class AppView {
         status();
         prompt("Choose option");
     }
-
 
     public void printEditMenu(String entity) {
         print("\n--- Edit " + capitalize(entity) + " ---");
@@ -76,6 +76,10 @@ public class AppView {
         return s.substring(0, 1).toUpperCase() + s.substring(1);
     }
 
+    public void doubleDisplay() { // left og right menu variabler til kombinationer
+        ;
+    }
+
     public void setStatus(String msg) {
         statusMessage = msg;
     }
@@ -88,7 +92,7 @@ public class AppView {
         newLine();
     }
 
-    public void printMenu(String menu) {
+    public void menuTitle(String menu) {
         System.out.print("\n---===%%%  ");
         for (int i = 0; i < menu.length(); i++) {
             char letter = menu.charAt(i);
