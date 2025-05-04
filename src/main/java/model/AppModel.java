@@ -1,7 +1,9 @@
 package model;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 
 import view.EmployeeView;
@@ -11,7 +13,9 @@ public class AppModel {
     private final List<Employee> employees = new ArrayList<>();
     private final List<Project> projects = new ArrayList<>();
     private final List<TimeEntry> timeEntries = new ArrayList<>();
-    
+    private final Map<String, Activity> standardActivities = new HashMap<>();
+
+    // EMPLOYEES
 
     // EMPLOYEES
     // %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -69,7 +73,7 @@ public class AppModel {
     }
 
     public void addActivityToProject(Project project, Activity activity) {
-        activity.setParentProject(project); //back reference
+        activity.setParentProject(project); // Back reference
         project.addActivity(activity);
     }
 
@@ -83,6 +87,11 @@ public class AppModel {
     }
 
     public Activity getActivityGlobally(String activityId) {
+        // First check standard activities
+        if (standardActivities.containsKey(activityId)) {
+            return standardActivities.get(activityId);
+        }
+        // Then check project activities
         for (Project p : projects) {
             for (Activity a : p.getActivityList()) {
                 if (a.getActivityId().equalsIgnoreCase(activityId)) {
@@ -91,6 +100,14 @@ public class AppModel {
             }
         }
         return null;
+    }
+
+    public List<Activity> getAllActivities() {
+        List<Activity> all = new ArrayList<>(standardActivities.values());
+        for (Project project : projects) {
+            all.addAll(project.getActivityList());
+        }
+        return all;
     }
 
     public void updateActivityName(Activity activity, String name) {
@@ -111,14 +128,47 @@ public class AppModel {
         employee.assignActivity(activity);
     }
 
-    // TIME ENTRY
-    // %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    public void logTimeEntry(Employee employee, Activity activity, double hours, String date) {
-        TimeEntry entry = new TimeEntry(UUID.randomUUID().toString(), employee, activity, hours, date);
+    public Activity getOrCreateStandardActivity(String id, String name) {
+        if (!standardActivities.containsKey(id)) {
+            Activity activity = new Activity(id, name, 0, 0, 0);
+            standardActivities.put(id, activity);
+        }
+        return standardActivities.get(id);
+    }
+
+    // TIME ENTRIES
+
+    public String logTimeEntry(Employee employee, Activity activity, double hours, String date) {
+        String entryId = UUID.randomUUID().toString();
+        TimeEntry entry = new TimeEntry(entryId, employee, activity, hours, date);
         timeEntries.add(entry);
+        return entryId;
+    }
+
+    public TimeEntry getTimeEntryById(String id) {
+        return timeEntries.stream()
+                .filter(e -> e.getEntryID().equals(id))
+                .findFirst()
+                .orElse(null);
     }
 
     public List<TimeEntry> getAllTimeEntries() {
         return timeEntries;
     }
+
+    public void updateTimeEntry(String entryId, double hours, String date) {
+        TimeEntry entry = getTimeEntryById(entryId);
+        if (entry != null) {
+            entry.editEntry(hours, date);
+        }
+    }
+
+   /* public void deleteTimeEntry(String entryId) {
+        timeEntries.removeIf(entry -> entry.getEntryID().equals(entryId));
+    }*/
+
+    public void addTimeEntry(TimeEntry entry) {
+        timeEntries.add(entry);
+    }
+
 }

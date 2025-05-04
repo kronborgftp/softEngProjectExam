@@ -1,6 +1,5 @@
 package view;
 
-
 public class AppView {
     private String statusMessage;
 
@@ -34,8 +33,12 @@ public class AppView {
         print("4. Log Time");
         print("5. View All Projects");
         print("6. View All Employees");
-        print("7. View All logged time");
-        print("8. Edit Project/Activity");
+        print("7. View All Logged Time");
+        print("8. Edit Project/Activity/Time Entry");
+        System.out.println("10. Project Time Report");
+        System.out.println("11. Employee Time Report");
+        System.out.println("12. Log Vacation/Sick/Course");
+        System.out.println("13. Show Employee's Logged Hours");
         print("0. Log Out");
         newLine();
         status();
@@ -46,11 +49,13 @@ public class AppView {
         print("\n--- Edit Menu ---");
         print("1. Edit Project");
         print("2. Edit Activity");
+        print("3. Edit Time Entry");
         print("0. Exit");
         newLine();
         status();
         prompt("Choose option");
     }
+
 
     public void printEditMenu(String entity) {
         print("\n--- Edit " + capitalize(entity) + " ---");
@@ -113,7 +118,7 @@ public class AppView {
     }
 
     public void printError(String message) {
-        System.out.println(message);
+        System.out.println("ERROR: " + message);
     }
 
     public void printExit() {
