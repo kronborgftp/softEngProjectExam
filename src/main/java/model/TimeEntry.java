@@ -7,12 +7,20 @@ public class TimeEntry {
     private double hours;
     private String date;
 
-    public TimeEntry(String entryID, Employee employee, Activity activity, double hours, String date) {
+    public TimeEntry(String entryID, Employee employee, Activity activity, double hours, String date) { //for normal work
         this.entryID = entryID;
         this.employee = employee;
         this.activity = activity;
         this.hours = hours;
         this.date = date;
+    }
+
+    public TimeEntry(String entryID, Employee employee, Activity activity, String date) { //For absence
+        this.entryID = entryID;
+        this.employee = employee;
+        this.activity = activity;
+        this.date = date;
+        this.hours = -1; // special marker for absence
     }
 
     //  logic

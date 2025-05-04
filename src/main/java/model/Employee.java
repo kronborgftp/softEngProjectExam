@@ -5,7 +5,7 @@ import java.util.List;
 
 public class Employee {
     private String initials;
-    private String name; // ifølge sektion 5.1 i beskrivelsen behøver vi vel kun initialer og ikke navn?
+    private String name; // ifølge sektion 5.1 i beskrivelsen behøver vi vel kun initialer og ikke navn? trueeee
     private List<Activity> assignedActivities;
 
     public Employee(String initials) {
@@ -23,10 +23,6 @@ public class Employee {
         if (!assignedActivities.contains(activity)) {
             assignedActivities.add(activity);
         }
-    }
-
-    public void logTime(Activity activity, double hours) {
-        // maybe track logged hours per activity here idk soum shit frfr
     }
 
     // Getters
@@ -47,9 +43,7 @@ public class Employee {
         this.initials = (initials != null && initials.length() > 4) ? initials.substring(0, 4) : initials;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
+
 
     public void setAssignedActivities(List<Activity> assignedActivities) {
         this.assignedActivities = assignedActivities;

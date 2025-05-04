@@ -1,6 +1,5 @@
 package view;
 
-
 public class AppView {
 
     public void printMainMenu() {
@@ -12,8 +11,12 @@ public class AppView {
         System.out.println("5. Log Time");
         System.out.println("6. View All Projects");
         System.out.println("7. View All Employees");
-        System.out.println("8. View All logged time");
-        System.out.println("9. Edit Project/Activity");
+        System.out.println("8. View All Logged Time");
+        System.out.println("9. Edit Project/Activity/Time Entry");
+        System.out.println("10. Project Time Report");
+        System.out.println("11. Employee Time Report");
+        System.out.println("12. Log Vacation/Sick/Course");
+        System.out.println("13. Show Employee's Logged Hours");
         System.out.println("0. Exit");
         prompt("Choose option");
     }
@@ -22,9 +25,11 @@ public class AppView {
         System.out.println("\n--- Edit Menu ---");
         System.out.println("1. Edit Project");
         System.out.println("2. Edit Activity");
+        System.out.println("3. Edit Time Entry");
         System.out.println("0. Back");
         prompt("Choose option");
     }
+
 
     public void printEditMenu(String entity) {
         System.out.println("\n--- Edit " + capitalize(entity) + " ---");
@@ -43,7 +48,6 @@ public class AppView {
         return s.substring(0, 1).toUpperCase() + s.substring(1);
     }
 
-
     public void prompt(String message) {
         System.out.print(message + ": ");
     }
@@ -53,7 +57,7 @@ public class AppView {
     }
 
     public void printError(String message) {
-        System.out.println(message);
+        System.out.println("ERROR: " + message);
     }
 
     public void printExit() {
