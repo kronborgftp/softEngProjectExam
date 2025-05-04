@@ -9,12 +9,12 @@ public class Employee {
     private List<Activity> assignedActivities;
 
     // %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    public Employee(String initials) { // er ik sikker på om initials.length() > 4 er rigtigt, det fuckede i register 
-        this.initials = (initials != null && initials.length() <= 4) ? initials.substring(0, 4) : initials;
+    public Employee(String initials) {
+        this.initials = (initials != null && initials.length() > 4) ? initials.substring(0, 4) : initials;
     }
 
     public Employee(String initials, String name, List<Activity> assignedActivities) {
-        this.initials = (initials != null && initials.length() <= 4) ? initials.substring(0, 4) : initials;
+        this.initials = (initials != null && initials.length() > 4) ? initials.substring(0, 4) : initials;
         this.name = name;
         this.assignedActivities = assignedActivities != null ? assignedActivities : new ArrayList<>();
     }

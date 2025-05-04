@@ -72,15 +72,14 @@ public class AppController {
 
             switch (input) {
                 case "1" -> projectController.createProject(); // employeeController.registerEmployee();
-                case "2" -> projectController.createProject();
-                case "3" -> activityController.addActivityToProject();
-                case "4" -> activityController.assignEmployeeToActivity();
-                case "5" -> timeEntryController.logTime();
-                case "6" -> projectController.showAllProjects();
-                case "7" -> employeeController.showAllEmployees();
-                case "8" -> timeEntryController.showAllLoggedHours();
-                case "9" -> editMenu();
-                // case "0" -> running = false; // running baseret på boolean i starten af mainMenu(), hvordan passer den boolean ind?
+                case "2" -> activityController.addActivityToProject();
+                case "3" -> activityController.assignEmployeeToActivity();
+                case "4" -> timeEntryController.logTime();
+                case "5" -> projectController.showAllProjects();
+                case "6" -> employeeController.showAllEmployees();
+                case "7" -> timeEntryController.showAllLoggedHours();
+                case "8" -> editMenu();
+                case "0" -> employeeController.setLoggedIn(null);// running baseret på boolean i starten af mainMenu(), hvordan passer den boolean ind?
                 default -> appView.printError("Invalid input.");
             }
         }

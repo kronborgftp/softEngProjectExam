@@ -17,9 +17,9 @@ public class AppView {
 
     public void printLogInMenu() {
         
-        option("log in");
-        option("Insert initials to log in");
-        option("0. Exit");
+        print("log in");
+        print("Insert initials to log in");
+        print("0. Exit");
         newLine();
         status();
         prompt("Input");
@@ -28,40 +28,40 @@ public class AppView {
 
     public void printMainMenu() {
         printMenu("time management system");
-        option("1. Create Project");
-        option("2. Add Activity to Project");
-        option("3. Assign Employee to Activity");
-        option("4. Log Time");
-        option("5. View All Projects");
-        option("6. View All Employees");
-        option("7. View All logged time");
-        option("8. Edit Project/Activity");
-        option("0. Log Out");
+        print("1. Create Project");
+        print("2. Add Activity to Project");
+        print("3. Assign Employee to Activity");
+        print("4. Log Time");
+        print("5. View All Projects");
+        print("6. View All Employees");
+        print("7. View All logged time");
+        print("8. Edit Project/Activity");
+        print("0. Log Out");
         newLine();
         status();
         prompt("Choose option");
     }
 
     public void printEditSelectionMenu() {
-        option("\n--- Edit Menu ---");
-        option("1. Edit Project");
-        option("2. Edit Activity");
-        option("0. Exit");
+        print("\n--- Edit Menu ---");
+        print("1. Edit Project");
+        print("2. Edit Activity");
+        print("0. Exit");
         newLine();
         status();
         prompt("Choose option");
     }
 
     public void printEditMenu(String entity) {
-        option("\n--- Edit " + capitalize(entity) + " ---");
-        option("1. Change Name");
-        option("2. Change Start/End Week");
+        print("\n--- Edit " + capitalize(entity) + " ---");
+        print("1. Change Name");
+        print("2. Change Start/End Week");
         if (entity.equalsIgnoreCase("project")) {
-            option("3. Change Leader");
+            print("3. Change Leader");
         } else if (entity.equalsIgnoreCase("activity")) {
-            option("3. Change Budgeted Hours");
+            print("3. Change Budgeted Hours");
         }
-        option("0. Exit");
+        print("0. Exit");
         newLine();
         status();
         prompt("Choose option");
@@ -77,9 +77,10 @@ public class AppView {
 
     public void status() {
         if (statusMessage != null) {
-            option(statusMessage);
+            print("--==%%   S T A T U S   -   " + statusMessage);
             statusMessage = null;
         }
+        newLine();
     }
 
     public void printMenu(String menu) {
@@ -92,10 +93,10 @@ public class AppView {
     }
 
     public void newLine() {
-        System.out.println("\n");
+        System.out.print("\n");
     }
 
-    public void option(String option) {
+    public void print(String option) {
         System.out.println(option);
     }
 

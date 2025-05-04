@@ -33,7 +33,8 @@ public class EmployeeController {
         } else if (model.hasEmployee(initials)) {
             appView.setStatus("ERROR: Register failed - Initials already registered");
             // employeeView.printError("ERROR: Initials already found");
-        } else if (initials != null && initials.length() <= 4) {
+        } else if (initials != null) {
+            initials = (initials != null && initials.length() > 4) ? initials.substring(0, 4) : initials;
             appView.prompt("Full name");
             String name = scanner.nextLine();
     
@@ -41,9 +42,9 @@ public class EmployeeController {
             model.addEmployee(e);
             employeeView.printEmployeeRegistered(e);
 
-        } else {
-            appView.setStatus("ERROR: Register failed - Invalid initials");;
-        }
+        } //else {
+        //     appView.setStatus("ERROR: Register failed - Invalid initials");;
+        // }
 
     }
     
