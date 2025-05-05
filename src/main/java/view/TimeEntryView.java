@@ -46,43 +46,6 @@ public class TimeEntryView {
         }
     }
 
-    public void printAssignedActivities(Employee employee, List<Activity> activities) {
-        System.out.println("\nAssigned Activities for " + employee.getName() + ":");
-        int index = 1;
-        for (Activity activity : activities) {
-            Project p = activity.getParentProject();
-            System.out.printf("%d. [%s] %s - %s\n",
-                    index++,
-                    activity.getActivityId(),
-                    activity.getActivityName(),
-                    p != null ? p.getProjectName() : "Standard Activity");
-        }
-    }
-
-    public void printActivitiesForProject(Project project) {
-        System.out.println("\nActivities in project " + project.getProjectName() + ":");
-        int index = 1;
-        for (Activity activity : project.getActivityList()) {
-            System.out.printf("%d. [%s] %s\n",
-                    index++,
-                    activity.getActivityId(),
-                    activity.getActivityName());
-        }
-    }
-
-    public void printMatchingActivities(List<Activity> activities) {
-        System.out.println("\nMatching Activities:");
-        int index = 1;
-        for (Activity activity : activities) {
-            Project p = activity.getParentProject();
-            System.out.printf("%d. [%s] %s - %s\n",
-                    index++,
-                    activity.getActivityId(),
-                    activity.getActivityName(),
-                    p != null ? p.getProjectName() : "Standard Activity");
-        }
-    }
-
     public void printTimeEntriesForEmployee(Employee employee, List<TimeEntry> entries) {
         System.out.println("\nTime entries for " + employee.getName() + ":");
 
