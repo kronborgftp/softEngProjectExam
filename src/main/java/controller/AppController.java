@@ -37,8 +37,8 @@ public class AppController {
             switch (input) {
                 case "1" -> {
                     employeeController.logIn();
-                    if (employeeController.getLoggedIn() != null) {
-                        mainMenu(employeeController.getLoggedIn());
+                    if (appModel.getLoggedIn() != null) {
+                        mainMenu(appModel.getLoggedIn());
                     }
                 }
                 case "2" -> employeeController.registerEmployee(); 
@@ -69,10 +69,12 @@ public class AppController {
     // }
 
     private void mainMenu(Employee e) {
-        employeeController.setLoggedIn(e);
+        appModel.setLoggedIn(e);
+        appView.setLoggedIn(e);
+
 
         // boolean loggedIn = true; // loggedIn er også en variabel i employee controller... skal tjekkes
-        while (employeeController.getLoggedIn() == e) {
+        while (appModel.getLoggedIn() == e) {
             appView.printMainMenu();
             String input = scanner.nextLine();
 
@@ -85,7 +87,7 @@ public class AppController {
                 case "6" -> employeeController.showAllEmployees();
                 case "7" -> timeEntryController.showAllLoggedHours();
                 case "8" -> editMenu();
-                case "0" -> employeeController.setLoggedIn(null);// running baseret på boolean i starten af mainMenu(), hvordan passer den boolean ind?
+                case "0" -> appModel.setLoggedIn(null);// running baseret på boolean i starten af mainMenu(), hvordan passer den boolean ind?
                 default -> appView.printError("Invalid input.");
             }
         }

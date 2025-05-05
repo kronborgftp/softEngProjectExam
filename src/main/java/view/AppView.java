@@ -1,7 +1,16 @@
 package view;
 
+import java.util.List;
+
+import model.Employee;
+import model.AppModel;
+import controller.EmployeeController;
+
+import java.util.ArrayList;
+
 public class AppView {
     private String statusMessage;
+    private Employee loggedIn;
 
     public void printStartMenu() {
         menuTitle("start menu");
@@ -15,7 +24,6 @@ public class AppView {
     }
 
     public void printLogInMenu() {
-        
         print("log in");
         print("Insert initials to log in");
         print("0. Exit");
@@ -27,6 +35,7 @@ public class AppView {
 
     public void printMainMenu() {
         menuTitle("time management system");
+        loggedIn();
         print("1. Create Project");
         print("2. Add Activity to Project");
         print("3. Assign Employee to Activity");
@@ -59,6 +68,7 @@ public class AppView {
 
     public void printEditMenu(String entity) {
         print("\n--- Edit " + capitalize(entity) + " ---");
+        loggedIn();
         print("1. Change Name");
         print("2. Change Start/End Week");
         if (entity.equalsIgnoreCase("project")) {
@@ -76,9 +86,24 @@ public class AppView {
         return s.substring(0, 1).toUpperCase() + s.substring(1);
     }
 
-    public void doubleDisplay() { // left og right menu variabler til kombinationer
-        ;
+    public void doubleDisplay(List<List<String>> leftDisplay, List<List<String>> rightDisplay) { // left og right menu variabler til kombinationer
+        // printer række-vis. så først øverste, så næste række, osv
+        // første for loop kører gennem rækker, anden går kolonne-vis, så fra venstre til højre
+
+        // for (int i = 0; i < leftDisplay.size(); i++) {
+        //     for (int j = 0; i < leftDisplay.size() + rightDisplay.size())
+        // }
+
+
+
     }
+
+    // public List<List<String>> leftExample() {
+    //     List<List<String>> leftMenu = new ArrayList<List<String>>();
+    //     for (int i = 0; i < 3; i++ ) {
+
+    //     }
+    // }
 
     public void setStatus(String msg) {
         statusMessage = msg;
@@ -92,13 +117,24 @@ public class AppView {
         newLine();
     }
 
+    public void setLoggedIn(Employee e) {
+        loggedIn = e;
+    }
+
+    public void loggedIn() {
+        if (loggedIn != null) {
+            print("Currently logged in: " + loggedIn.getName() + " (" + loggedIn.getInitials() + ")");
+        }
+        newLine();
+    }
+
     public void menuTitle(String menu) {
-        System.out.print("\n---===%%%  ");
+        System.out.print("\n-==%%%  ");
         for (int i = 0; i < menu.length(); i++) {
             char letter = menu.charAt(i);
             System.out.print(" " + String.valueOf(letter).toUpperCase());
         }
-        System.out.println("   %%%===---");
+        System.out.println("   %%%==-");
     }
 
     public void newLine() {

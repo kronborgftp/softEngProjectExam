@@ -14,13 +14,20 @@ public class AppModel {
     private final List<Project> projects = new ArrayList<>();
     private final List<TimeEntry> timeEntries = new ArrayList<>();
     private final Map<String, Activity> standardActivities = new HashMap<>();
-
-    // EMPLOYEES
+    private Employee loggedIn = null;
 
     // EMPLOYEES
     // %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     public void addEmployee(Employee employee) {
         employees.add(employee);
+    }
+
+    public Employee getLoggedIn() {
+        return loggedIn;
+    }
+
+    public void setLoggedIn(Employee e) {
+        loggedIn = e;
     }
 
     public Employee getEmployeeByInitials(String initials) {

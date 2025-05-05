@@ -14,7 +14,7 @@ public class EmployeeController {
     private final AppModel model;
     private final AppView appView;
     private final EmployeeView employeeView;
-    private Employee loggedIn = null;
+    // private Employee loggedIn = null;
 
         // %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     public EmployeeController(Scanner scanner, AppModel model, AppView appView, EmployeeView employeeView) { 
@@ -58,7 +58,7 @@ public class EmployeeController {
         Employee e = model.getEmployeeByInitials(initials);
 
         if (model.hasEmployee(initials)) {
-            setLoggedIn(e);
+            model.setLoggedIn(e);
             employeeView.printEmployeeLoggedIn(e);
             
         } else {
@@ -67,13 +67,13 @@ public class EmployeeController {
 
     }
 
-    public Employee getLoggedIn() {
-        return loggedIn;
-    }
+    // public Employee getLoggedIn() {
+    //     return loggedIn;
+    // }
 
-    public void setLoggedIn(Employee e) {
-        loggedIn = e;
-    }
+    // public void setLoggedIn(Employee e) {
+    //     loggedIn = e;
+    // }
 
     public void showAllEmployees() {
         employeeView.printEmployeeList(model.getAllEmployees());

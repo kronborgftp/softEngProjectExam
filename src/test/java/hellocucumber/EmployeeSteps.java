@@ -39,26 +39,27 @@ public class EmployeeSteps {
         // this.employeeView = employeeView;
     }
 
-    @When("The employee John Doe registers with initials {string} and name {string}")
-    public void The_employee_John_Doe_registers_with_initials_and_name(String s, String s2) {
-        Employee e = new Employee(s, s2, new ArrayList<>());
+    @When("an employee registers with initials {string} and name {string}")
+    public void anEmployeeRegistersWithInitialsAndName(String string, String string2) {
+        Employee e = new Employee(string, string2, new ArrayList<>());
         model.addEmployee(e);
     }
-
-    @Then("The employee John Doe has registered as employee with initials {string} and name {string}")
-    public void The_employee_John_Doe_has_registered_as_employee_with_initials_and_name(String s, String s2) {
-        assertTrue(model.hasEmployee(s));
+    
+    @Then("an employee has registered as employee with initials {string} and name {string}")
+    public void anEmployeeHasRegisteredAsEmployeeWithInitialsAndName(String string, String string2) {
+        assertTrue(model.hasEmployee(string));    
     }
 
-    @When("The employee John Doe logs in with initials {string}")
-    public void The_employee_John_Doe_logs_in_with_initials(String s) {
-        employeeController.setLoggedIn(model.getEmployeeByInitials(s));
+    @When("an employee logs in with initials {string}")
+    public void anEmployeeLogsInWithInitials(String string) {
+        model.setLoggedIn(model.getEmployeeByInitials(string));
     }
 
-    @Then("The employee is logged in with initials {string}")
-    public void The_employee_is_logged_in_with_initials(String s) {
-        assertEquals(employeeController.getLoggedIn(), model.getEmployeeByInitials(s));
+    @Then("an employee is logged in with initials {string}")
+    public void anEmployeeIsLoggedInWithInitials(String string) {
+        assertEquals(model.getLoggedIn(), model.getEmployeeByInitials(string));
     }
+
 
 
 

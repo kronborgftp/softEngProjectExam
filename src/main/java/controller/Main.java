@@ -13,7 +13,7 @@ public class Main {
         // Add employees
         Employee e1 = new Employee("JD", "John Doe", new ArrayList<>());
         Employee e2 = new Employee("huba", "Hubert Baumeister", new ArrayList<>());
-        Employee e3 = new Employee("WW", "Walter WHite", new ArrayList<>());
+        Employee e3 = new Employee("WW", "Walter White", new ArrayList<>());
         model.addEmployee(e1);
         model.addEmployee(e2);
         model.addEmployee(e3);
