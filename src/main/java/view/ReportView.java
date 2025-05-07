@@ -8,13 +8,18 @@ import model.TimeEntry;
 import java.util.List;
 import java.util.Map;
 
+import java.time.format.DateTimeFormatter;
+import java.util.Locale;
+
 public class ReportView {
+
+    private static final DateTimeFormatter DANISH = DateTimeFormatter.ofPattern("dd-MM-yyyy").withLocale(new Locale("da", "DK"));
 
     public void printProjectTimeReport(Project project, Map<String, Double> hoursPerActivity,
                                        Map<String, Integer> budgetPerActivity) {
         System.out.println("\n========== PROJECT TIME REPORT ==========");
         System.out.println("Project: " + project.getProjectName() + " (" + project.getProjectID() + ")");
-        System.out.println("Duration: Week " + project.getStartWeek() + " - Week " + project.getEndWeek());
+        System.out.println("Duration: Week " + project.getStartDate().format(DANISH) + " - Week " + project.getEndDate().format(DANISH));
         System.out.println("Project Leader: " + project.getProjectLeader().getName() +
                 " (" + project.getProjectLeader().getInitials() + ")");
 

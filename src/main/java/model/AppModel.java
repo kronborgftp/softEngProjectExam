@@ -6,6 +6,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
+import java.time.LocalDate;
+
 import view.EmployeeView;
 import view.AppView;
 
@@ -70,9 +72,9 @@ public class AppModel {
         project.setProjectName(name);
     }
 
-    public void updateProjectWeeks(Project project, int startWeek, int endWeek) {
-        project.setStartWeek(startWeek);
-        project.setEndWeek(endWeek);
+    public void updateProjectDates(Project project, LocalDate startDate, LocalDate endDate) {
+        project.setStartDate(startDate);
+        project.setEndDate(endDate);
     }
 
     public void changeProjectLeader(Project project, Employee leader) {

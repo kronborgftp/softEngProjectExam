@@ -7,6 +7,11 @@ import view.AppView;
 import view.EmployeeView;
 import view.ProjectView;
 
+import java.time.LocalDate;
+import java.time.DayOfWeek;
+import java.time.temporal.WeekFields;
+import java.util.Locale;
+
 import java.util.Scanner;
 
 public class ProjectEditor {
@@ -47,11 +52,20 @@ public class ProjectEditor {
     }
 
     private void changeWeeks(Project project) {
+        appView.prompt("New Start Year");
+        int startYear = Integer.parseInt(scanner.nextLine());
         appView.prompt("New Start Week");
-        int start = Integer.parseInt(scanner.nextLine());
+        int startWeek = Integer.parseInt(scanner.nextLine());
+        appView.prompt("New End Year");
+        int endYear = Integer.parseInt(scanner.nextLine());
         appView.prompt("New End Week");
-        int end = Integer.parseInt(scanner.nextLine());
-        model.updateProjectWeeks(project, start, end);
+        int endWeek = Integer.parseInt(scanner.nextLine());
+
+        WeekFields wf = WeekFields.ISO;
+        LocalDate startDate = LocalDate.of(startYear, 1, 4).with(wf.weekOfYear(), startWeek).with(wf.dayOfWeek(), DayOfWeek.MONDAY.getValue());
+        LocalDate endDate   = LocalDate.of(endYear,   1, 4).with(wf.weekOfYear(), endWeek).with(wf.dayOfWeek(), DayOfWeek.MONDAY.getValue());
+
+        model.updateProjectDates(project, startDate, endDate);
         projectView.printInfo("Project duration updated.");
     }
 

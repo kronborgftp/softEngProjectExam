@@ -2,20 +2,21 @@ package model;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.time.LocalDate;
 
 public class Project {
     private String projectID;
     private String projectName;
-    private int startWeek;
-    private int endWeek;
+    private LocalDate startDate;
+    private LocalDate endDate;
     private List<Activity> activityList;
     private Employee projectLeader;
 
-    public Project(String projectID, String projectName, int startWeek, int endWeek, List<Activity> activityList, Employee projectLeader) {
+    public Project(String projectID, String projectName, LocalDate startDate, LocalDate endDate, List<Activity> activityList, Employee projectLeader) {
         this.projectID = projectID;
         this.projectName = projectName;
-        this.startWeek = startWeek;
-        this.endWeek = endWeek;
+        this.startDate = startDate;
+        this.endDate = endDate;
         this.activityList = activityList != null ? activityList : new ArrayList<>();
         this.projectLeader = projectLeader;
     }
@@ -40,13 +41,9 @@ public class Project {
         return projectName;
     }
 
-    public int getStartWeek() {
-        return startWeek;
-    }
+    public LocalDate getStartDate() { return startDate; }
 
-    public int getEndWeek() {
-        return endWeek;
-    }
+    public LocalDate getEndDate()   { return endDate;   }
 
     public List<Activity> getActivityList() {
         return activityList;
@@ -65,13 +62,9 @@ public class Project {
         this.projectName = projectName;
     }
 
-    public void setStartWeek(int startWeek) {
-        this.startWeek = startWeek;
-    }
+    public void setStartDate(LocalDate d) { this.startDate = d; }
 
-    public void setEndWeek(int endWeek) {
-        this.endWeek = endWeek;
-    }
+    public void setEndDate(LocalDate d)   { this.endDate   = d; }
 
     public void setActivityList(List<Activity> activityList) {
         this.activityList = activityList;

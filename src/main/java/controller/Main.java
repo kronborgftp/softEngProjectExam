@@ -3,6 +3,11 @@ package controller;
 import model.*;
 import java.util.ArrayList;
 
+import java.time.LocalDate;
+import java.time.temporal.WeekFields;
+import java.time.DayOfWeek;
+import java.util.Locale;
+
 public class Main {
     public static void main(String[] args) {
         AppController controller = new AppController();
@@ -18,8 +23,17 @@ public class Main {
         model.addEmployee(e2);
         model.addEmployee(e3);
 
+        // Monday of week 10 and 25 in 2025
+        WeekFields wf = WeekFields.ISO;
+        LocalDate startDate = LocalDate.of(2025, 1, 4)
+                .with(wf.weekOfYear(), 10)
+                .with(wf.dayOfWeek(), DayOfWeek.MONDAY.getValue());
+        LocalDate endDate   = LocalDate.of(2025, 1, 4)
+                .with(wf.weekOfYear(), 25)
+                .with(wf.dayOfWeek(), DayOfWeek.MONDAY.getValue());
+
         // project
-        Project p1 = new Project("24001", "Gooning Project", 10, 25, new ArrayList<>(), e1);
+        Project p1 = new Project("24001", "Gooning Project", startDate, endDate, new ArrayList<>(), e1);
         model.addProject(p1);
 
         //activities

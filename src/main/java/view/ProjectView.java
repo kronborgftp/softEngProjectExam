@@ -3,12 +3,18 @@ package view;
 import model.Project;
 import model.Activity;
 
+import java.time.format.DateTimeFormatter;
+import java.time.LocalDate;
+
 import java.util.List;
+import java.util.Locale;
 
 public class ProjectView {
+    private static final DateTimeFormatter DANISH = DateTimeFormatter.ofPattern("dd-MM-yyyy").withLocale(new Locale("da", "DK"));
 
     public void printProjectCreated(Project p) {
         System.out.println("Created project: " + p.getProjectName() + " (" + p.getProjectID() + ")");
+        System.out.println("  Duration: " + p.getStartDate().format(DANISH) + " til " + p.getEndDate().format(DANISH));
     }
 
     public void printActivityAdded(String activityName) {
@@ -22,7 +28,7 @@ public class ProjectView {
 
     public void printProject(Project p) {
         System.out.println("\n--- Project: " + p.getProjectName() + " (" + p.getProjectID() + ") ---");
-        System.out.println("Duration: Week " + p.getStartWeek() + " to " + p.getEndWeek());
+        System.out.println("Duration: Week " + p.getStartDate() + " to " + p.getEndDate());
         if (p.getProjectLeader() != null) {
             System.out.println("Leader: " + p.getProjectLeader().getName());
         } else {

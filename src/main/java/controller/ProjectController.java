@@ -8,9 +8,15 @@ import view.AppView;
 import view.EmployeeView;
 import view.ProjectView;
 
+import java.time.DateTimeException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+
+import java.time.LocalDate;
+import java.time.DayOfWeek;
+import java.time.format.DateTimeParseException;
+import java.time.temporal.WeekFields;
 
 public class ProjectController {
     private final Scanner scanner;
@@ -35,10 +41,38 @@ public class ProjectController {
         String projectId = scanner.nextLine();
         appView.prompt("Project Name");
         String name = scanner.nextLine();
+        appView.prompt("Start Year");
+        int startYear = Integer.parseInt(scanner.nextLine());
         appView.prompt("Start Week");
         int startWeek = Integer.parseInt(scanner.nextLine());
+        appView.prompt("End Year");
+        int endYear = Integer.parseInt(scanner.nextLine());
         appView.prompt("End Week");
         int endWeek = Integer.parseInt(scanner.nextLine());
+
+        // LocalDate objects year + week
+        WeekFields wf = WeekFields.ISO;
+        LocalDate startDate;
+        LocalDate endDate;
+        try {
+            startDate = LocalDate.of(startYear, 1, 4)
+                    .with(wf.weekOfYear(), startWeek)
+                    .with(wf.dayOfWeek(), DayOfWeek.MONDAY.getValue());
+            endDate   = LocalDate.of(endYear, 1, 4)
+                    .with(wf.weekOfYear(), endWeek)
+                    .with(wf.dayOfWeek(), DayOfWeek.MONDAY.getValue());
+        } catch (DateTimeException ex) {
+            projectView.printError("Invalid year or week number");
+            return;
+        }
+
+        // Start before end
+        if (endDate.isBefore(startDate)) {
+            projectView.printError("End week (" + endWeek + "/" + endYear +
+                    ") cannot be before start week (" +
+                    startWeek + "/" + startYear + ").");
+            return;
+        }
 
         appView.prompt("Leader Initials");
         Employee leader = model.getEmployeeByInitials(scanner.nextLine());
@@ -47,7 +81,7 @@ public class ProjectController {
             return;
         }
 
-        Project project = new Project(projectId, name, startWeek, endWeek, new ArrayList<>(), leader);
+        Project project = new Project(projectId, name, startDate, endDate, new ArrayList<>(), leader);
         model.addProject(project);
         projectView.printProjectCreated(project);
     }
