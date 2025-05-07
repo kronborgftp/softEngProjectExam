@@ -11,7 +11,7 @@ import io.cucumber.junit.CucumberOptions.SnippetType;
 	plugin = { "summary", "html:target/cucumber/wikipedia.html"}, 
 	monochrome=true, 
 	snippets = SnippetType.CAMELCASE,
-	glue = {"hellocucumber"})
+	glue = {"stepdefs"})
 	// "dtu.library.acceptance_tests", "dtu.library.student_tests"})
 
 public class AcceptanceTests {
