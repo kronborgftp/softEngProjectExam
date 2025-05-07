@@ -1,6 +1,7 @@
 package controller;
 
 import model.*;
+import view.ActivityView;
 import view.AppView;
 import view.TimeEntryView;
 
@@ -13,12 +14,15 @@ public class TimeEntryController {
     private final AppModel model;
     private final AppView appView;
     private final TimeEntryView timeEntryView;
+    private final ActivityView activityView;
 
-    public TimeEntryController(Scanner scanner, AppModel model, AppView appView, TimeEntryView timeEntryView) {
+
+    public TimeEntryController(Scanner scanner, AppModel model, AppView appView, TimeEntryView timeEntryView, ActivityView activityView) {
         this.scanner = scanner;
         this.model = model;
         this.appView = appView;
         this.timeEntryView = timeEntryView;
+        this.activityView = activityView;
     }
 
     public void logTime() {
@@ -30,89 +34,33 @@ public class TimeEntryController {
             return;
         }
 
-        appView.prompt("Date (YYYY-MM-DD)"); // Has to be YYYY-MM-DD and not DD-MM-YYYY :(
+        appView.prompt("Date (YYYY-MM-DD)");
         String date = scanner.nextLine();
 
-        // Show activities the employee is assigned to
-        List<Activity> assignedActivities = employee.getAssignedActivities();
-        if (!assignedActivities.isEmpty()) {
-            timeEntryView.printAssignedActivities(employee, assignedActivities);
-        }
+        // Show all activities (assigned + others)
+        List<Activity> allActivities = model.getAllActivities();
+        activityView.printAllActivities(allActivities);
 
-        appView.prompt("Activity ID (or type 'search' to find an activity)");
-        String input = scanner.nextLine();
 
-        Activity activity;
-
-        if (input.equalsIgnoreCase("search")) {
-            activity = searchActivity();
-        } else {
-            activity = model.getActivityGlobally(input);
-        }
+        appView.prompt("Activity ID");
+        String activityId = scanner.nextLine();
+        Activity activity = model.getActivityGlobally(activityId);
 
         if (activity == null) {
             timeEntryView.printError("Activity not found.");
             return;
         }
 
-        appView.prompt("Hours (use 0.5 for half-hour precision, e.g., 1.5, 2.0, etc.)");
+        appView.prompt("Hours (use 0.5 for half-hour precision)");
         double hours = Double.parseDouble(scanner.nextLine());
 
-        // half-hour precision
         if (Math.round(hours * 2) != hours * 2) {
-            timeEntryView.printError("Please enter hours with half-hour precision (e.g., 1.0, 1.5, 2.0, etc.)");
+            timeEntryView.printError("Please enter hours with half-hour precision (e.g., 1.0, 1.5, etc.)");
             return;
         }
 
         String timeEntryId = model.logTimeEntry(employee, activity, hours, date);
         timeEntryView.printTimeLogged(model.getTimeEntryById(timeEntryId));
-    }
-
-    private Activity searchActivity() {
-        appView.prompt("Search by (1: Project ID, 2: Activity name)");
-        String searchType = scanner.nextLine();
-
-        switch (searchType) {
-            case "1" -> {
-                appView.prompt("Project ID");
-                String projectId = scanner.nextLine();
-                Project project = model.getProjectById(projectId);
-                if (project == null) {
-                    timeEntryView.printError("Project not found.");
-                    return null;
-                }
-                timeEntryView.printActivitiesForProject(project);
-                appView.prompt("Activity ID");
-                return model.getActivityInProject(project, scanner.nextLine());
-            }
-            case "2" -> {
-                appView.prompt("Activity name (partial match)");
-                String activityName = scanner.nextLine().toLowerCase();
-                List<Activity> matchingActivities = model.getAllActivities().stream()
-                        .filter(a -> a.getActivityName().toLowerCase().contains(activityName))
-                        .collect(Collectors.toList());
-
-                if (matchingActivities.isEmpty()) {
-                    timeEntryView.printError("No activities found matching that name.");
-                    return null;
-                }
-
-                timeEntryView.printMatchingActivities(matchingActivities);
-                appView.prompt("Select activity by number");
-                int selection = Integer.parseInt(scanner.nextLine()) - 1;
-
-                if (selection >= 0 && selection < matchingActivities.size()) {
-                    return matchingActivities.get(selection);
-                } else {
-                    timeEntryView.printError("Invalid selection.");
-                    return null;
-                }
-            }
-            default -> {
-                timeEntryView.printError("Invalid option.");
-                return null;
-            }
-        }
     }
 
     public void logAbsence() {

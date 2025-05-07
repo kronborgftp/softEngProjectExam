@@ -16,6 +16,7 @@ public class AppController {
     private final ProjectView projectView = new ProjectView();
     private final TimeEntryView timeEntryView = new TimeEntryView();
     private final ReportView reportView = new ReportView();
+    private final ActivityView activityView = new ActivityView();
 
     private final ProjectEditor projectEditor = new ProjectEditor(scanner, appModel, appView, projectView, employeeView);
     private final ActivityEditor activityEditor = new ActivityEditor(scanner, appModel, appView, projectView);
@@ -24,7 +25,7 @@ public class AppController {
     private final EmployeeController employeeController = new EmployeeController(scanner, appModel, appView, employeeView);
     private final ProjectController projectController = new ProjectController(scanner, appModel, appView, projectView, employeeView);
     private final ActivityController activityController = new ActivityController(scanner, appModel, appView, projectView, employeeView);
-    private final TimeEntryController timeEntryController = new TimeEntryController(scanner, appModel, appView, timeEntryView);
+    private final TimeEntryController timeEntryController = new TimeEntryController(scanner, appModel, appView, timeEntryView, activityView);
     private final ReportController reportController = new ReportController(scanner, appModel, appView, reportView);
 
     public void run() {
