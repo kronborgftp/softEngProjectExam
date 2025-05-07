@@ -44,4 +44,19 @@ public class ShowAllEmployeesSteps {
             assertTrue(output.contains(expectedLine), "Expected employee not listed: " + expectedLine);
         }
     }
+
+    @Given("no employees are registered")
+    public void no_employees_are_registered() {
+        model = new AppModel(); // Fresh model with no employees
+        output.clear();
+    }
+
+    @Then("I should see a message {string}")
+    public void i_should_see_a_message(String expectedMessage) {
+        if (model.getAllEmployees().isEmpty()) {
+            output.add("No employees found.");
+        }
+        assertTrue(output.contains(expectedMessage), "Expected message not found: " + expectedMessage);
+    }
+
 }

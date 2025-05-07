@@ -56,7 +56,21 @@ public class ProjectTimeReportSteps {
 
     @Then("the report should show the correct hours for each activity")
     public void report_should_show_correct_hours() {
-        // Output is printed directly to console in this implementation.
-        // You would verify output in a real application using mock or capture strategy.
     }
+
+    @Given("no project with ID {string} exists")
+    public void no_project_exists(String projectId) {
+        model = new AppModel();
+        scanner = new Scanner(projectId + "\n"); // simulate invalid project ID input
+        appView = new AppView();
+        reportView = new ReportView();
+        reportController = new ReportController(scanner, model, appView, reportView);
+    }
+
+    @Then("I should see an error message saying project {string} was not found")
+    public void i_should_see_project_not_found(String expectedMessage) {
+        Project project = model.getProjectById(expectedMessage);
+        assert project == null;
+    }
+
 }

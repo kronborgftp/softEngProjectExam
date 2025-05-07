@@ -49,4 +49,19 @@ public class EmployeeTimeReportSteps {
     public void reportShouldShowCorrectHours() {
         // Already printed in ReportView; for now we just check execution
     }
+
+    @Given("no employee with initials {string} exists")
+    public void no_employee_with_initials_exists(String initials) {
+        model = new AppModel();  // empty model
+        Scanner scanner = new Scanner(initials + "\n"); // simulate user input
+        AppView appView = new AppView();
+        ReportView reportView = new ReportView();
+        reportController = new ReportController(scanner, model, appView, reportView);
+    }
+
+    @Then("I should see an error message saying employee {string} was not found")
+    public void i_should_see_employee_not_found(String expectedMessage) {
+        System.out.println("Captured: " + expectedMessage);
+    }
+
 }

@@ -7,3 +7,8 @@ Feature: Project Time Report
     When I generate a project time report for "25001"
     Then the report should show the correct hours for each activity
 
+  Scenario: Attempt to generate a time report for a non-existent project
+    Given no project with ID "99999" exists
+    When I generate a project time report for "99999"
+    Then I should see an error message saying project "99999" was not found
+

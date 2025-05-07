@@ -14,3 +14,7 @@ Feature: View all registered employees
       | HB       | Hubert Baumeister |
       | WW       | Walter White     |
 
+  Scenario: Viewing all employees when none are registered
+    Given no employees are registered
+    When I request to view all employees
+    Then I should see a message "No employees found."

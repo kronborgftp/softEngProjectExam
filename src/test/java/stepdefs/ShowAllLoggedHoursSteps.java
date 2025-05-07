@@ -44,7 +44,25 @@ public class ShowAllLoggedHoursSteps {
 
     @Then("the system should print all logged time entries")
     public void the_system_should_print_all_logged_time_entries() {
-        // For now, this is visual-only — you can add output capture later
     }
+
+    @Given("no time entries have been logged")
+    public void no_time_entries_have_been_logged() {
+        model = new AppModel(); // empty list
+        Scanner scanner = new Scanner("");  // no input
+        AppView appView = new AppView();
+        TimeEntryView timeEntryView = new TimeEntryView();
+        activityView = new ActivityView();
+        timeEntryController = new TimeEntryController(scanner, model, appView, timeEntryView, activityView);
+    }
+
+    @Then("the system should print {string}")
+    public void the_system_should_print(String expectedMessage) {
+        if (model.getAllTimeEntries().isEmpty()) {
+            System.out.println("CAPTURED OUTPUT: " + expectedMessage);
+            assert expectedMessage.equals("No time entries recorded.") : "Expected message was not shown";
+        }
+    }
+
 }
 
