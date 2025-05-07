@@ -88,6 +88,10 @@ public class AppController {
                 case "6" -> employeeController.showAllEmployees();
                 case "7" -> timeEntryController.showAllLoggedHours();
                 case "8" -> editMenu();
+                case "10" -> reportController.projectTimeReport();
+                case "11" -> reportController.employeeTimeReport();
+                case "12" -> timeEntryController.logAbsence();
+                case "13" -> timeEntryController.showEmployeeLoggedHours();
                 case "0" -> appModel.setLoggedIn(null);// running baseret på boolean i starten af mainMenu(), hvordan passer den boolean ind?
                 default -> appView.printError("Invalid input.");
             }
