@@ -44,7 +44,7 @@ public class EmployeeSteps {
         Employee e = new Employee(string, string2, new ArrayList<>());
         model.addEmployee(e);
     }
-    
+
     @Then("an employee has registered as employee with initials {string} and name {string}")
     public void anEmployeeHasRegisteredAsEmployeeWithInitialsAndName(String string, String string2) {
         assertTrue(model.hasEmployee(string));    
@@ -59,6 +59,18 @@ public class EmployeeSteps {
     public void anEmployeeIsLoggedInWithInitials(String string) {
         assertEquals(model.getLoggedIn(), model.getEmployeeByInitials(string));
     }
+
+    @Given("a user with initials {string} and name {string} is registered")
+    public void a_user_with_initials_and_name_is_registered(String s, String s2) {
+        Employee e = new Employee(s, s2, new ArrayList<>());
+        model.addEmployee(e);
+    }
+
+    @Then("the error message {string} is given")
+    public void the_error_message_is_given(String s) {
+        // Write code here that turns the phrase above into concrete actions
+    }
+
 
 
 

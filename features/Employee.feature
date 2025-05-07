@@ -10,6 +10,8 @@ Feature: Employees
     When an employee logs in with initials "jdoe"
     Then an employee is logged in with initials "jdoe"
 
-  # Scenario: Employee 
-
+  Scenario: Employee registers with already existing initials
+    Given a user with initials "jdoe" and name "John Doe" is registered
+    When an employee registers with initials "jdoe" and name "John Doe"
+    Then the error message "employee initials already found" is given
 
