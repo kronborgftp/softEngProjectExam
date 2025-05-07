@@ -6,6 +6,7 @@ import view.AppView;
 import view.TimeEntryView;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -15,6 +16,8 @@ public class TimeEntryController {
     private final AppView appView;
     private final TimeEntryView timeEntryView;
     private final ActivityView activityView;
+    private static final DateTimeFormatter DANISH = DateTimeFormatter.ofPattern("dd-MM-yyyy").withLocale(new Locale("da", "DK"));
+
 
 
     public TimeEntryController(Scanner scanner, AppModel model, AppView appView, TimeEntryView timeEntryView, ActivityView activityView) {
@@ -34,8 +37,16 @@ public class TimeEntryController {
             return;
         }
 
-        appView.prompt("Date (YYYY-MM-DD)");
-        String date = scanner.nextLine();
+        appView.prompt("Date (DD-MM-YYYY)");
+        String dateInput = scanner.nextLine();
+        LocalDate date;
+        try {
+            date = LocalDate.parse(dateInput, DANISH);
+        } catch (Exception e) {
+            timeEntryView.printError("Invalid date format.");
+            return;
+        }
+        String formattedDate = date.format(DANISH);
 
         // Show all activities (assigned + others)
         List<Activity> allActivities = model.getAllActivities();
@@ -59,7 +70,7 @@ public class TimeEntryController {
             return;
         }
 
-        String timeEntryId = model.logTimeEntry(employee, activity, hours, date);
+        String timeEntryId = model.logTimeEntry(employee, activity, hours, formattedDate);
         timeEntryView.printTimeLogged(model.getTimeEntryById(timeEntryId));
     }
 
@@ -88,15 +99,15 @@ public class TimeEntryController {
 
         Activity activity = model.getOrCreateStandardActivity(id, name);
 
-        appView.prompt("Start Date (YYYY-MM-DD)");
+        appView.prompt("Start Date (DD-MM-YYYY)");
         String startStr = scanner.nextLine();
-        appView.prompt("End Date (YYYY-MM-DD)");
+        appView.prompt("End Date (DD-MM-YYYY)");
         String endStr = scanner.nextLine();
 
         LocalDate start, end;
         try {
-            start = LocalDate.parse(startStr);
-            end = LocalDate.parse(endStr);
+            start = LocalDate.parse(startStr, DANISH);
+            end = LocalDate.parse(endStr, DANISH);
         } catch (Exception e) {
             timeEntryView.printError("Invalid date format.");
             return;
