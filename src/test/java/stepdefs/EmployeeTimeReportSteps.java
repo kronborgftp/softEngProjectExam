@@ -7,20 +7,33 @@ import view.*;
 import io.cucumber.java.en.*;
 
 import java.util.*;
+import java.time.LocalDate;
+import java.time.temporal.WeekFields;
+import java.time.DayOfWeek;
 
 public class EmployeeTimeReportSteps {
 
     private AppModel model;
     private ReportController reportController;
 
+    // Monday of week 10 and 25 in 2025
+    WeekFields wf = WeekFields.ISO;
+    LocalDate startDate = LocalDate.of(2025, 1, 4)
+            .with(wf.weekOfYear(), 10)
+            .with(wf.dayOfWeek(), DayOfWeek.MONDAY.getValue());
+    LocalDate endDate   = LocalDate.of(2025, 1, 4)
+            .with(wf.weekOfYear(), 25)
+            .with(wf.dayOfWeek(), DayOfWeek.MONDAY.getValue());
+
     @Given("an employee with initials {string} exists")
+
     public void employeeExists(String initials) {
         model = new AppModel();
         Employee e = new Employee(initials, "John Doe", new ArrayList<>());
         model.addEmployee(e);
 
         Activity a1 = new Activity("A1", "Code Review", 40, 10, 15);
-        Project project = new Project("P1", "Code Project", 10, 20, new ArrayList<>(), e);
+        Project project = new Project("P1", "Code Project", startDate, endDate, new ArrayList<>(), e);
         model.addProject(project);
         model.addActivityToProject(project, a1);
         model.assignEmployeeToActivity(e, a1);

@@ -7,6 +7,9 @@ import view.*;
 
 import io.cucumber.java.en.*;
 
+import java.time.DayOfWeek;
+import java.time.LocalDate;
+import java.time.temporal.WeekFields;
 import java.util.*;
 
 public class ShowAllLoggedHoursSteps {
@@ -15,6 +18,15 @@ public class ShowAllLoggedHoursSteps {
     private TimeEntryController timeEntryController;
     private ActivityView activityView;
 
+    // Monday of week 10 and 25 in 2025
+    WeekFields wf = WeekFields.ISO;
+    LocalDate startDate = LocalDate.of(2025, 1, 4)
+            .with(wf.weekOfYear(), 10)
+            .with(wf.dayOfWeek(), DayOfWeek.MONDAY.getValue());
+    LocalDate endDate   = LocalDate.of(2025, 1, 4)
+            .with(wf.weekOfYear(), 25)
+            .with(wf.dayOfWeek(), DayOfWeek.MONDAY.getValue());
+
     @Given("some time entries have been logged")
     public void some_time_entries_have_been_logged() {
         model = new AppModel();
@@ -22,7 +34,7 @@ public class ShowAllLoggedHoursSteps {
         Employee e = new Employee("JD", "John Doe", new ArrayList<>());
         model.addEmployee(e);
 
-        Project project = new Project("P1", "Test Project", 2024, 2025, new ArrayList<>(), e);
+        Project project = new Project("P1", "Test Project", startDate, endDate, new ArrayList<>(), e);
         Activity a = new Activity("A1", "Dev Work", 10, 20, 40);
         model.addProject(project);
         model.addActivityToProject(project, a);

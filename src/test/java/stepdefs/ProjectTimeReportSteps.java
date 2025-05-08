@@ -5,6 +5,9 @@ import io.cucumber.java.en.*;
 import model.*;
 import view.*;
 
+import java.time.DayOfWeek;
+import java.time.LocalDate;
+import java.time.temporal.WeekFields;
 import java.util.*;
 
 public class ProjectTimeReportSteps {
@@ -14,6 +17,14 @@ public class ProjectTimeReportSteps {
     private AppView appView;
     private ReportController reportController;
     private Scanner scanner;
+    // Monday of week 10 and 25 in 2025
+    WeekFields wf = WeekFields.ISO;
+    LocalDate startDate = LocalDate.of(2025, 1, 4)
+            .with(wf.weekOfYear(), 10)
+            .with(wf.dayOfWeek(), DayOfWeek.MONDAY.getValue());
+    LocalDate endDate   = LocalDate.of(2025, 1, 4)
+            .with(wf.weekOfYear(), 25)
+            .with(wf.dayOfWeek(), DayOfWeek.MONDAY.getValue());
 
     @Given("a project with ID {string} exists")
     public void a_project_exists(String projectId) {
@@ -25,7 +36,7 @@ public class ProjectTimeReportSteps {
         Employee e1 = new Employee("JD", "John Doe", new ArrayList<>());
         model.addEmployee(e1);
 
-        Project project = new Project(projectId, "Gooning Project", 10, 25, new ArrayList<>(), e1);
+        Project project = new Project(projectId, "Gooning Project", startDate, endDate, new ArrayList<>(), e1);
         model.addProject(project);
 
         Activity a1 = new Activity("A1", "Gooning", 80, 10, 15);
