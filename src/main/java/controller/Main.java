@@ -33,12 +33,12 @@ public class Main {
                 .with(wf.dayOfWeek(), DayOfWeek.MONDAY.getValue());
 
         // project
-        Project p1 = new Project("24001", "Gooning Project", startDate, endDate, new ArrayList<>(), e1);
+        Project p1 = new Project("24001", "Development Project", startDate, endDate, new ArrayList<>(), e1);
         model.addProject(p1);
 
         //activities
-        Activity a1 = new Activity("A1", "Gooning", 80, 10, 15);
-        Activity a2 = new Activity("A2", "Gooning Max!", 120, 16, 22);
+        Activity a1 = new Activity("A1", "Coding", 80, 10, 15);
+        Activity a2 = new Activity("A2", "White-box testing", 120, 16, 22);
         model.addActivityToProject(p1, a1);
         model.addActivityToProject(p1, a2);
 
@@ -49,10 +49,10 @@ public class Main {
         model.assignEmployeeToActivity(e3, a2);
 
         // Log time entries
-        model.logTimeEntry(e1, a1, 4.0, "2025-03-04");
-        model.logTimeEntry(e2, a1, 3.5, "2025-03-04");
-        model.logTimeEntry(e2, a2, 5.0, "2025-03-10");
-        model.logTimeEntry(e3, a2, 6.0, "2025-03-11");
+        model.logTimeEntry(e1, a1, 4.0, "04-03-2025");
+        model.logTimeEntry(e2, a1, 3.5, "05-03-2025");
+        model.logTimeEntry(e2, a2, 5.0, "06-03-2025");
+        model.logTimeEntry(e3, a2, 6.0, "10-03-2025");
 
 
         controller.run();
