@@ -18,6 +18,7 @@ public class AppController {
     private final TimeEntryView timeEntryView = new TimeEntryView();
     private final ReportView reportView = new ReportView();
     private final ActivityView activityView = new ActivityView();
+    private final FixedActivityView fixedActivityView = new FixedActivityView();
 
     private final ProjectEditor projectEditor = new ProjectEditor(scanner, appModel, appView, projectView, employeeView);
     private final ActivityEditor activityEditor = new ActivityEditor(scanner, appModel, appView, projectView);
@@ -28,6 +29,9 @@ public class AppController {
     private final ActivityController activityController = new ActivityController(scanner, appModel, appView, projectView, employeeView);
     private final TimeEntryController timeEntryController = new TimeEntryController(scanner, appModel, appView, timeEntryView, activityView);
     private final ReportController reportController = new ReportController(scanner, appModel, appView, reportView);
+    private final FixedActivityController fixedActivityController = new FixedActivityController(
+            scanner, appModel, appView, fixedActivityView
+    );
 
     private String statusMessage;
 
@@ -48,10 +52,6 @@ public class AppController {
                 case "2" -> employeeController.registerEmployee(); 
                 case "3" -> employeeController.showAllEmployees(); // skal ændres til horisontal liste
                 // case "9" -> testMenu();
-                case "10" -> reportController.projectTimeReport();
-                case "11" -> reportController.employeeTimeReport();
-                case "12" -> timeEntryController.logAbsence();
-                case "13" -> timeEntryController.showEmployeeLoggedHours();
                 case "0" -> running = false;
             }
 
@@ -84,7 +84,7 @@ public class AppController {
 
             switch (input) {
                 case "1" -> timeEntryController.logTime();
-                case "2" -> timeEntryController.logAbsence();
+                case "2" -> fixedActivityController.logAbsence();
                 case "3" -> timeEntryController.showEmployeeLoggedHours();
                 case "4" -> editMenu();
                 case "5" -> projectController.createProject(); // employeeController.registerEmployee();

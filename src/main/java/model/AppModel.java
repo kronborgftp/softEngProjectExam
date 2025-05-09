@@ -1,15 +1,8 @@
 package model;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.UUID;
+import java.util.*;
 
 import java.time.LocalDate;
-
-import view.EmployeeView;
-import view.AppView;
 
 public class AppModel {
     private final List<Employee> employees = new ArrayList<>();
@@ -17,6 +10,11 @@ public class AppModel {
     private final List<TimeEntry> timeEntries = new ArrayList<>();
     private final Map<String, Activity> standardActivities = new HashMap<>();
     private Employee loggedIn = null;
+    private final Map<String, FixedActivity> fixedActivities = new HashMap<>();
+
+    public AppModel() {
+        initializeFixedActivities();
+    }
 
     // EMPLOYEES
     // %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -111,13 +109,6 @@ public class AppModel {
         return null;
     }
 
-    public List<Activity> getAllActivities() {
-        List<Activity> all = new ArrayList<>(standardActivities.values());
-        for (Project project : projects) {
-            all.addAll(project.getActivityList());
-        }
-        return all;
-    }
 
     public void updateActivityName(Activity activity, String name) {
         activity.setActivityName(name);
@@ -137,13 +128,30 @@ public class AppModel {
         employee.assignActivity(activity);
     }
 
-    public Activity getOrCreateStandardActivity(String id, String name) {
+    public Activity getOrCreateFixedActivity(String id, String name) {
         if (!standardActivities.containsKey(id)) {
             Activity activity = new Activity(id, name, 0, 0, 0);
             standardActivities.put(id, activity);
         }
         return standardActivities.get(id);
     }
+
+    public void initializeFixedActivities() {
+        if (!fixedActivities.isEmpty()) return;
+
+        fixedActivities.put("VAC", new FixedActivity("VAC", "Vacation"));
+        fixedActivities.put("SICK", new FixedActivity("SICK", "Sick Leave"));
+        fixedActivities.put("COURSE", new FixedActivity("COURSE", "Course"));
+    }
+
+    public FixedActivity getFixedActivity(String id) {
+        return fixedActivities.get(id.toUpperCase());
+    }
+
+    public Collection<FixedActivity> getAllFixedActivities() {
+        return fixedActivities.values();
+    }
+
 
     // TIME ENTRIES
 

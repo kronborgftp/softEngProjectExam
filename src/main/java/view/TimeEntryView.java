@@ -39,12 +39,16 @@ public class TimeEntryView {
             Activity a = entry.getActivity();
             Project p = a.getParentProject();
 
+            String projectName = (p != null) ? p.getProjectName() : "---";
+            String hourDisplay = (entry.getHours() == -1) ? "ABSENT" : String.format("%.1f", entry.getHours());
+
             System.out.printf("- %s (%s)\n", e.getName(), e.getInitials());
-            System.out.printf("  • Project: %s\n", p != null ? p.getProjectName() : "Standard Activity");
-            System.out.printf("    - Activity: %s (%s) | Hours: %.1f | Date: %s\n",
-                    a.getActivityName(), a.getActivityId(), entry.getHours(), entry.getDate());
+            System.out.printf("  • Project: %s\n", projectName);
+            System.out.printf("    - Activity: %s (%s) | Hours: %s | Date: %s\n",
+                    a.getActivityName(), a.getActivityId(), hourDisplay, entry.getDate());
         }
     }
+
 
     public void printTimeEntriesForEmployee(Employee employee, List<TimeEntry> entries) {
         System.out.println("\nTime entries for " + employee.getName() + ":");
@@ -57,22 +61,27 @@ public class TimeEntryView {
         int index = 1;
         System.out.println("---------------------------------------------------------------");
         System.out.printf("%-5s %-12s %-25s %-15s %-10s\n",
-                "#", "Date", "Activity", "Project", "Hours");
+                "#", "Date", "Activity", "Project", "Hours/Status");
         System.out.println("---------------------------------------------------------------");
 
         for (TimeEntry entry : entries) {
             String date = entry.getDate();
             String activityName = entry.getActivity().getActivityName();
-            String projectName = entry.getActivity().getParentProject() != null ?
-                    entry.getActivity().getParentProject().getProjectID() : "Standard";
-            double hours = entry.getHours();
+            Project parentProject = entry.getActivity().getParentProject();
+            String projectName = (parentProject != null) ? parentProject.getProjectID() : "---";
 
-            System.out.printf("%-5d %-12s %-25s %-15s %-10.1f\n",
-                    index++, date, activityName, projectName, hours);
+            if (entry.getHours() == -1) {
+                System.out.printf("%-5d %-12s %-25s %-15s %-10s\n",
+                        index++, date, activityName, projectName, "ABSENT");
+            } else {
+                System.out.printf("%-5d %-12s %-25s %-15s %-10.1f\n",
+                        index++, date, activityName, projectName, entry.getHours());
+            }
         }
 
         System.out.println("---------------------------------------------------------------");
     }
+
 
     public void printError(String message) {
         System.out.println("ERROR: " + message);
