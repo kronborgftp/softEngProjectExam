@@ -33,16 +33,30 @@ public class FixedActivityController {
             return;
         }
 
-        view.printFixedActivities(model.getAllFixedActivities());
+        appView.prompt("Absence Type (1: Vacation, 2: Sick Leave, 3: Course)");
+        String input = scanner.nextLine();
+        String id, name;
 
-        appView.prompt("Absence ID");
-        String id = scanner.nextLine().toUpperCase();
-        FixedActivity fixed = model.getFixedActivity(id);
-
-        if (fixed == null) {
-            view.printError("Invalid absence type.");
-            return;
+        switch (input) {
+            case "1" -> {
+                id = "VAC";
+                name = "Vacation";
+            }
+            case "2" -> {
+                id = "SICK";
+                name = "Sick Leave";
+            }
+            case "3" -> {
+                id = "COURSE";
+                name = "Course";
+            }
+            default -> {
+                view.printError("Invalid absence type.");
+                return;
+            }
         }
+
+        Activity activity = model.getOrCreateFixedActivity(id, name);
 
         appView.prompt("Start Date (DD-MM-YYYY)");
         String startStr = scanner.nextLine();
@@ -51,8 +65,8 @@ public class FixedActivityController {
 
         LocalDate start, end;
         try {
-            start = LocalDate.parse(startStr, DANISH);
-            end = LocalDate.parse(endStr, DANISH);
+            start = LocalDate.parse(startStr, DateTimeFormatter.ofPattern("dd-MM-yyyy"));
+            end = LocalDate.parse(endStr, DateTimeFormatter.ofPattern("dd-MM-yyyy"));
         } catch (Exception e) {
             view.printError("Invalid date format.");
             return;
@@ -63,19 +77,17 @@ public class FixedActivityController {
             return;
         }
 
-        //convert into fixed activity
-        Activity absenceActivity = model.getOrCreateFixedActivity(id, fixed.getName());
-
         int count = 0;
         for (LocalDate date = start; !date.isAfter(end); date = date.plusDays(1)) {
             if (date.getDayOfWeek().getValue() <= 5) {
-                TimeEntry absence = new TimeEntry(UUID.randomUUID().toString(), employee, absenceActivity, date.toString());
+                TimeEntry absence = new TimeEntry(UUID.randomUUID().toString(), employee, activity, date.toString());
                 model.addTimeEntry(absence);
                 view.printTimeLogged(absence);
                 count++;
             }
         }
 
-        appView.printInfo("Logged " + count + " day(s) of " + fixed.getName() + ".");
+        appView.printInfo("Logged " + count + " day(s) of " + name + ".");
     }
+
 }
