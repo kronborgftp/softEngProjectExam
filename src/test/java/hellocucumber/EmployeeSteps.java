@@ -15,6 +15,7 @@ import static org.junit.Assert.assertTrue;
 import java.util.*;
 
 import controller.EmployeeController;
+import controller.StatusHolder;
 
 public class EmployeeSteps {
     private AppModel model;
@@ -68,6 +69,16 @@ public class EmployeeSteps {
 
     @Then("the error message {string} is given")
     public void the_error_message_is_given(String s) {
+        assertEquals(s,StatusHolder.getStatus());
+    }
+
+    @Then("the initials {string} no longer exists")
+    public void the_initials_no_longer_exists(String s) {
+        // Write code here that turns the phrase above into concrete actions
+    }
+
+    @When("a user deletes employee initials {string}")
+    public void a_user_deletes_employee_initials(String s) {
         // Write code here that turns the phrase above into concrete actions
     }
 

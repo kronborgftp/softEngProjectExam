@@ -5,7 +5,7 @@ import java.util.List;
 
 public class Employee {
     private String initials;
-    private String name; // ifølge sektion 5.1 i beskrivelsen behøver vi vel kun initialer og ikke navn? trueeee
+    private String name;
     private List<Activity> assignedActivities;
 
     // %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

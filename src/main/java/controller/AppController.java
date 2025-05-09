@@ -3,6 +3,7 @@ package controller;
 import controller.edit.*;
 import model.*;
 import view.*;
+import controller.StatusHolder;
 
 import java.util.Scanner;
 
@@ -27,6 +28,8 @@ public class AppController {
     private final ActivityController activityController = new ActivityController(scanner, appModel, appView, projectView, employeeView);
     private final TimeEntryController timeEntryController = new TimeEntryController(scanner, appModel, appView, timeEntryView, activityView);
     private final ReportController reportController = new ReportController(scanner, appModel, appView, reportView);
+
+    private String statusMessage;
 
     public void run() {
         boolean running = true;
@@ -132,5 +135,17 @@ public class AppController {
 
     public AppModel getModel() {
         return appModel;
+    }
+
+    public void setStatus(String msg) {
+        statusMessage = msg;
+    }
+
+    public void status() {
+        if (statusMessage != null) {
+            System.out.println("--==%%   S T A T U S   -   " + statusMessage);
+            statusMessage = null;
+        }
+        System.out.println("\n");
     }
 }

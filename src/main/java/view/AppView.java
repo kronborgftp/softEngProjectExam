@@ -5,6 +5,7 @@ import java.util.List;
 import model.Employee;
 import model.AppModel;
 import controller.EmployeeController;
+import controller.StatusHolder;
 
 import java.util.ArrayList;
 
@@ -19,7 +20,7 @@ public class AppView {
         option(3,"View all employees"); // WIP, horisontal menu
         option(0,"Exit");
         newLine();
-        status();
+        StatusHolder.getStatus();
         prompt("Choose option");
     }
 
@@ -28,7 +29,7 @@ public class AppView {
         print("Insert initials to log in");
         print("0. Exit");
         newLine();
-        status();
+        StatusHolder.getStatus();
         prompt("Input");
         
     }
@@ -50,7 +51,7 @@ public class AppView {
         print("13. Show Employee's Logged Hours");
         print("0. Log Out");
         newLine();
-        status();
+        StatusHolder.getStatus();
         prompt("Choose option");
     }
 
@@ -62,7 +63,7 @@ public class AppView {
         print("3. Edit Time Entry");
         print("0. Exit");
         newLine();
-        status();
+        StatusHolder.getStatus();
         prompt("Choose option");
     }
 
@@ -78,7 +79,7 @@ public class AppView {
         }
         print("0. Exit");
         newLine();
-        status();
+        StatusHolder.getStatus();
         prompt("Choose option");
     }
 
@@ -105,17 +106,6 @@ public class AppView {
     //     }
     // }
 
-    public void setStatus(String msg) {
-        statusMessage = msg;
-    }
-
-    public void status() {
-        if (statusMessage != null) {
-            print("--==%%   S T A T U S   -   " + statusMessage);
-            statusMessage = null;
-        }
-        newLine();
-    }
 
     public void setLoggedIn(Employee e) {
         loggedIn = e;

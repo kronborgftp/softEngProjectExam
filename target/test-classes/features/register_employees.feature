@@ -3,11 +3,11 @@ Feature: Employee Registration
   Actors: users
 
   Scenario: user registers successfully
-    When a user registers with initials "jdoe" and name "John Doe"
-    Then user has registered as employee with initials "jdoe" and name "John Doe"
+    When an employee registers with initials "jdoe" and name "John Doe"
+    Then an employee has registered as employee with initials "jdoe" and name "John Doe"
 
   Scenario: user registers with 5 or more characters
-    When a user registers with initials "jndoe" and name "John Doe"
+    When an employee registers with initials "jndoe" and name "John Doe"
     Then the error message "Cannot register initials with length above 4" is given
   
   # Scenario: user registers with 0 characters
@@ -28,7 +28,7 @@ Feature: Employee Registration
 
   Scenario: user registers with existing initials
     Given a user with initials "jdoe" and name "John Doe" is registered
-    When a user registers with initials "jdoe" and name "John Doe"
+    When an employee registers with initials "jdoe" and name "John Doe"
     Then the error message "Cannot register already existing initials" is given
 
   Scenario: user deletes employee initials successfully

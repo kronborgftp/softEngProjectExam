@@ -29,9 +29,9 @@ public class EmployeeController {
         String initials = scanner.nextLine();
 
         if (initials.equals("0")) {
-            appView.setStatus("Register cancelled - Returning to start menu");
+            StatusHolder.setStatus("Register cancelled - Returning to start menu");
         } else if (model.hasEmployee(initials)) {
-            appView.setStatus("ERROR: Register failed - Initials already registered");
+            StatusHolder.setStatus("ERROR: Register failed - Initials already registered");
             // employeeView.printError("ERROR: Initials already found");
         } else if (initials != null) {
             initials = (initials != null && initials.length() > 4) ? initials.substring(0, 4) : initials;
