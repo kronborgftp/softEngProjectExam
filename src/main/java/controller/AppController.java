@@ -81,6 +81,7 @@ public class AppController {
         // boolean loggedIn = true; // loggedIn er også en variabel i employee controller... skal tjekkes
         while (appModel.getLoggedIn() == e) {
             appView.printMainMenu();
+
             String input = scanner.nextLine();
 
             switch (input) { // edit projects, log absence, 
@@ -113,6 +114,7 @@ public class AppController {
 
         while (managingProjects) {
             appView.printProjectManager();
+
             switch (scanner.nextLine()) {
                 case "1" -> {               // skal display projekter så man kan vælge mellem dem
                     appView.prompt("Project ID");
@@ -130,10 +132,12 @@ public class AppController {
         }
     }
 
-    public void editProject(Project p) {
+    private void editProject(Project p) {
         Project editingProject = p;
 
         while (editingProject != null) {
+            appView.printEditProject();
+
             switch(scanner.nextLine()) {
                 case "1" -> manageActivities(p);
                 case "2" -> activityController.addActivityToProject();  
@@ -151,6 +155,8 @@ public class AppController {
         Project managingActivities = p;
 
         while (managingActivities != null) {
+            appView.printActivityManager();
+
             switch(scanner.nextLine()) {
                 case "1" -> {                     // skal display aktiviteter i givne projekt så man kan vælge dem
                     appView.prompt("Activity ID");
@@ -171,6 +177,8 @@ public class AppController {
         Activity editingActivity = a;
 
         while (editingActivity != null) {
+            appView.printEditActivity();
+
             switch(scanner.nextLine()) {
                 case "1" -> activityController.changeName(a);
                 case "2" -> activityController.changeWeeks(a);
@@ -186,6 +194,7 @@ public class AppController {
         boolean editing = true;
         while (editing) {
             appView.printEditSelectionMenu();
+            
             switch (scanner.nextLine()) {
                 case "1" -> {
                     appView.prompt("Project ID");
