@@ -83,18 +83,20 @@ public class AppController {
             String input = scanner.nextLine();
 
             switch (input) {
-                case "1" -> projectController.createProject(); // employeeController.registerEmployee();
-                case "2" -> activityController.addActivityToProject();
-                case "3" -> activityController.assignEmployeeToActivity();
-                case "4" -> timeEntryController.logTime();
-                case "5" -> projectController.showAllProjects();
-                case "6" -> employeeController.showAllEmployees();
-                case "7" -> timeEntryController.showAllLoggedHours();
-                case "8" -> editMenu();
-                case "10" -> reportController.projectTimeReport();
-                case "11" -> reportController.employeeTimeReport();
-                case "12" -> timeEntryController.logAbsence();
-                case "13" -> timeEntryController.showEmployeeLoggedHours();
+                case "1" -> timeEntryController.logTime();
+                case "2" -> timeEntryController.logAbsence();
+                case "3" -> timeEntryController.showEmployeeLoggedHours();
+                case "4" -> editMenu();
+                case "5" -> projectController.createProject(); // employeeController.registerEmployee();
+                case "6" -> activityController.addActivityToProject();
+                case "7" -> activityController.assignEmployeeToActivity();
+                case "8" -> projectController.showAllProjects();
+                case "9" -> employeeController.showAllEmployees();
+                case "10" -> timeEntryController.showAllLoggedHours();
+                case "11" -> reportController.projectTimeReport();
+                case "12" -> reportController.employeeTimeReport();
+
+
                 case "0" -> appModel.setLoggedIn(null);// running baseret på boolean i starten af mainMenu(), hvordan passer den boolean ind?
                 default -> appView.printError("Invalid input.");
             }

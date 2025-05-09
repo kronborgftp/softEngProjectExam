@@ -29,36 +29,29 @@ public class TimeEntryController {
     }
 
     public void logTime() {
-        appView.prompt("Employee Initials");
-        Employee employee = model.getEmployeeByInitials(scanner.nextLine());
-
+        Employee employee = model.getLoggedIn();
         if (employee == null) {
-            timeEntryView.printError("Employee not found.");
+            timeEntryView.printError("No employee is currently logged in.");
             return;
         }
 
-        appView.prompt("Date (DD-MM-YYYY)");
-        String dateInput = scanner.nextLine();
-        LocalDate date;
-        try {
-            date = LocalDate.parse(dateInput, DANISH);
-        } catch (Exception e) {
-            timeEntryView.printError("Invalid date format.");
+        LocalDate today = LocalDate.now();
+        String formattedDate = today.format(DANISH);
+
+        List<Activity> assignedActivities = employee.getAssignedActivities();
+        if (assignedActivities.isEmpty()) {
+            timeEntryView.printError("No activities assigned to you.");
             return;
         }
-        String formattedDate = date.format(DANISH);
 
-        // Show all activities (assigned + others)
-        List<Activity> allActivities = model.getAllActivities();
-        activityView.printAllActivities(allActivities);
-
+        activityView.printAllActivities(assignedActivities);
 
         appView.prompt("Activity ID");
         String activityId = scanner.nextLine();
         Activity activity = model.getActivityGlobally(activityId);
 
-        if (activity == null) {
-            timeEntryView.printError("Activity not found.");
+        if (activity == null || !assignedActivities.contains(activity)) {
+            timeEntryView.printError("Activity not found or not assigned to you.");
             return;
         }
 
@@ -73,6 +66,7 @@ public class TimeEntryController {
         String timeEntryId = model.logTimeEntry(employee, activity, hours, formattedDate);
         timeEntryView.printTimeLogged(model.getTimeEntryById(timeEntryId));
     }
+
 
     public void logAbsence() {
         appView.prompt("Employee Initials");

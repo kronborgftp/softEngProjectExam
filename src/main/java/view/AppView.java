@@ -37,18 +37,20 @@ public class AppView {
     public void printMainMenu() {
         menuTitle("time management system");
         loggedIn();
-        print("1. Create Project");
-        print("2. Add Activity to Project");
-        print("3. Assign Employee to Activity");
-        print("4. Log Time");
-        print("5. View All Projects");
-        print("6. View All Employees");
-        print("7. View All Logged Time");
-        print("8. Edit Project/Activity/Time Entry");
-        print("10. Project Time Report");
-        print("11. Employee Time Report");
-        print("12. Log Vacation/Sick/Course");
-        print("13. Show Employee's Logged Hours");
+        print("1. Log time for today");
+        print("2. Log Vacation/Sick/Course");
+        print("3. Show Employee's Logged Hours");
+        print("4. Edit Project/Activity/Time Entry");
+        print("5. Create Project");
+        print("6. Add Activity to Project");
+        print("7. Assign Employee to Activity");
+        print("8. View All Projects");
+        print("9. View All Employees");
+        print("10. View All Logged Time");
+        print("11. Project Time Report");
+        print("12. Employee Time Report");
+
+
         print("0. Log Out");
         newLine();
         StatusHolder.getStatus();
