@@ -10,8 +10,8 @@ import controller.StatusHolder;
 import java.util.ArrayList;
 
 public class AppView {
-    private String statusMessage;
-    private Employee loggedIn;
+    // private String statusMessage;
+    // private Employee loggedIn;
 
     public void printStartMenu() {
         menuTitle("start menu");
@@ -37,6 +37,7 @@ public class AppView {
     public void printMainMenu() {
         menuTitle("time management system");
         loggedIn();
+        newLine();
         print("1. Log time for today");
         print("2. Manage projects");
         print("3. Log absence");
@@ -62,6 +63,8 @@ public class AppView {
 
     public void printProjectManager() {
         menuTitle("project manager");
+        loggedIn();
+        newLine();
         print("1. Edit Project");
         print("2. Create Project");
         print("3. View All Logged Time");
@@ -74,6 +77,8 @@ public class AppView {
 
     public void printEditProject() {
         menuTitle("edit project");
+        currentProject();
+        newLine();
         print("1. Manage activities");
         print("2. Assign activity to project");
         print("3. Change name");
@@ -89,6 +94,8 @@ public class AppView {
 
     public void printActivityManager() {
         menuTitle("activity manager");
+        currentProject();
+        newLine();
         print("1. Edit activities");
         print("2. Log time entry - WIP");
         print("3. Edit logged time entry - WIP");
@@ -99,8 +106,11 @@ public class AppView {
         prompt("Choose option");
     }
 
-    public void printEditActivity() {
+    public void printEditActivity() {        
         menuTitle("edit activity");
+        currentProject();
+        currentActivity();
+        newLine();
         print("1. Change name");
         print("2. Change period");
         print("3. Change timebudget");
@@ -162,16 +172,22 @@ public class AppView {
     //     }
     // }
 
-
-    public void setLoggedIn(Employee e) {
-        loggedIn = e;
+    public void loggedIn() {
+        if (AppModel.getLoggedIn() != null) {
+            print("    Currently logged in: " + AppModel.getLoggedIn().getName() + " (" + AppModel.getLoggedIn().getInitials() + ")");
+        }
     }
 
-    public void loggedIn() {
-        if (loggedIn != null) {
-            print("Currently logged in: " + loggedIn.getName() + " (" + loggedIn.getInitials() + ")");
-        }
-        newLine();
+    public void currentProject() {
+        print("    Current project: " + 
+        AppModel.getCurrentProject().getProjectID() + 
+        " (" + AppModel.getCurrentProject().getProjectName() + ")");
+    }
+
+    public void currentActivity() {
+        print("    Current activity: " + 
+        AppModel.getCurrentActivity().getActivityId() + 
+        " (" + AppModel.getCurrentActivity().getActivityName() + ")");
     }
 
     public void menuTitle(String menu) {

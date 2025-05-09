@@ -46,8 +46,8 @@ public class AppController {
             switch (input) {
                 case "1" -> {
                     employeeController.logIn();
-                    if (appModel.getLoggedIn() != null) {
-                        mainMenu(appModel.getLoggedIn());
+                    if (AppModel.getLoggedIn() != null) {
+                        mainMenu(AppModel.getLoggedIn());
                     }
                 }
                 case "2" -> employeeController.registerEmployee(); 
@@ -74,12 +74,10 @@ public class AppController {
     // }
 
     private void mainMenu(Employee e) {
-        appModel.setLoggedIn(e);
-        appView.setLoggedIn(e);
-
+        AppModel.setLoggedIn(e);
 
         // boolean loggedIn = true; // loggedIn er også en variabel i employee controller... skal tjekkes
-        while (appModel.getLoggedIn() == e) {
+        while (AppModel.getLoggedIn() == e) {
             appView.printMainMenu();
 
             String input = scanner.nextLine();
@@ -103,7 +101,7 @@ public class AppController {
                 // case "12" -> reportController.employeeTimeReport();              //2 per project
 
 
-                case "0" -> appModel.setLoggedIn(null);
+                case "0" -> AppModel.setLoggedIn(null);
                 default -> appView.printError("Invalid input.");
             }
         }
@@ -134,6 +132,7 @@ public class AppController {
 
     private void editProject(Project p) {
         Project editingProject = p;
+        AppModel.setCurrentProject(p);
 
         while (editingProject != null) {
             appView.printEditProject();
@@ -145,7 +144,10 @@ public class AppController {
                 case "4" -> projectController.changeWeeks(p);
                 case "5" -> projectController.changeLeader(p);
                 case "6" -> reportController.projectTimeReport();
-                case "0" -> p = null;
+                case "0" -> {
+                    editingProject = null;
+                    AppModel.setCurrentProject(null);
+                }
                 default -> appView.printError("Invalid input.");
             }
         }
@@ -175,6 +177,7 @@ public class AppController {
 
     private void editActivity(Activity a) {
         Activity editingActivity = a;
+        AppModel.setCurrentActivity(a);
 
         while (editingActivity != null) {
             appView.printEditActivity();
@@ -184,7 +187,10 @@ public class AppController {
                 case "2" -> activityController.changeWeeks(a);
                 case "3" -> activityController.changeBudget(a);
 
-                case "0" -> editingActivity = null;
+                case "0" -> {
+                    editingActivity = null;
+                    AppModel.setCurrentActivity(null);
+                }
                 default -> appView.printError("Invalid input.");
             }
         }
@@ -194,7 +200,7 @@ public class AppController {
         boolean editing = true;
         while (editing) {
             appView.printEditSelectionMenu();
-            
+
             switch (scanner.nextLine()) {
                 case "1" -> {
                     appView.prompt("Project ID");

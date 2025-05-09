@@ -1,6 +1,6 @@
 package controller;
 
-public class StatusHolder { // bruges til at holde error messages
+public class StatusHolder { // bruges til at holde status og andre typer messages
     private static String statusMessage;
 
     public static void setStatus(String s) {

@@ -9,8 +9,11 @@ public class AppModel {
     private final List<Project> projects = new ArrayList<>();
     private final List<TimeEntry> timeEntries = new ArrayList<>();
     private final Map<String, Activity> standardActivities = new HashMap<>();
-    private Employee loggedIn = null;
     private final Map<String, FixedActivity> fixedActivities = new HashMap<>();
+    private static Employee loggedIn = null;
+    private static Project currentProject = null;
+    private static Activity currentActivity = null;
+
 
     public AppModel() {
         initializeFixedActivities();
@@ -22,11 +25,11 @@ public class AppModel {
         employees.add(employee);
     }
 
-    public Employee getLoggedIn() {
+    public static Employee getLoggedIn() {
         return loggedIn;
     }
 
-    public void setLoggedIn(Employee e) {
+    public static void setLoggedIn(Employee e) {
         loggedIn = e;
     }
 
@@ -53,6 +56,14 @@ public class AppModel {
     // %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     public void addProject(Project project) {
         projects.add(project);
+    }
+
+    public static void setCurrentProject(Project p) {
+        currentProject = p;
+    }
+
+    public static Project getCurrentProject() {
+        return currentProject;
     }
 
     public Project getProjectById(String id) {
@@ -91,6 +102,14 @@ public class AppModel {
                 .filter(a -> a.getActivityId().equalsIgnoreCase(activityId))
                 .findFirst()
                 .orElse(null);
+    }
+
+    public static void setCurrentActivity(Activity a) {
+        currentActivity = a;
+    }
+
+    public static Activity getCurrentActivity() {
+        return currentActivity;
     }
 
     public Activity getActivityGlobally(String activityId) {
