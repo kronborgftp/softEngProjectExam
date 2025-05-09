@@ -38,18 +38,21 @@ public class AppView {
         menuTitle("time management system");
         loggedIn();
         print("1. Log time for today");
-        print("2. Log Vacation/Sick/Course");
-        print("3. Show Employee's Logged Hours");
-        print("4. Edit Project/Activity/Time Entry");
-        print("5. Create Project");
-        print("6. Add Activity to Project");
-        print("7. Assign Employee to Activity");
-        print("8. View All Projects");
-        print("9. View All Employees");
-        print("10. View All Logged Time");
-        print("11. Project Time Report");
-        print("12. Employee Time Report");
-
+        print("2. Manage projects");
+        print("3. Log absence");
+        print("4. Show all employees");
+        // print("1. Log time for today");
+        // print("2. Log Vacation/Sick/Course");
+        // print("3. Show Employee's Logged Hours");
+        // print("4. Edit Project/Activity/Time Entry");
+        // print("5. Create Project");
+        // print("6. Add Activity to Project");
+        // print("7. Assign Employee to Activity");
+        // print("8. View All Projects");
+        // print("9. View All Employees");
+        // print("10. View All Logged Time");
+        // print("11. Project Time Report");
+        // print("12. Employee Time Report");
 
         print("0. Log Out");
         newLine();
@@ -57,9 +60,60 @@ public class AppView {
         prompt("Choose option");
     }
 
+    public void printProjectManager() {
+        menuTitle("project manager");
+        print("1. Edit Project");
+        print("2. Create Project");
+        print("3. View All Logged Time");
+        
+        print("0. Exit");
+        newLine();
+        StatusHolder.getStatus();
+        prompt("Choose option");
+    }
+
+    public void printEditProject() {
+        menuTitle("edit project");
+        print("1. Manage activities");
+        print("2. Assign activity to project");
+        print("3. Change name");
+        print("4. Change period");
+        print("5. Change leader");
+        print("6. Project time report");
+
+        print("0. Exit");
+        newLine();
+        StatusHolder.getStatus();
+        prompt("Choose option");
+    }
+
+    public void printActivityManager() {
+        menuTitle("activity manager");
+        print("1. Edit activities");
+        print("2. Log time entry - WIP");
+        print("3. Edit logged time entry - WIP");
+
+        print("0. Exit");
+        newLine();
+        StatusHolder.getStatus();
+        prompt("Choose option");
+    }
+
+    public void printEditActivity() {
+        menuTitle("edit activity");
+        print("1. Change name");
+        print("2. Change period");
+        print("3. Change timebudget");
+
+        print("0. Exit");
+        newLine();
+        StatusHolder.getStatus();
+        prompt("Choose option");
+    }
+
     public void printEditSelectionMenu() {
         menuTitle("edit menu");
-        print("\n--- Edit Menu ---");
+        // print("\n--- Edit Menu ---");
         print("1. Edit Project");
         print("2. Edit Activity");
         print("3. Edit Time Entry");

@@ -20,9 +20,6 @@ public class AppController {
     private final ActivityView activityView = new ActivityView();
     private final FixedActivityView fixedActivityView = new FixedActivityView();
 
-    private final ProjectEditor projectEditor = new ProjectEditor(scanner, appModel, appView, projectView, employeeView);
-    private final ActivityEditor activityEditor = new ActivityEditor(scanner, appModel, appView, projectView);
-    private final TimeEntryEditor timeEntryEditor = new TimeEntryEditor(scanner, appModel, appView, timeEntryView);
 
     private final EmployeeController employeeController = new EmployeeController(scanner, appModel, appView, employeeView);
     private final ProjectController projectController = new ProjectController(scanner, appModel, appView, projectView, employeeView);
@@ -32,6 +29,10 @@ public class AppController {
     private final FixedActivityController fixedActivityController = new FixedActivityController(
             scanner, appModel, appView, fixedActivityView
     );
+
+    private final ProjectEditor projectEditor = new ProjectEditor(scanner, appModel, appView, projectView, employeeView, activityController);
+    private final ActivityEditor activityEditor = new ActivityEditor(scanner, appModel, appView, projectView, activityController);
+    private final TimeEntryEditor timeEntryEditor = new TimeEntryEditor(scanner, appModel, appView, timeEntryView);
 
     private String statusMessage;
 
@@ -82,27 +83,104 @@ public class AppController {
             appView.printMainMenu();
             String input = scanner.nextLine();
 
-            switch (input) {
-                case "1" -> timeEntryController.logTime();
-                case "2" -> fixedActivityController.logAbsence();
-                case "3" -> timeEntryController.showEmployeeLoggedHours();
-                case "4" -> editMenu();
-                case "5" -> projectController.createProject(); // employeeController.registerEmployee();
-                case "6" -> activityController.addActivityToProject();
-                case "7" -> activityController.assignEmployeeToActivity();
-                case "8" -> projectController.showAllProjects();
-                case "9" -> employeeController.showAllEmployees();
-                case "10" -> timeEntryController.showAllLoggedHours();
-                case "11" -> reportController.projectTimeReport();
-                case "12" -> reportController.employeeTimeReport();
+            switch (input) { // edit projects, log absence, 
+                case "1" -> timeEntryController.logTime();  // log time
+                case "2" -> manageProjects();  // manage projects // AKA edit menu
+                case "3" -> fixedActivityController.logAbsence();  // log absence
+                case "4" -> employeeController.showAllEmployees();  // show all employees
+                // case "1" -> timeEntryController.logTime();                       //1 DONE
+                // case "2" -> fixedActivityController.logAbsence();                //3 DONE 
+                // case "3" -> timeEntryController.showEmployeeLoggedHours();       
+                // case "4" -> editMenu();                                          //2 ???
+                // case "5" -> projectController.createProject();                   //2 DONE
+                // case "6" -> activityController.addActivityToProject();           //2 per project DONE
+                // case "7" -> activityController.assignEmployeeToActivity();       //2 per activity per project 
+                // case "8" -> projectController.showAllProjects();                 //2 manage projects
+                // case "9" -> employeeController.showAllEmployees();               //4 DONE
+                // case "10" -> timeEntryController.showAllLoggedHours();           //2 
+                // case "11" -> reportController.projectTimeReport();               //2 per project
+                // case "12" -> reportController.employeeTimeReport();              //2 per project
 
 
-                case "0" -> appModel.setLoggedIn(null);// running baseret på boolean i starten af mainMenu(), hvordan passer den boolean ind?
+                case "0" -> appModel.setLoggedIn(null);
                 default -> appView.printError("Invalid input.");
             }
         }
     }
 
+    private void manageProjects() {
+        boolean managingProjects = true;
+
+        while (managingProjects) {
+            appView.printProjectManager();
+            switch (scanner.nextLine()) {
+                case "1" -> {               // skal display projekter så man kan vælge mellem dem
+                    appView.prompt("Project ID");
+                    Project p = appModel.getProjectById(scanner.nextLine());
+                    if (p == null) appView.printError("Project not found.");
+                    else editProject(p);
+
+                }
+                case "2" -> projectController.createProject();
+                case "3" -> timeEntryController.showAllLoggedHours(); 
+                case "0" -> managingProjects = false;
+                default -> appView.printError("Invalid input.");
+            }
+
+        }
+    }
+
+    public void editProject(Project p) {
+        Project editingProject = p;
+
+        while (editingProject != null) {
+            switch(scanner.nextLine()) {
+                case "1" -> manageActivities(p);
+                case "2" -> activityController.addActivityToProject();  
+                case "3" -> projectController.changeName(p);
+                case "4" -> projectController.changeWeeks(p);
+                case "5" -> projectController.changeLeader(p);
+                case "6" -> reportController.projectTimeReport();
+                case "0" -> p = null;
+                default -> appView.printError("Invalid input.");
+            }
+        }
+    }
+
+    private void manageActivities(Project p) {
+        Project managingActivities = p;
+
+        while (managingActivities != null) {
+            switch(scanner.nextLine()) {
+                case "1" -> {                     // skal display aktiviteter i givne projekt så man kan vælge dem
+                    appView.prompt("Activity ID");
+                    Activity a = appModel.getActivityInProject(p, scanner.nextLine());
+                    if (a == null) appView.printError("Activity not found.");
+                    else editActivity(a);
+                }   // edit activity
+                // case "2" -> // log time // skal tilføje time entries her
+                // case "3" -> // edit logtime // skal tilføje ændring af time entries her
+                
+                case "0" -> managingActivities = null;
+                default -> appView.printError("Invalid input.");
+            }
+        }
+    }
+
+    private void editActivity(Activity a) {
+        Activity editingActivity = a;
+
+        while (editingActivity != null) {
+            switch(scanner.nextLine()) {
+                case "1" -> activityController.changeName(a);
+                case "2" -> activityController.changeWeeks(a);
+                case "3" -> activityController.changeBudget(a);
+
+                case "0" -> editingActivity = null;
+                default -> appView.printError("Invalid input.");
+            }
+        }
+    }
 
     private void editMenu() {
         boolean editing = true;

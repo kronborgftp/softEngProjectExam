@@ -73,5 +73,28 @@ public class ActivityController {
         model.assignEmployeeToActivity(employee, activity);
         employeeView.printEmployeeAssignedToActivity(employee, activity);
     }
+
+    public void changeName(Activity activity) {
+        appView.prompt("New Activity Name");
+        String name = scanner.nextLine();
+        model.updateActivityName(activity, name);
+        projectView.printInfo("Activity name updated.");
+    }
+
+    public void changeWeeks(Activity activity) {
+        appView.prompt("New Start Week");
+        int start = Integer.parseInt(scanner.nextLine());
+        appView.prompt("New End Week");
+        int end = Integer.parseInt(scanner.nextLine());
+        model.updateActivityWeeks(activity, start, end);
+        projectView.printInfo("Activity duration updated.");
+    }
+
+    public void changeBudget(Activity activity) {
+        appView.prompt("New Budgeted Hours");
+        int hours = Integer.parseInt(scanner.nextLine());
+        model.updateBudgetedHours(activity, hours);
+        projectView.printInfo("Budget updated.");
+    }
 }
 

@@ -4,20 +4,25 @@ import model.Activity;
 import model.AppModel;
 import view.AppView;
 import view.ProjectView;
+import controller.ActivityController;
 
 import java.util.Scanner;
+
+
 
 public class ActivityEditor {
     private final Scanner scanner;
     private final AppModel model;
     private final AppView appView;
     private final ProjectView projectView;
+    private final ActivityController activityController;
 
-    public ActivityEditor(Scanner scanner, AppModel model, AppView appView, ProjectView projectView) {
+    public ActivityEditor(Scanner scanner, AppModel model, AppView appView, ProjectView projectView, ActivityController activityController) {
         this.scanner = scanner;
         this.model = model;
         this.appView = appView;
         this.projectView = projectView;
+        this.activityController = activityController;
     }
 
     public void edit(Activity activity) {

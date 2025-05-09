@@ -98,7 +98,39 @@ public class ProjectController {
         editProject.addActivity(a);
     }
 
+    public void changeName(Project project) {
+        appView.prompt("New Project Name");
+        String name = scanner.nextLine();
+        model.updateProjectName(project, name);
+        projectView.printInfo("Project name updated.");
+    }
 
+    public void changeWeeks(Project project) {
+        appView.prompt("New Start Year");
+        int startYear = Integer.parseInt(scanner.nextLine());
+        appView.prompt("New Start Week");
+        int startWeek = Integer.parseInt(scanner.nextLine());
+        appView.prompt("New End Year");
+        int endYear = Integer.parseInt(scanner.nextLine());
+        appView.prompt("New End Week");
+        int endWeek = Integer.parseInt(scanner.nextLine());
 
+        WeekFields wf = WeekFields.ISO;
+        LocalDate startDate = LocalDate.of(startYear, 1, 4).with(wf.weekOfYear(), startWeek).with(wf.dayOfWeek(), DayOfWeek.MONDAY.getValue());
+        LocalDate endDate   = LocalDate.of(endYear,   1, 4).with(wf.weekOfYear(), endWeek).with(wf.dayOfWeek(), DayOfWeek.MONDAY.getValue());
 
+        model.updateProjectDates(project, startDate, endDate);
+        projectView.printInfo("Project duration updated.");
+    }
+
+    public void changeLeader(Project project) {
+        appView.prompt("New Leader Initials");
+        Employee leader = model.getEmployeeByInitials(scanner.nextLine());
+        if (leader == null) {
+            employeeView.printError("Employee not found.");
+        } else {
+            model.changeProjectLeader(project, leader);
+            projectView.printInfo("Project leader updated.");
+        }
+    }
 }

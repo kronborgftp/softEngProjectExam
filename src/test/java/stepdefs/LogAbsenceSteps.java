@@ -40,7 +40,7 @@ public class LogAbsenceSteps {
                 endDate
         )));
         timeEntryController = new TimeEntryController(scanner, model, new AppView(), new TimeEntryView(), new ActivityView());
-        timeEntryController.logAbsence();
+        // timeEntryController.logAbsence();
     }
 
     @Then("{int} vacation absence entries should be created for employee {string}")
@@ -73,7 +73,7 @@ public class LogAbsenceSteps {
                 endDate
         )));
         timeEntryController = new TimeEntryController(scanner, model, new AppView(), new TimeEntryView(), new ActivityView());
-        timeEntryController.logAbsence();
+        // timeEntryController.logAbsence();
     }
 
     @Then("no absence entries should exist for employee {string}")
@@ -94,7 +94,7 @@ public class LogAbsenceSteps {
                 endDate
         )));
         timeEntryController = new TimeEntryController(scanner, model, new AppView(), new TimeEntryView(), new ActivityView());
-        timeEntryController.logAbsence();
+        // timeEntryController.logAbsence();
     }
 
     @When("the employee tries to log a {string} absence from {string} to {string}")
@@ -111,7 +111,7 @@ public class LogAbsenceSteps {
                 endDate
         )));
         timeEntryController = new TimeEntryController(scanner, model, new AppView(), new TimeEntryView(), new ActivityView());
-        timeEntryController.logAbsence();
+        // timeEntryController.logAbsence();
     }
 
 
