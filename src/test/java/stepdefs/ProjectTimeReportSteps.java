@@ -26,6 +26,8 @@ public class ProjectTimeReportSteps {
             .with(wf.weekOfYear(), 25)
             .with(wf.dayOfWeek(), DayOfWeek.MONDAY.getValue());
 
+
+            
     @Given("a project with ID {string} exists")
     public void a_project_exists(String projectId) {
         model = new AppModel();

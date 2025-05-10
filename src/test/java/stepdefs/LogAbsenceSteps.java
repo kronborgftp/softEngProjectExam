@@ -25,7 +25,7 @@ public class LogAbsenceSteps {
 
     @And("the employee is logged in")
     public void the_employee_is_logged_in() {
-        model.setLoggedIn(employee);
+        AppModel.setLoggedIn(employee);
     }
 
     @When("the employee logs an absence of type {string} from {string} to {string}")
@@ -50,7 +50,7 @@ public class LogAbsenceSteps {
 
     @When("no one is logged in")
     public void no_one_is_logged_in() {
-        model.setLoggedIn(null);
+        AppModel.setLoggedIn(null);
     }
 
     @When("someone tries to log a {string} absence from {string} to {string}")
