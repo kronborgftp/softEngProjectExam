@@ -161,8 +161,8 @@ public class AppController {
                     if (a == null) appView.printError("Activity not found.");
                     else editActivity(a);
                 }   // edit activity
-                // case "2" -> // log time // skal tilføje time entries her
-                // case "3" -> // edit logtime // skal tilføje ændring af time entries her
+                case "2" -> timeEntryController.logTime(); // log time // skal tilføje time entries her
+                case "3" -> timeEntryController.editTimeEntry(AppModel.getLoggedIn()); // edit logtime // skal tilføje ændring af time entries her
                 
                 case "0" -> managingActivities = null;
                 default -> appView.printError("Invalid input.");

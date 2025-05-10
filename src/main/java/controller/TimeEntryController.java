@@ -84,16 +84,8 @@ public class TimeEntryController {
 
         timeEntryView.printTimeEntriesForEmployee(employee, employeeEntries);
     }
-    
-    public void editTimeEntry() {
-        appView.prompt("Employee Initials");
-        Employee employee = model.getEmployeeByInitials(scanner.nextLine());
 
-        if (employee == null) {
-            timeEntryView.printError("Employee not found.");
-            return;
-        }
-
+    public void editTimeEntry(Employee employee) {
         List<TimeEntry> entries = model.getAllTimeEntries().stream()
                 .filter(e -> e.getEmployee().getInitials().equalsIgnoreCase(employee.getInitials()))
                 .toList();
