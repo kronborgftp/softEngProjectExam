@@ -97,8 +97,8 @@ public class AppView {
         currentProject();
         newLine();
         print("1. Edit activities");
-        print("2. Log time entry - WIP");
-        print("3. Edit logged time entry - WIP");
+        print("2. Log time entryP");
+        print("3. Edit logged time entry");
 
         print("0. Exit");
         newLine();
