@@ -13,7 +13,7 @@ import java.util.Scanner;
 
 import static org.junit.Assert.*;
 
-public class EditActivitySteps {
+public class EditActivityNameSteps {
     private AppModel model;
     private ActivityController controller;
     private Project project;
