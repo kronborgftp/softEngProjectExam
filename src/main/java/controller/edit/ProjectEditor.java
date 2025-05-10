@@ -1,5 +1,6 @@
 package controller.edit;
 
+import model.Activity;
 import model.AppModel;
 import model.Employee;
 import model.Project;
@@ -14,20 +15,24 @@ import java.util.Locale;
 
 import java.util.Scanner;
 
+import controller.ActivityController;
+
 public class ProjectEditor {
     private final Scanner scanner;
     private final AppModel model;
     private final AppView appView;
     private final ProjectView projectView;
     private final EmployeeView employeeView;
+    private final ActivityController activityController;
 
     public ProjectEditor(Scanner scanner, AppModel model, AppView appView,
-                         ProjectView projectView, EmployeeView employeeView) {
+                         ProjectView projectView, EmployeeView employeeView, ActivityController activityController) {
         this.scanner = scanner;
         this.model = model;
         this.appView = appView;
         this.projectView = projectView;
         this.employeeView = employeeView;
+        this.activityController = activityController;
     }
 
     public void edit(Project project) {

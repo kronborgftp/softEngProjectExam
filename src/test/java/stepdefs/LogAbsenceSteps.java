@@ -94,6 +94,7 @@ public class LogAbsenceSteps {
         fixedActivityController.logAbsence();
     }
 
+
     // Helper method to map labels to input numbers
     private String typeToNumber(String label) {
         return switch (label.toLowerCase()) {
