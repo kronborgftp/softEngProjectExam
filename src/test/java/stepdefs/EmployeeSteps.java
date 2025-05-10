@@ -48,8 +48,8 @@ public class EmployeeSteps {
         assertEquals(AppModel.getLoggedIn(), model.getEmployeeByInitials(string));
     }
 
-    @Given("a user with initials {string} and name {string} is registered")
-    public void a_user_with_initials_and_name_is_registered(String s, String s2) {
+    @Given("an employee with initials {string} and name {string} is registered")
+    public void an_employee_with_initials_and_name_is_registered(String s, String s2) {
         Employee e = new Employee(s, s2, new ArrayList<>());
         model.addEmployee(e);
     }

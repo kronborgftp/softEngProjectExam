@@ -5,6 +5,7 @@ import model.Employee;
 import view.AppView;
 import view.EmployeeView;
 
+import java.io.ObjectInputFilter.Status;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -29,10 +30,25 @@ public class EmployeeController {
         String initials = scanner.nextLine();
 
         if (initials.equals("0")) {
-            StatusHolder.setStatus("Register cancelled - Returning to start menu");
+            String errorMSG = "Register cancelled - Returning to start menu";
+            StatusHolder.setStatus(errorMSG);
+            System.out.println(StatusHolder.getStatus());
+
         } else if (model.hasEmployee(initials)) {
-            StatusHolder.setStatus("ERROR: Register failed - Initials already registered");
-            // employeeView.printError("ERROR: Initials already found");
+            String errorMSG = "Initials already registered";
+            StatusHolder.setStatus(errorMSG);
+            System.out.println(StatusHolder.getStatus());
+            
+        } else if (initials.equals("")) {
+            String errorMSG = "Cannot have empty initials";
+            StatusHolder.setStatus(errorMSG);
+            System.out.println(StatusHolder.getStatus());
+
+        } else if (!initials.matches("[a-zA-Z]+")) {
+            String errorMSG = "Cannot use non-letters in initials";
+            StatusHolder.setStatus(errorMSG);
+            System.out.println(StatusHolder.getStatus());
+            
         } else if (initials != null) {
             initials = (initials != null && initials.length() > 4) ? initials.substring(0, 4) : initials;
             appView.prompt("Full name");
@@ -58,7 +74,7 @@ public class EmployeeController {
         Employee e = model.getEmployeeByInitials(initials);
 
         if (model.hasEmployee(initials)) {
-            model.setLoggedIn(e);
+            AppModel.setLoggedIn(e);
             employeeView.printEmployeeLoggedIn(e);
             
         } else {

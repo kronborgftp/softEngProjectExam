@@ -6,13 +6,13 @@ Feature: Employee Registration
     When an employee registers with initials "jdoe" and name "John Doe"
     Then an employee has registered as employee with initials "jdoe" and name "John Doe"
 
-  Scenario: user registers with 5 or more characters
+  Scenario: user registers with 5 or more characters, automatically shortening it
     When an employee registers with initials "jndoe" and name "John Doe"
-    Then the error message "Cannot register initials with length above 4" is given
-  
+    Then an employee has registered as employee with initials "jndo" and name "John Doe"
+
   Scenario: user registers with 0 characters
     When an employee registers with initials "" and name "John Doe"
-    Then the error message "Cannot register empty initials" is given
+    Then the error message "Cannot have empty initials" is given
 
   Scenario: user registers with empty spaces characters
     When an employee registers with initials " " and name "John Doe"
@@ -27,9 +27,9 @@ Feature: Employee Registration
   #   Then the error message "Cannot register initials with numbers" is given
 
   Scenario: user registers with existing initials
-    Given a user with initials "jdoe" and name "John Doe" is registered
+    Given an employee with initials "jdoe" and name "John Doe" is registered
     When an employee registers with initials "jdoe" and name "John Doe"
-    Then the error message "Cannot register already existing initials" is given
+    Then the error message "Initials already registered" is given
 
   # Scenario: user deletes employee initials successfully
   #   Given a user with initials "jdoe" and name "John Doe" is registered

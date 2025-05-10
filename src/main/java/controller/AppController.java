@@ -118,6 +118,7 @@ public class AppController {
                 }
                 case "2" -> projectController.createProject();
                 case "3" -> timeEntryController.showAllLoggedHours(); 
+                case "4" -> projectController.showAllProjects();
                 case "0" -> managingProjects = false;
                 default -> appView.printError("Invalid input.");
             }
