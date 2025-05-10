@@ -68,6 +68,7 @@ public class AppView {
         print("1. Edit Project");
         print("2. Create Project");
         print("3. View All Logged Time");
+        print("4. Show all projects");
         
         print("0. Exit");
         newLine();
