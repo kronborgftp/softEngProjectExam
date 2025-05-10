@@ -1,4 +1,4 @@
-# Created by kronborgpaludan at 07/05/2025
+# Created by kronborgpaludan
 Feature: Employee Time Report
 
   Scenario: Generate a time report for a specific employee
