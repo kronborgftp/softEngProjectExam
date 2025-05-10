@@ -1,3 +1,4 @@
+# Created by kronborgpaludan at
 Feature: Log Absence
 
   Scenario: Successfully log a vacation absence

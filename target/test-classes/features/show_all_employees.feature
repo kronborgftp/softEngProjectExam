@@ -1,4 +1,4 @@
-# Created by kronborgpaludan at 07/05/2025
+# Created by kronborgpaludan at
 Feature: View all registered employees
 
   Scenario: Viewing all employees when some are registered
