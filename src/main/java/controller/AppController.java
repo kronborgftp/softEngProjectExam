@@ -1,6 +1,5 @@
 package controller;
 
-import controller.edit.*;
 import model.*;
 import view.*;
 import controller.StatusHolder;
@@ -29,10 +28,6 @@ public class AppController {
     private final FixedActivityController fixedActivityController = new FixedActivityController(
             scanner, appModel, appView, fixedActivityView
     );
-
-    private final ProjectEditor projectEditor = new ProjectEditor(scanner, appModel, appView, projectView, employeeView, activityController);
-    private final ActivityEditor activityEditor = new ActivityEditor(scanner, appModel, appView, projectView, activityController);
-    private final TimeEntryEditor timeEntryEditor = new TimeEntryEditor(scanner, appModel, appView, timeEntryView);
 
     private String statusMessage;
 
@@ -191,38 +186,6 @@ public class AppController {
                     editingActivity = null;
                     AppModel.setCurrentActivity(null);
                 }
-                default -> appView.printError("Invalid input.");
-            }
-        }
-    }
-
-    private void editMenu() {
-        boolean editing = true;
-        while (editing) {
-            appView.printEditSelectionMenu();
-
-            switch (scanner.nextLine()) {
-                case "1" -> {
-                    appView.prompt("Project ID");
-                    Project p = appModel.getProjectById(scanner.nextLine());
-                    if (p == null) appView.printError("Project not found.");
-                    else projectEditor.edit(p);
-                }
-                case "2" -> {
-                    appView.prompt("Project ID");
-                    Project project = appModel.getProjectById(scanner.nextLine());
-                    if (project == null) {
-                        appView.printError("Project not found.");
-                        break;
-                    }
-                    appView.prompt("Activity ID");
-                    Activity a = appModel.getActivityInProject(project, scanner.nextLine());
-                    if (a == null) appView.printError("Activity not found.");
-                    else activityEditor.edit(a);
-                }
-                case "3" -> timeEntryEditor.editTimeEntry();
-
-                case "0" -> editing = false;
                 default -> appView.printError("Invalid input.");
             }
         }
