@@ -109,11 +109,6 @@ public class AppModel {
     }
 
     //Written by Frederik
-    public void changeProjectLeader(Project project, Employee leader) {
-        project.assignProjectLeader(leader);
-    }
-
-    //Written by Frederik
     public void addActivityToProject(Project project, Activity activity) {
         activity.setParentProject(project); // Back reference
         project.addActivity(activity);
@@ -157,22 +152,12 @@ public class AppModel {
         return null;
     }
 
-
-    //Written by Frederik
-    public void updateActivityName(Activity activity, String name) {
-        activity.setActivityName(name);
-    }
-
     //Written by Lasse
     public void updateActivityWeeks(Activity activity, int startWeek, int endWeek) {
         activity.setStartWeek(startWeek);
         activity.setEndWeek(endWeek);
     }
 
-    //Written by Lasse
-    public void updateBudgetedHours(Activity activity, int hours) {
-        activity.setBudgetedHours(hours);
-    }
 
     //Written by Frederik
     public void assignEmployeeToActivity(Employee employee, Activity activity) {
