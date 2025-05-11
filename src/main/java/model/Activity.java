@@ -64,10 +64,6 @@ public class Activity {
         this.parentProject = parentProject;
     }
 
-    public void setActivityId(String activityId) {
-        this.activityId = activityId;
-    }
-
     public void setActivityName(String activityName) {
         this.activityName = activityName;
     }

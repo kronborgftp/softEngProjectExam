@@ -47,9 +47,4 @@ public class Employee {
         this.initials = (initials != null && initials.length() > 4) ? initials.substring(0, 4) : initials;
     }
 
-
-
-    public void setAssignedActivities(List<Activity> assignedActivities) {
-        this.assignedActivities = assignedActivities;
-    }
 }

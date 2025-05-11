@@ -105,13 +105,6 @@ public class ProjectController {
         projectView.printProjectList(model.getAllProjects());
     }
 
-    public void editProject(Project p) {
-        editProject = p;
-    }
-
-    public void addActivity(Activity a) {
-        editProject.addActivity(a);
-    }
 
     public void changeName(Project project) {
         appView.prompt("New Project Name");

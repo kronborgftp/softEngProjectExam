@@ -51,9 +51,6 @@ public class TimeEntry {
     }
 
     // Setters
-    public void setEntryID(String entryID) {
-        this.entryID = entryID;
-    }
 
     public void setEmployee(Employee employee) {
         this.employee = employee;

@@ -93,13 +93,6 @@ public class EmployeeController {
 
     }
 
-    // public Employee getLoggedIn() {
-    //     return loggedIn;
-    // }
-
-    // public void setLoggedIn(Employee e) {
-    //     loggedIn = e;
-    // }
 
     public void showAllEmployees() {
         employeeView.printEmployeeList(model.getAllEmployees());

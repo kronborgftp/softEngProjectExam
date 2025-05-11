@@ -196,15 +196,4 @@ public class AppController {
         return appModel;
     }
 
-    public void setStatus(String msg) {
-        statusMessage = msg;
-    }
-
-    public void status() {
-        if (statusMessage != null) {
-            System.out.println("--==%%   S T A T U S   -   " + statusMessage);
-            statusMessage = null;
-        }
-        System.out.println("\n");
-    }
 }

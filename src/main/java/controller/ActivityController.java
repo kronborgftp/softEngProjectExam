@@ -50,29 +50,6 @@ public class ActivityController {
         projectView.printActivityAdded(activity.getActivityName());
     }
 
-    public void assignEmployeeToActivity() {
-        appView.prompt("Employee Initials");
-        Employee employee = model.getEmployeeByInitials(scanner.nextLine());
-
-        appView.prompt("Project ID");
-        Project project = model.getProjectById(scanner.nextLine());
-
-        if (employee == null || project == null) {
-            appView.printError("Invalid employee or project.");
-            return;
-        }
-
-        appView.prompt("Activity ID");
-        Activity activity = model.getActivityInProject(project, scanner.nextLine());
-
-        if (activity == null) {
-            appView.printError("Activity not found.");
-            return;
-        }
-
-        model.assignEmployeeToActivity(employee, activity);
-        employeeView.printEmployeeAssignedToActivity(employee, activity);
-    }
 
     public void changeName(Activity activity) {
         appView.prompt("New Activity Name");

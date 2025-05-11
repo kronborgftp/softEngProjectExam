@@ -24,15 +24,6 @@ public class AppView {
         prompt("Choose option");
     }
 
-    public void printLogInMenu() {
-        print("log in");
-        print("Insert initials to log in");
-        print("0. Exit");
-        newLine();
-        StatusHolder.getStatus();
-        prompt("Input");
-        
-    }
 
     public void printMainMenu() {
         menuTitle("time management system");
@@ -121,57 +112,6 @@ public class AppView {
         StatusHolder.getStatus();
         prompt("Choose option");
     }
-
-    public void printEditSelectionMenu() {
-        menuTitle("edit menu");
-        // print("\n--- Edit Menu ---");
-        print("1. Edit Project");
-        print("2. Edit Activity");
-        print("3. Edit Time Entry");
-        print("0. Exit");
-        newLine();
-        StatusHolder.getStatus();
-        prompt("Choose option");
-    }
-
-    public void printEditMenu(String entity) {
-        print("\n--- Edit " + capitalize(entity) + " ---");
-        loggedIn();
-        print("1. Change Name");
-        print("2. Change Start/End Week");
-        if (entity.equalsIgnoreCase("project")) {
-            print("3. Change Leader");
-        } else if (entity.equalsIgnoreCase("activity")) {
-            print("3. Change Budgeted Hours");
-        }
-        print("0. Exit");
-        newLine();
-        StatusHolder.getStatus();
-        prompt("Choose option");
-    }
-
-    private String capitalize(String s) {
-        return s.substring(0, 1).toUpperCase() + s.substring(1);
-    }
-
-    public void doubleDisplay(List<List<String>> leftDisplay, List<List<String>> rightDisplay) { // left og right menu variabler til kombinationer
-        // printer række-vis. så først øverste, så næste række, osv
-        // første for loop kører gennem rækker, anden går kolonne-vis, så fra venstre til højre
-
-        // for (int i = 0; i < leftDisplay.size(); i++) {
-        //     for (int j = 0; i < leftDisplay.size() + rightDisplay.size())
-        // }
-
-
-
-    }
-
-    // public List<List<String>> leftExample() {
-    //     List<List<String>> leftMenu = new ArrayList<List<String>>();
-    //     for (int i = 0; i < 3; i++ ) {
-
-    //     }
-    // }
 
     public void loggedIn() {
         if (AppModel.getLoggedIn() != null) {

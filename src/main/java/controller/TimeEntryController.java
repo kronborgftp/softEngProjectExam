@@ -69,21 +69,6 @@ public class TimeEntryController {
         timeEntryView.printAllLoggedTime(model.getAllTimeEntries());
     }
 
-    public void showEmployeeLoggedHours() {
-        appView.prompt("Employee Initials");
-        Employee employee = model.getEmployeeByInitials(scanner.nextLine());
-
-        if (employee == null) {
-            timeEntryView.printError("Employee not found.");
-            return;
-        }
-
-        List<TimeEntry> employeeEntries = model.getAllTimeEntries().stream()
-                .filter(entry -> entry.getEmployee().getInitials().equals(employee.getInitials()))
-                .collect(Collectors.toList());
-
-        timeEntryView.printTimeEntriesForEmployee(employee, employeeEntries);
-    }
 
     public void editTimeEntry(Employee employee) {
         List<TimeEntry> entries = model.getAllTimeEntries().stream()

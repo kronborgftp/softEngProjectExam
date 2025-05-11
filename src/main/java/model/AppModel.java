@@ -172,14 +172,6 @@ public class AppModel {
         fixedActivities.put("COURSE", new FixedActivity("COURSE", "Course"));
     }
 
-    public FixedActivity getFixedActivity(String id) {
-        return fixedActivities.get(id.toUpperCase());
-    }
-
-    public Collection<FixedActivity> getAllFixedActivities() {
-        return fixedActivities.values();
-    }
-
 
     // TIME ENTRIES
 
@@ -208,9 +200,6 @@ public class AppModel {
         }
     }
 
-   /* public void deleteTimeEntry(String entryId) {
-        timeEntries.removeIf(entry -> entry.getEntryID().equals(entryId));
-    }*/
 
     public void addTimeEntry(TimeEntry entry) {
         timeEntries.add(entry);

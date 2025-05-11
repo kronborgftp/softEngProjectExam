@@ -53,9 +53,6 @@ public class Project {
     }
 
     // Setters
-    public void setProjectID(String projectID) {
-        this.projectID = projectID;
-    }
 
     public void setProjectName(String projectName) {
         this.projectName = projectName;
@@ -65,9 +62,6 @@ public class Project {
 
     public void setEndDate(LocalDate d)   { this.endDate   = d; }
 
-    public void setActivityList(List<Activity> activityList) {
-        this.activityList = activityList;
-    }
 
     public void setProjectLeader(Employee projectLeader) {
         this.projectLeader = projectLeader;

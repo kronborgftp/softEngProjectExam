@@ -21,10 +21,6 @@ public class EmployeeView {
             System.out.println("• " + e.getName() + " [" + e.getInitials() + "]");
         }
     }
-
-    public void printEmployeeAssignedToActivity(Employee e, Activity a) {
-        System.out.println("Assigned " + e.getInitials() + " to activity " + a.getActivityId());
-    }
     
     public void printError(String message) {
         System.out.println(message);
