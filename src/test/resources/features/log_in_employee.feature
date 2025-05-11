@@ -3,7 +3,8 @@ Feature: Employee log in
   Actors: users
 
   Background: 
-    Given an employee has registered as employee with initials "jdoe" and name "John Doe"
+    Given model and employee controller are initialized
+    And an employee has registered as employee with initials "jdoe" and name "John Doe"
 
   Scenario: user logs in with existing initials
     When an employee logs in with initials "jdoe"

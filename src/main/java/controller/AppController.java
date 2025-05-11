@@ -40,12 +40,12 @@ public class AppController {
 
             switch (input) {
                 case "1" -> {
-                    employeeController.logIn();
+                    employeeController.promptLogIn();
                     if (AppModel.getLoggedIn() != null) {
                         mainMenu(AppModel.getLoggedIn());
                     }
                 }
-                case "2" -> employeeController.registerEmployee(); 
+                case "2" -> employeeController.promptRegisterEmployee(); 
                 case "3" -> employeeController.showAllEmployees(); // skal ændres til horisontal liste
                 // case "9" -> testMenu();
                 case "0" -> running = false;

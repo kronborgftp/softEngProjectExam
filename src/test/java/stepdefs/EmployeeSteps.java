@@ -3,40 +3,46 @@ package stepdefs;
 import static org.junit.Assert.*;
 import java.util.*;
 
-import io.cucumber.java.BeforeStep;
-import io.cucumber.java.Before;
+// import io.cucumber.java.Before;
 import io.cucumber.java.en.*;
 import model.*;
+import controller.EmployeeController;
 import view.AppView;
 import view.EmployeeView;
-
-
 
 import controller.StatusHolder;
 
 public class EmployeeSteps {
-    private final AppModel model;
+    private AppModel model;
     // private AppView appView;
-    // private final EmployeeController employeeController;
+    private EmployeeController employeeController;
     // private Employee employee;
     // private EmployeeView employeeView;
     // private Project project; // mangler at tiføje
     // private final List<Employee> employees = new ArrayList<>();
     
 
-    public EmployeeSteps(AppModel model) {
-        this.model = model;
-    }
+    // public EmployeeSteps(AppModel model, EmployeeController employeeController) {
 
-    @Before
-    public void resetStatus() {
-        StatusHolder.setStatus(null);
+    //     this.model = model;
+    //     this.employeeController = employeeController;
+    // }
+
+    // @Before
+    // public void resetStatus() {
+    //     StatusHolder.setStatus(null);
+    // }
+    @Given("model and employee controller are initialized")
+    public void the_system_is_ready_for_employee_registration() {
+        model = new AppModel();
+        employeeController = new EmployeeController(new Scanner(System.in), model, new AppView(), new EmployeeView());
     }
 
     @When("an employee registers with initials {string} and name {string}")
     public void anEmployeeRegistersWithInitialsAndName(String string, String string2) {
-        Employee e = new Employee(string, string2, new ArrayList<>());
-        model.addEmployee(e);
+        // Employee e = new Employee(string, string2, new ArrayList<>());
+        // model.addEmployee(e);
+        employeeController.registerEmployee(string, string2);
     }
 
     @Then("an employee has registered as employee with initials {string} and name {string}")
@@ -56,8 +62,10 @@ public class EmployeeSteps {
 
     @Given("an employee with initials {string} and name {string} is registered")
     public void an_employee_with_initials_and_name_is_registered(String s, String s2) {
-        Employee e = new Employee(s, s2, new ArrayList<>());
-        model.addEmployee(e);
+        // Employee e = new Employee(s, s2, new ArrayList<>());
+        // model.addEmployee(e);
+        employeeController.registerEmployee(s, s2);
+        
     }
 
     @Then("the error message {string} is given")
@@ -65,19 +73,20 @@ public class EmployeeSteps {
         assertEquals(s,StatusHolder.getStatus());
     }
 
-    @Then("the employee initials {string} is logged out")
-    public void the_employee_initials_is_logged_out(String s) {
-        // Write code here that turns the phrase above into concrete actions
-    }
-
     @When("the employee logs out")
     public void the_employee_logs_out() {
-        assertTrue(AppModel.getLoggedIn() == null);
+        AppModel.setLoggedIn(null);
+    }
+
+    @Then("the employee initials {string} is logged out")
+    public void the_employee_initials_is_logged_out(String s) {
+        assertTrue(AppModel.getLoggedIn() != model.getEmployeeByInitials(s));
     }
 
     @Given("an employee is logged in with initials {string}")
     public void an_employee_is_logged_in_with_initials(String s) {
-        AppModel.setLoggedIn(model.getEmployeeByInitials(s));
+        // AppModel.setLoggedIn(model.getEmployeeByInitials(s));
+        employeeController.logIn(s);
     }
 
     // @Then("the initials {string} no longer exists")

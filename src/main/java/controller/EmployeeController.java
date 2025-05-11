@@ -25,10 +25,18 @@ public class EmployeeController {
         this.employeeView = employeeView;
     }
 
-    public void registerEmployee() {
+    public void promptRegisterEmployee() {
         appView.prompt("Initials");
         String initials = scanner.nextLine();
 
+        appView.prompt("Full name");
+        String name = scanner.nextLine();
+
+        registerEmployee(initials,name);
+    }    
+
+    public void registerEmployee(String initials, String name) {
+        
         if (initials.equals("0")) {
             String errorMSG = "Register cancelled - Returning to start menu";
             StatusHolder.setStatus(errorMSG);
@@ -39,7 +47,7 @@ public class EmployeeController {
             StatusHolder.setStatus(errorMSG);
             System.out.println(StatusHolder.getStatus());
             
-        } else if (initials.equals("")) {
+        } else if (initials.equals("") || (initials.matches(" ") && !initials.matches("[a-zA-Z]+"))) {
             String errorMSG = "Cannot have empty initials";
             StatusHolder.setStatus(errorMSG);
             System.out.println(StatusHolder.getStatus());
@@ -51,8 +59,6 @@ public class EmployeeController {
             
         } else if (initials != null) {
             initials = (initials != null && initials.length() > 4) ? initials.substring(0, 4) : initials;
-            appView.prompt("Full name");
-            String name = scanner.nextLine();
     
             Employee e = new Employee(initials, name, new ArrayList<>());
             model.addEmployee(e);
@@ -64,13 +70,18 @@ public class EmployeeController {
 
     }
     
-    public void logIn() { 
+    public void promptLogIn() {
+        appView.prompt("Initials");
         System.out.println("\n--- Log In");
         System.out.println("Insert initials to log in");
         System.out.println("0. Exit");
         appView.prompt("Input");
         String initials = scanner.nextLine();
 
+        logIn(initials);
+    }
+
+    public void logIn(String initials) { 
         Employee e = model.getEmployeeByInitials(initials);
 
         if (model.hasEmployee(initials)) {
@@ -78,7 +89,7 @@ public class EmployeeController {
             employeeView.printEmployeeLoggedIn(e);
             
         } else {
-            employeeView.printError("ERROR: input not recognized. Input correct initials or register new employee");
+            employeeView.printError("Input not recognized");
         }
 
     }
