@@ -1,0 +1,238 @@
+#
+# There is insufficient memory for the Java Runtime Environment to continue.
+# Native memory allocation (mmap) failed to map 132120576 bytes. Error detail: G1 virtual space
+# Possible reasons:
+#   The system is out of physical RAM or swap space
+#   This process is running with CompressedOops enabled, and the Java Heap may be blocking the growth of the native heap
+# Possible solutions:
+#   Reduce memory load on the system
+#   Increase physical memory or swap space
+#   Check if swap backing store is full
+#   Decrease Java heap size (-Xmx/-Xms)
+#   Decrease number of Java threads
+#   Decrease Java thread stack sizes (-Xss)
+#   Set larger code cache with -XX:ReservedCodeCacheSize=
+#   JVM is running with Unscaled Compressed Oops mode in which the Java heap is
+#     placed in the first 4GB address space. The Java Heap base address is the
+#     maximum limit for the native heap growth. Please use -XX:HeapBaseMinAddress
+#     to set the Java Heap base and to place the Java Heap above 4GB virtual address.
+# This output file may be truncated or incomplete.
+#
+#  Out of Memory Error (os_windows.cpp:3616), pid=38160, tid=38856
+#
+# JRE version:  (21.0.4+7) (build )
+# Java VM: OpenJDK 64-Bit Server VM (21.0.4+7-LTS, mixed mode, sharing, tiered, compressed oops, compressed class ptrs, g1 gc, windows-amd64)
+# No core dump will be written. Minidumps are not enabled by default on client versions of Windows
+#
+
+---------------  S U M M A R Y ------------
+
+Command Line: -ea -XX:+ShowCodeDetailsInExceptionMessages -Dfile.encoding=UTF-8 org.eclipse.jdt.internal.junit.runner.RemoteTestRunner -version 3 -port 57308 -testLoaderClass org.eclipse.jdt.internal.junit4.runner.JUnit4TestLoader -loaderpluginname org.eclipse.jdt.junit4.runtime -testNameFile C:\Users\kimvt\AppData\Local\Temp\testNames12102734186287278808.txt
+
+Host: Intel(R) Core(TM) i5-10300H CPU @ 2.50GHz, 8 cores, 7G,  Windows 10 , 64 bit Build 19041 (10.0.19041.5678)
+Time: Sun May 11 09:50:42 2025 Romance Daylight Time elapsed time: 0.511313 seconds (0d 0h 0m 0s)
+
+---------------  T H R E A D  ---------------
+
+Current thread (0x00000116e4b07ea0):  JavaThread "Unknown thread" [_thread_in_vm, id=38856, stack(0x0000000c12800000,0x0000000c12900000) (1024K)]
+
+Stack: [0x0000000c12800000,0x0000000c12900000]
+Native frames: (J=compiled Java code, j=interpreted, Vv=VM code, C=native code)
+V  [jvm.dll+0x6d6f99]
+V  [jvm.dll+0x8b1f81]
+V  [jvm.dll+0x8b42ee]
+V  [jvm.dll+0x8b49d3]
+V  [jvm.dll+0x286b56]
+V  [jvm.dll+0x6d3635]
+V  [jvm.dll+0x6c802a]
+V  [jvm.dll+0x35ddaa]
+V  [jvm.dll+0x365986]
+V  [jvm.dll+0x3b7a3e]
+V  [jvm.dll+0x3b7ce8]
+V  [jvm.dll+0x3316ec]
+V  [jvm.dll+0x33227b]
+V  [jvm.dll+0x87a409]
+V  [jvm.dll+0x3c4b11]
+V  [jvm.dll+0x863613]
+V  [jvm.dll+0x45901e]
+V  [jvm.dll+0x45ac91]
+C  [jli.dll+0x5343]
+C  [ucrtbase.dll+0x21bb2]
+C  [KERNEL32.DLL+0x17374]
+C  [ntdll.dll+0x4cc91]
+
+
+---------------  P R O C E S S  ---------------
+
+Threads class SMR info:
+_java_thread_list=0x00007ffbfe334108, length=0, elements={
+}
+
+Java Threads: ( => current thread )
+Total: 0
+
+Other Threads:
+  0x00000116e6bf90a0 WorkerThread "GC Thread#0"                     [id=35772, stack(0x0000000c12900000,0x0000000c12a00000) (1024K)]
+  0x00000116e6c0b500 ConcurrentGCThread "G1 Main Marker"            [id=37672, stack(0x0000000c12a00000,0x0000000c12b00000) (1024K)]
+  0x00000116e6c0bf20 WorkerThread "G1 Conc#0"                       [id=39000, stack(0x0000000c12b00000,0x0000000c12c00000) (1024K)]
+
+[error occurred during error reporting (printing all threads), id 0xc0000005, EXCEPTION_ACCESS_VIOLATION (0xc0000005) at pc=0x00007ffbfda347e7]
+VM state: not at safepoint (not fully initialized)
+
+VM Mutex/Monitor currently owned by a thread:  ([mutex/lock_event])
+[0x00007ffbfe3a8c28] Heap_lock - owner thread: 0x00000116e4b07ea0
+
+Heap address: 0x0000000082000000, size: 2016 MB, Compressed Oops mode: 32-bit
+
+CDS archive(s) mapped at: [0x0000000000000000-0x0000000000000000-0x0000000000000000), size 0, SharedBaseAddress: 0x0000000800000000, ArchiveRelocationMode: 1.
+Narrow klass base: 0x0000000000000000, Narrow klass shift: 0, Narrow klass range: 0x0
+
+GC Precious Log:
+ CardTable entry size: 512
+ Card Set container configuration: InlinePtr #cards 5 size 8 Array Of Cards #cards 12 size 40 Howl #buckets 4 coarsen threshold 1843 Howl Bitmap #cards 512 size 80 coarsen threshold 460 Card regions per heap region 1 cards per card region 2048
+
+Heap:
+ garbage-first heap   total 0K, used 0K [0x0000000082000000, 0x0000000100000000)
+  region size 1024K, 0 young (0K), 0 survivors (0K)
+
+[error occurred during error reporting (printing heap information), id 0xc0000005, EXCEPTION_ACCESS_VIOLATION (0xc0000005) at pc=0x00007ffbfde207e9]
+GC Heap History (0 events):
+No events
+
+Dll operation events (1 events):
+Event: 0.274 Loaded shared library C:\Program Files\Zulu\zulu-21\bin\java.dll
+
+Deoptimization events (0 events):
+No events
+
+Classes loaded (0 events):
+No events
+
+Classes unloaded (0 events):
+No events
+
+Classes redefined (0 events):
+No events
+
+Internal exceptions (0 events):
+No events
+
+ZGC Phase Switch (0 events):
+No events
+
+VM Operations (0 events):
+No events
+
+Memory protections (0 events):
+No events
+
+Nmethod flushes (0 events):
+No events
+
+Events (0 events):
+No events
+
+
+Dynamic libraries:
+0x00007ff7ba130000 - 0x00007ff7ba13e000 	C:\Program Files\Zulu\zulu-21\bin\java.exe
+0x00007ffc5d230000 - 0x00007ffc5d428000 	C:\Windows\SYSTEM32\ntdll.dll
+0x00007ffc5c280000 - 0x00007ffc5c342000 	C:\Windows\System32\KERNEL32.DLL
+0x00007ffc5aba0000 - 0x00007ffc5ae96000 	C:\Windows\System32\KERNELBASE.dll
+0x00007ffc553e0000 - 0x00007ffc553f9000 	C:\Program Files\Zulu\zulu-21\bin\jli.dll
+0x00007ffc551b0000 - 0x00007ffc551cb000 	C:\Program Files\Zulu\zulu-21\bin\VCRUNTIME140.dll
+0x00007ffc5b000000 - 0x00007ffc5b100000 	C:\Windows\System32\ucrtbase.dll
+0x00007ffc5c930000 - 0x00007ffc5cacd000 	C:\Windows\System32\USER32.dll
+0x00007ffc5b220000 - 0x00007ffc5b242000 	C:\Windows\System32\win32u.dll
+0x00007ffc5c4a0000 - 0x00007ffc5c4cb000 	C:\Windows\System32\GDI32.dll
+0x00007ffc4ee70000 - 0x00007ffc4f10a000 	C:\Windows\WinSxS\amd64_microsoft.windows.common-controls_6595b64144ccf1df_6.0.19041.4355_none_60b8b9eb71f62e16\COMCTL32.dll
+0x00007ffc5b100000 - 0x00007ffc5b21a000 	C:\Windows\System32\gdi32full.dll
+0x00007ffc5c1e0000 - 0x00007ffc5c27e000 	C:\Windows\System32\msvcrt.dll
+0x00007ffc5a9a0000 - 0x00007ffc5aa3d000 	C:\Windows\System32\msvcp_win.dll
+0x00007ffc5c7b0000 - 0x00007ffc5c7df000 	C:\Windows\System32\IMM32.DLL
+0x00007ffc551a0000 - 0x00007ffc551ac000 	C:\Program Files\Zulu\zulu-21\bin\vcruntime140_1.dll
+0x00007ffc392f0000 - 0x00007ffc3937e000 	C:\Program Files\Zulu\zulu-21\bin\msvcp140.dll
+0x00007ffbfd6f0000 - 0x00007ffbfe48a000 	C:\Program Files\Zulu\zulu-21\bin\server\jvm.dll
+0x00007ffc5c5e0000 - 0x00007ffc5c68f000 	C:\Windows\System32\ADVAPI32.dll
+0x00007ffc5c890000 - 0x00007ffc5c92f000 	C:\Windows\System32\sechost.dll
+0x00007ffc5bb30000 - 0x00007ffc5bc53000 	C:\Windows\System32\RPCRT4.dll
+0x00007ffc5aa40000 - 0x00007ffc5aa67000 	C:\Windows\System32\bcrypt.dll
+0x00007ffc5c550000 - 0x00007ffc5c5bb000 	C:\Windows\System32\WS2_32.dll
+0x00007ffc59e00000 - 0x00007ffc59e4b000 	C:\Windows\SYSTEM32\POWRPROF.dll
+0x00007ffc48f10000 - 0x00007ffc48f37000 	C:\Windows\SYSTEM32\WINMM.dll
+0x00007ffc511a0000 - 0x00007ffc511aa000 	C:\Windows\SYSTEM32\VERSION.dll
+0x00007ffc59cc0000 - 0x00007ffc59cd2000 	C:\Windows\SYSTEM32\UMPDC.dll
+0x00007ffc587b0000 - 0x00007ffc587c2000 	C:\Windows\SYSTEM32\kernel.appcore.dll
+0x00007ffc55150000 - 0x00007ffc5515a000 	C:\Program Files\Zulu\zulu-21\bin\jimage.dll
+0x00007ffc58160000 - 0x00007ffc58344000 	C:\Windows\SYSTEM32\DBGHELP.DLL
+0x00007ffc2bcd0000 - 0x00007ffc2bd04000 	C:\Windows\SYSTEM32\dbgcore.DLL
+0x00007ffc5a910000 - 0x00007ffc5a992000 	C:\Windows\System32\bcryptPrimitives.dll
+0x00007ffc550e0000 - 0x00007ffc550ff000 	C:\Program Files\Zulu\zulu-21\bin\java.dll
+
+dbghelp: loaded successfully - version: 4.0.5 - missing functions: none
+symbol engine: initialized successfully - sym options: 0x614 - pdb path: .;C:\Program Files\Zulu\zulu-21\bin;C:\Windows\SYSTEM32;C:\Windows\WinSxS\amd64_microsoft.windows.common-controls_6595b64144ccf1df_6.0.19041.4355_none_60b8b9eb71f62e16;C:\Program Files\Zulu\zulu-21\bin\server
+
+VM Arguments:
+jvm_args: -ea -XX:+ShowCodeDetailsInExceptionMessages -Dfile.encoding=UTF-8 
+java_command: org.eclipse.jdt.internal.junit.runner.RemoteTestRunner -version 3 -port 57308 -testLoaderClass org.eclipse.jdt.internal.junit4.runner.JUnit4TestLoader -loaderpluginname org.eclipse.jdt.junit4.runtime -testNameFile C:\Users\kimvt\AppData\Local\Temp\testNames12102734186287278808.txt
+java_class_path (initial): c:\Users\kimvt\softEngProjectExam\target\test-classes;c:\Users\kimvt\softEngProjectExam\target\classes;c:\Users\kimvt\.m2\repository\io\cucumber\cucumber-java\7.20.1\cucumber-java-7.20.1.jar;c:\Users\kimvt\.m2\repository\io\cucumber\cucumber-core\7.20.1\cucumber-core-7.20.1.jar;c:\Users\kimvt\.m2\repository\io\cucumber\cucumber-gherkin\7.20.1\cucumber-gherkin-7.20.1.jar;c:\Users\kimvt\.m2\repository\io\cucumber\cucumber-gherkin-messages\7.20.1\cucumber-gherkin-messages-7.20.1.jar;c:\Users\kimvt\.m2\repository\io\cucumber\gherkin\28.0.0\gherkin-28.0.0.jar;c:\Users\kimvt\.m2\repository\io\cucumber\messages\24.1.0\messages-24.1.0.jar;c:\Users\kimvt\.m2\repository\io\cucumber\testng-xml-formatter\0.2.0\testng-xml-formatter-0.2.0.jar;c:\Users\kimvt\.m2\repository\io\cucumber\query\12.2.0\query-12.2.0.jar;c:\Users\kimvt\.m2\repository\io\cucumber\tag-expressions\6.1.0\tag-expressions-6.1.0.jar;c:\Users\kimvt\.m2\repository\io\cucumber\cucumber-expressions\17.1.0\cucumber-expressions-17.1.0.jar;c:\Users\kimvt\.m2\repository\io\cucumber\datatable\7.20.1\datatable-7.20.1.jar;c:\Users\kimvt\.m2\repository\io\cucumber\cucumber-plugin\7.20.1\cucumber-plugin-7.20.1.jar;c:\Users\kimvt\.m2\repository\io\cucumber\docstring\7.20.1\docstring-7.20.1.jar;c:\Users\kimvt\.m2\repository\io\cucumber\html-formatter\21.7.0\html-formatter-21.7.0.jar;c:\Users\kimvt\.m2\repository\io\cucumber\junit-xml-formatter\0.5.0\junit-xml-formatter-0.5.0.jar;c:\Users\kimvt\.m2\repository\io\cucumber\ci-environment\10.0.1\ci-environment-10.0.1.jar;c:\Users\kimvt\.m2\repository\org\apiguardian\apiguardian-api\1.1.2\apiguardian-api-1.1.2.jar;c:\Users\kimvt\.m2\repository\io\cucumber\cucumber-junit\7.20.1\cucumber-junit-7.20.1.jar;c:\Users\kimvt\.m2\repository\junit\junit\4.13.2\junit-4.13.2.jar;c:\Users\kimvt\.m2\repository\org\hamcrest\hamcrest-core\1.3\hamcrest-core-1.3.jar;c:\Users\kimvt\.m2\repository\io\cucumber\cucumber-picocontainer\7.20.1\cucumber-picocontainer-7.20.1.jar;c:\Users\kimvt\.m2\repository\org\picocontainer\picocontainer\2.15\picocontainer-2.15.jar;c:\Users\kimvt\.m2\repository\org\junit\jupiter\junit-jupiter-engine\5.11.4\junit-jupiter-engine-5.11.4.jar;c:\Users\kimvt\.m2\repository\org\junit\platform\junit-platform-engine\1.11.4\junit-platform-engine-1.11.4.jar;c:\Users\kimvt\.m2\repository\org\opentest4j\opentest4j\1.3.0\opentest4j-1.3.0.jar;c:\Users\kimvt\.m2\repository\org\junit\platform\junit-platform-commons\1.11.4\junit-platform-commons-1.11.4.jar;c:\Users\kimvt\.m2\repository\org\junit\jupiter\junit-jupiter-api\5.11.4\junit-jupiter-api-5.11.4.jar;c:\Users\kimvt\.m2\repository\org\junit\vintage\junit-vintage-engine\5.11.4\junit-vintage-engine-5.11.4.jar;c:\Users\kimvt\.m2\repository\org\junit\platform\junit-platform-runner\1.11.4\junit-platform-runner-1.11.4.jar;c:\Users\kimvt\.m2\repository\org\junit\platform\junit-platform-launcher\1.11.4\junit-platform-launcher-1.11.4.jar;c:\Users\kimvt\.m2\repository\org\junit\platform\junit-platform-suite-api\1.11.4\junit-platform-suite-api-1.11.4.jar;c:\Users\kimvt\.m2\repository\org\junit\platform\junit-platform-suite-commons\1.11.4\junit-platform-suite-commons-1.11.4.jar;c:\Users\kimvt\.m2\repository\org\mockito\mockito-core\5.15.2\mockito-core-5.15.2.jar;c:\Users\kimvt\.m2\repository\net\bytebuddy\byte-buddy\1.15.11\byte-buddy-1.15.11.jar;c:\Users\kimvt\.m2\repository\net\bytebuddy\byte-buddy-agent\1.15.11\byte-buddy-agent-1.15.11.jar;c:\Users\kimvt\.m2\repository\org\objenesis\objenesis\3.3\objenesis-3.3.jar;c:\Users\kimvt\AppData\Roaming\Code\User\globalStorage\redhat.java\1.41.1\config_win\org.eclipse.osgi\113\0\.cp;c:\Users\kimvt\AppData\Roaming\Code\User\globalStorage\redhat.java\1.41.1\config_win\org.eclipse.osgi\56\0\.cp
+Launcher Type: SUN_STANDARD
+
+[Global flags]
+     intx CICompilerCount                          = 4                                         {product} {ergonomic}
+     uint ConcGCThreads                            = 2                                         {product} {ergonomic}
+     uint G1ConcRefinementThreads                  = 8                                         {product} {ergonomic}
+   size_t G1HeapRegionSize                         = 1048576                                   {product} {ergonomic}
+    uintx GCDrainStackTargetSize                   = 64                                        {product} {ergonomic}
+   size_t InitialHeapSize                          = 132120576                                 {product} {ergonomic}
+   size_t MarkStackSize                            = 4194304                                   {product} {ergonomic}
+   size_t MaxHeapSize                              = 2113929216                                {product} {ergonomic}
+   size_t MinHeapDeltaBytes                        = 1048576                                   {product} {ergonomic}
+   size_t MinHeapSize                              = 8388608                                   {product} {ergonomic}
+    uintx NonNMethodCodeHeapSize                   = 5839372                                {pd product} {ergonomic}
+    uintx NonProfiledCodeHeapSize                  = 122909434                              {pd product} {ergonomic}
+    uintx ProfiledCodeHeapSize                     = 122909434                              {pd product} {ergonomic}
+    uintx ReservedCodeCacheSize                    = 251658240                              {pd product} {ergonomic}
+     bool SegmentedCodeCache                       = true                                      {product} {ergonomic}
+     bool ShowCodeDetailsInExceptionMessages       = true                                   {manageable} {command line}
+   size_t SoftMaxHeapSize                          = 2113929216                             {manageable} {ergonomic}
+     bool UseCompressedOops                        = true                           {product lp64_product} {ergonomic}
+     bool UseG1GC                                  = true                                      {product} {ergonomic}
+     bool UseLargePagesIndividualAllocation        = false                                  {pd product} {ergonomic}
+
+Logging:
+Log output configuration:
+ #0: stdout all=warning uptime,level,tags foldmultilines=false
+ #1: stderr all=off uptime,level,tags foldmultilines=false
+
+Environment Variables:
+JAVA_HOME=C:\Program Files\Zulu\zulu-21
+PATH=C:\Program Files (x86)\Common Files\Oracle\Java\java8path;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\Program Files\Zulu\zulu-21\bin\;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Windows\System32\OpenSSH\;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Program Files\NVIDIA Corporation\NVIDIA NvDLISR;C:\Program Files\Calibre2\;C:\Program Files\dotnet\;C:\Program Files\Common Files\Autodesk Shared\;C:\Program Files\Microsoft SQL Server\150\Tools\Binn\;C:\Program Files\Git\cmd;C:\Users\kimvt\AppData\Local\Programs\Python\Python311\Scripts\;C:\Users\kimvt\AppData\Local\Programs\Python\Python311\;C:\Users\kimvt\AppData\Local\Programs\Python\Launcher\;C:\Users\kimvt\AppData\Local\Microsoft\WindowsApps;C:\Users\kimvt\AppData\Local\Programs\Microsoft VS Code\bin;C:\Users\kimvt\Desktop\Flutter\flutter\bin;C:\flutter\bin;C:\Users\kimvt\AppData\Local\Android\Sdk;C:\Users\kimvt\AppData\Local\Android\Sdk\platform-tools;C:\Users\kimvt\Desktop\Flutter\flutter\bin;C:\Users\kimvt\AppData\Local\Programs\MiKTeX\miktex\bin\x64\;C:\Program Files\Zulu\zulu-21\bin\;
+USERNAME=kimvt
+OS=Windows_NT
+PROCESSOR_IDENTIFIER=Intel64 Family 6 Model 165 Stepping 2, GenuineIntel
+TMP=C:\Users\kimvt\AppData\Local\Temp
+TEMP=C:\Users\kimvt\AppData\Local\Temp
+
+
+
+
+Periodic native trim disabled
+
+---------------  S Y S T E M  ---------------
+
+OS:
+ Windows 10 , 64 bit Build 19041 (10.0.19041.5678)
+OS uptime: 15 days 0:45 hours
+
+CPU: total 8 (initial active 8) (4 cores per cpu, 2 threads per core) family 6 model 165 stepping 2 microcode 0xec, cx8, cmov, fxsr, ht, mmx, 3dnowpref, sse, sse2, sse3, ssse3, sse4.1, sse4.2, popcnt, lzcnt, tsc, tscinvbit, avx, avx2, aes, erms, clmul, bmi1, bmi2, adx, fma, vzeroupper, clflush, clflushopt, rdtscp, f16c, pku
+Processor Information for all 8 processors :
+  Max Mhz: 2496, Current Mhz: 2496, Mhz Limit: 2496
+
+Memory: 4k page, system-wide physical 8059M (327M free)
+TotalPageFile size 32635M (AvailPageFile size 61M)
+current process WorkingSet (physical memory assigned to process): 10M, peak: 10M
+current process commit charge ("private bytes"): 60M, peak: 186M
+
+vm_info: OpenJDK 64-Bit Server VM (21.0.4+7-LTS) for windows-amd64 JRE (21.0.4+7-LTS) (Zulu21.36+17-CA), built on 2024-07-09T22:03:30Z by "zulu_re" with MS VC++ 17.1 (VS2022)
+
+END.

@@ -12,7 +12,7 @@ import view.EmployeeView;
 
 import controller.StatusHolder;
 
-public class EmployeeSteps {
+public class EmployeeSteps { // this file was written by kim
     private AppModel model;
     // private AppView appView;
     private EmployeeController employeeController;

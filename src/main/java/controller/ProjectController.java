@@ -41,19 +41,22 @@ public class ProjectController {
         WeekFields wf = WeekFields.ISO;
         LocalDate startDate;
         LocalDate endDate;
-        
-        String projectId = LocalDate.now().getYear() + String.valueOf(model.getProjectCountByYear(LocalDate.now().getYear()));
 
         int startYear = LocalDate.now().getYear();
-        int startWeek = LocalDate.now().get(wf.weekOfYear());
-        
+
+        String yearIDNo = String.valueOf(startYear).substring(2,4);
+        String noOfProjects = String.valueOf(model.getProjectCountByYear(yearIDNo) + 1);
+
+        String projectId = yearIDNo + lastIDNumber(noOfProjects);
+
         appView.prompt("Project Name");
         String name = scanner.nextLine();
+        appView.prompt("Start Week");
+        int startWeek = Integer.parseInt(scanner.nextLine());
         appView.prompt("Expected End Year");
         int endYear = Integer.parseInt(scanner.nextLine());
         appView.prompt("Expected End Week");
         int endWeek = Integer.parseInt(scanner.nextLine());
-
 
         try {
             startDate = LocalDate.of(startYear, 1, 4)
@@ -86,6 +89,14 @@ public class ProjectController {
         // project.assignProjectLeader(leader);
         model.addProject(project);
         projectView.printProjectCreated(project);
+    }
+
+    public String lastIDNumber(String noOfProjectsByYear) {
+        String IDNo = "";
+        for (int i = 0; i < 3 - noOfProjectsByYear.length(); i++) {
+            IDNo = IDNo + "0";
+        }
+        return IDNo + noOfProjectsByYear;
     }
 
     public void showAllProjects() {

@@ -2,20 +2,27 @@ package stepdefs;
 
 import static org.junit.Assert.*;
 import java.util.ArrayList;
+import java.util.Scanner;
 
+import controller.EmployeeController;
 import io.cucumber.java.en.*;
 import model.AppModel;
 import model.Employee;
 import model.Project;
-import net.bytebuddy.asm.Advice.Local;
+import controller.ProjectController;
+// import net.bytebuddy.asm.Advice.Local;
+import view.*;
 
 import java.time.LocalDate;
 
-public class CreateProjectSteps {
-    private final AppModel model;
+public class CreateProjectSteps { // this file was written by kim
+    private AppModel model;
+    private ProjectController projectController;
 
-    public CreateProjectSteps(AppModel model) {
-        this.model = model;
+    @Given("the system is ready for project creation")
+    public void the_system_is_ready_for_project_creation() {
+        model = new AppModel();
+        projectController = new ProjectController(new Scanner(System.in), model, new AppView(), new ProjectView(), new EmployeeView());
     }
 
     @When("an employee creates project with ID {string} name {string} start and end date {string} and {string}")

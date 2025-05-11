@@ -73,10 +73,10 @@ public class AppModel {
                 .orElse(null);
     }
 
-    public int getProjectCountByYear(int year) {
+    public int getProjectCountByYear(String year) {
         long count = projects.stream()
                 // .filter(p -> p.getStartDate().getYear() == year) // hvis man vil bruge start date
-                .filter(p -> p.getProjectID().startsWith(String.valueOf(year)))
+                .filter(p -> p.getProjectID().startsWith(year))
                 .count();
         
         return (int) count;
