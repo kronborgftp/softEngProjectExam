@@ -56,7 +56,7 @@ public class EmployeeTimeReportSteps {
 
     @When("I generate a time report for {string}")
     public void generateEmployeeReport(String initials) {
-        reportController.employeeTimeReport(); // uses Scanner to simulate input
+        reportController.employeeTimeReport();
     }
 
     @Then("the report should show the correct hours per day")
