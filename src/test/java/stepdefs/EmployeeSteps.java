@@ -1,22 +1,23 @@
 package stepdefs;
 
 import static org.junit.Assert.*;
+import java.util.*;
 
+import io.cucumber.java.BeforeStep;
+import io.cucumber.java.Before;
 import io.cucumber.java.en.*;
 import model.*;
 import view.AppView;
 import view.EmployeeView;
 
 
-import java.util.*;
 
-import controller.EmployeeController;
 import controller.StatusHolder;
 
 public class EmployeeSteps {
     private final AppModel model;
     // private AppView appView;
-    // private EmployeeController employeeController;
+    // private final EmployeeController employeeController;
     // private Employee employee;
     // private EmployeeView employeeView;
     // private Project project; // mangler at tiføje
@@ -25,6 +26,11 @@ public class EmployeeSteps {
 
     public EmployeeSteps(AppModel model) {
         this.model = model;
+    }
+
+    @Before
+    public void resetStatus() {
+        StatusHolder.setStatus(null);
     }
 
     @When("an employee registers with initials {string} and name {string}")
@@ -43,9 +49,9 @@ public class EmployeeSteps {
         AppModel.setLoggedIn(model.getEmployeeByInitials(string));
     }
 
-    @Then("an employee is logged in with initials {string}")
-    public void anEmployeeIsLoggedInWithInitials(String string) {
-        assertEquals(AppModel.getLoggedIn(), model.getEmployeeByInitials(string));
+    @Then("the employee {string} is logged in with initials {string}")
+    public void anEmployeeIsLoggedInWithInitials(String string, String string2) {
+        assertEquals(model.getEmployeeByInitials(string2),AppModel.getLoggedIn());
     }
 
     @Given("an employee with initials {string} and name {string} is registered")
@@ -57,6 +63,21 @@ public class EmployeeSteps {
     @Then("the error message {string} is given")
     public void the_error_message_is_given(String s) {
         assertEquals(s,StatusHolder.getStatus());
+    }
+
+    @Then("the employee initials {string} is logged out")
+    public void the_employee_initials_is_logged_out(String s) {
+        // Write code here that turns the phrase above into concrete actions
+    }
+
+    @When("the employee logs out")
+    public void the_employee_logs_out() {
+        assertTrue(AppModel.getLoggedIn() == null);
+    }
+
+    @Given("an employee is logged in with initials {string}")
+    public void an_employee_is_logged_in_with_initials(String s) {
+        AppModel.setLoggedIn(model.getEmployeeByInitials(s));
     }
 
     // @Then("the initials {string} no longer exists")

@@ -81,7 +81,8 @@ public class ProjectController {
             return;
         }
 
-        Project project = new Project(projectId, name, startDate, endDate, new ArrayList<>(), leader);
+        Project project = new Project(projectId, name, startDate, endDate);
+        project.assignProjectLeader(leader);
         model.addProject(project);
         projectView.printProjectCreated(project);
     }

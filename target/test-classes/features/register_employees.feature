@@ -18,10 +18,6 @@ Feature: Employee Registration
     When an employee registers with initials " " and name "John Doe"
     Then the error message "Cannot register empty initials" is given
 
-  # Scenario: user registers with integers, with 4 or less characters
-  #   When an employee registers with initials "1234" and name "John Doe"
-  #   Then the error message "Cannot register initials with numbers" is given
-
   # Scenario: user registers with non-alphabetic characters, with 4 or less characters
   #   When an employee registers with initials "jd0e" and name "John Doe"
   #   Then the error message "Cannot register initials with numbers" is given

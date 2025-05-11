@@ -38,7 +38,8 @@ public class ProjectTimeReportSteps {
         Employee e1 = new Employee("JD", "John Doe", new ArrayList<>());
         model.addEmployee(e1);
 
-        Project project = new Project(projectId, "Gooning Project", startDate, endDate, new ArrayList<>(), e1);
+        Project project = new Project(projectId, "Gooning Project", startDate, endDate);
+        project.assignProjectLeader(e1);
         model.addProject(project);
 
         Activity a1 = new Activity("A1", "Gooning", 80, 10, 15);

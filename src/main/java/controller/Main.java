@@ -33,7 +33,8 @@ public class Main {
                 .with(wf.dayOfWeek(), DayOfWeek.MONDAY.getValue());
 
         // project
-        Project p1 = new Project("24001", "Development Project", startDate, endDate, new ArrayList<>(), e1);
+        Project p1 = new Project("24001", "Development Project", startDate, endDate);
+        p1.assignProjectLeader(e1);
         model.addProject(p1);
 
         //activities

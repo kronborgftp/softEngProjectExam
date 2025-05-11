@@ -6,16 +6,16 @@ Feature: Employee log in
     Given an employee has registered as employee with initials "jdoe" and name "John Doe"
 
   Scenario: user logs in with existing initials
-    When a user logs in with initials "jdoe"
-    Then user is logged in with initials "jdoe"
+    When an employee logs in with initials "jdoe"
+    Then the employee "jdoe" is logged in with initials "jdoe"
 
   Scenario: user logs in with non-existant initials
-    When a user logs in with initials "wawi"
+    When an employee logs in with initials "wawi"
     Then the error message "employee initials not found" is given
 
   Scenario: user logs out
-    Given a user is logged in with initials "jdoe"
-    When user logs out
+    Given an employee is logged in with initials "jdoe"
+    When the employee logs out
     Then the employee initials "jdoe" is logged out
 
 

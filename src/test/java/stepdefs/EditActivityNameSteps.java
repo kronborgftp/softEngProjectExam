@@ -29,9 +29,7 @@ public class EditActivityNameSteps {
                 projectId,
                 "DemoProject",
                 LocalDate.now(),
-                LocalDate.now().plusWeeks(1),
-                new ArrayList<>(),
-                null
+                LocalDate.now().plusWeeks(1)
         );
         model.addProject(project);
 

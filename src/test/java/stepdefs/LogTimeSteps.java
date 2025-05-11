@@ -24,12 +24,13 @@ public class LogTimeSteps {
     public void an_employee_is_registered_and_logged_in(String initials) {
         employee = new Employee(initials, "Test User", new ArrayList<>());
         model.addEmployee(employee);
-        model.setLoggedIn(employee);
+        AppModel.setLoggedIn(employee);
     }
 
     @And("a project with ID {string} and activity {string} is available")
     public void a_project_with_id_and_activity_is_available(String projectId, String activityId) {
-        Project project = new Project(projectId, "Demo Project", LocalDate.now(), LocalDate.now().plusDays(30), new ArrayList<>(), employee);
+        Project project = new Project(projectId, "Demo Project", LocalDate.now(), LocalDate.now().plusDays(30));
+        project.assignProjectLeader(employee);
         model.addProject(project);
 
         activity = new Activity(activityId, "Coding", 10, 10, 20);

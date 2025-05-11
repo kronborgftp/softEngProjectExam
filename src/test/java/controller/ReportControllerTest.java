@@ -48,7 +48,8 @@ public class ReportControllerTest {
         // Set up
         when(scanner.nextLine()).thenReturn("25001");
         Employee e = new Employee("JD", "John Doe", new ArrayList<>());
-        Project p = new Project("25001", "Project", startDate, endDate, new ArrayList<>(), e);
+        Project p = new Project("25001", "Project", startDate, endDate);
+        p.assignProjectLeader(e);
         Activity a1 = new Activity("A1", "Project activity", 80, 10, 15);
         model.addEmployee(e);
         model.addProject(p);

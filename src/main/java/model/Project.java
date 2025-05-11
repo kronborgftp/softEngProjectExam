@@ -12,13 +12,12 @@ public class Project {
     private List<Activity> activityList;
     private Employee projectLeader;
 
-    public Project(String projectID, String projectName, LocalDate startDate, LocalDate endDate, List<Activity> activityList, Employee projectLeader) {
+    public Project(String projectID, String projectName, LocalDate startDate, LocalDate endDate) {
         this.projectID = projectID;
         this.projectName = projectName;
         this.startDate = startDate;
         this.endDate = endDate;
-        this.activityList = activityList != null ? activityList : new ArrayList<>();
-        this.projectLeader = projectLeader;
+        this.activityList = new ArrayList<>();
     }
 
     // le logic

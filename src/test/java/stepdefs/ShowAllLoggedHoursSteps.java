@@ -38,7 +38,8 @@ public class ShowAllLoggedHoursSteps {
         Employee e = new Employee("JD", "John Doe", new ArrayList<>());
         model.addEmployee(e);
 
-        Project project = new Project("P1", "Test Project", startDate, endDate, new ArrayList<>(), e);
+        Project project = new Project("P1", "Test Project", startDate, endDate);
+        project.assignProjectLeader(e);
         Activity a = new Activity("A1", "Dev Work", 10, 20, 40);
         model.addProject(project);
         model.addActivityToProject(project, a);
@@ -98,7 +99,8 @@ public class ShowAllLoggedHoursSteps {
         model.setLoggedIn(e);
 
         // Work entry
-        Project project = new Project("P1", "Test Project", startDate, endDate, new ArrayList<>(), e);
+        Project project = new Project("P1", "Test Project", startDate, endDate);
+        project.assignProjectLeader(e);
         Activity work = new Activity("A1", "Dev Work", 10, 20, 40);
         model.addProject(project);
         model.addActivityToProject(project, work);
