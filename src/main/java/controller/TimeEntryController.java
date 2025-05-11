@@ -81,7 +81,7 @@ public class TimeEntryController {
     }
 
 
-    //written by Frederik, refactored by Kim (Moved from other class)
+    //written by Frederik and Lasse refactored by Kim (Moved from other class)
     public void editTimeEntry(Employee employee) {
         List<TimeEntry> entries = model.getAllTimeEntries().stream()
                 .filter(e -> e.getEmployee().getInitials().equalsIgnoreCase(employee.getInitials()))
@@ -95,23 +95,34 @@ public class TimeEntryController {
         timeEntryView.printTimeEntriesForEmployee(employee, entries);
 
         appView.prompt("Select entry number to edit (or 0 to cancel)");
-        int selection = Integer.parseInt(scanner.nextLine());
-
-        if (selection <= 0 || selection > entries.size()) {
+        int sel;
+        try {
+            sel = Integer.parseInt(scanner.nextLine());
+        } catch (NumberFormatException ex) {
+            timeEntryView.printError("Cancelled or invalid selection.");
+            return;
+        }
+        if (sel <= 0 || sel > entries.size()) {
             timeEntryView.printError("Cancelled or invalid selection.");
             return;
         }
 
-        TimeEntry entry = entries.get(selection - 1);
-
+        TimeEntry entry = entries.get(sel - 1);
         if (entry.getHours() == -1) {
             timeEntryView.printError("This is an absence entry. Editing is not supported.");
             return;
         }
 
         appView.prompt("New hours (current: " + entry.getHours() + ")");
-        double newHours = Double.parseDouble(scanner.nextLine());
-        if (Math.round(newHours * 2) != newHours * 2) {
+        String line = scanner.nextLine();
+        double newHrs;
+        try {
+            newHrs = Double.parseDouble(line);
+        } catch (NumberFormatException ex) {
+            timeEntryView.printError("Invalid hours input.");
+            return;
+        }
+        if (Math.round(newHrs * 2) != newHrs * 2) {
             timeEntryView.printError("Hours must be in half-hour increments.");
             return;
         }
@@ -119,7 +130,7 @@ public class TimeEntryController {
         appView.prompt("New date (current: " + entry.getDate() + ")");
         String newDate = scanner.nextLine();
 
-        model.updateTimeEntry(entry.getEntryID(), newHours, newDate);
+        model.updateTimeEntry(entry.getEntryID(), newHrs, newDate);
         timeEntryView.printTimeEntryUpdated();
     }
 }
