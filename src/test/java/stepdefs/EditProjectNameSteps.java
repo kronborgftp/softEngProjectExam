@@ -30,7 +30,7 @@ public class EditProjectNameSteps {
                 .with(wf.dayOfWeek(), DayOfWeek.MONDAY.getValue());
         LocalDate end = start.plusWeeks(4);
 
-        project = new Project(projectId, initialName, start, end, new ArrayList<>(), null);
+        project = new Project(projectId, initialName, start, end);
         model.addProject(project);
     }
 

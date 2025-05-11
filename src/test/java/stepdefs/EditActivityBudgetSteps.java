@@ -34,7 +34,7 @@ public class EditActivityBudgetSteps {
                 .with(wf.dayOfWeek(), DayOfWeek.MONDAY.getValue());
         LocalDate end = start.plusWeeks(1);
 
-        project = new Project(projectId, "DemoProject", start, end, new ArrayList<>(), null);
+        project = new Project(projectId, "DemoProject", start, end);
         model.addProject(project);
 
         activity = new Activity(activityId, "SomeActivity", initialBudget, 1, 2);

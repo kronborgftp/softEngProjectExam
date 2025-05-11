@@ -71,11 +71,10 @@ public class EmployeeController {
     }
     
     public void promptLogIn() {
-        appView.prompt("Initials");
         System.out.println("\n--- Log In");
         System.out.println("Insert initials to log in");
         System.out.println("0. Exit");
-        appView.prompt("Input");
+        appView.prompt("Initials");
         String initials = scanner.nextLine();
 
         logIn(initials);

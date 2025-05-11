@@ -20,8 +20,7 @@ public class AssignActivitySteps {
     @Given("a project with name {string} exists")
     public void a_project_with_name_exists(String projectName) {
         Project p = new Project("P1", projectName,
-                LocalDate.of(2024, 1, 1), LocalDate.of(2024, 12, 31),
-                new ArrayList<>(), null);
+                LocalDate.of(2024, 1, 1), LocalDate.of(2024, 12, 31));
         model.addProject(p);
         this.currentProject = p;
     }

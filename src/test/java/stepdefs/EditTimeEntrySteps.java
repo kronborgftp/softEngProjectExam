@@ -37,10 +37,9 @@ public class EditTimeEntrySteps {
                 "P1",
                 "X",
                 LocalDate.now(),
-                LocalDate.now().plusWeeks(1),
-                new ArrayList<>(),
-                employee
+                LocalDate.now().plusWeeks(1)
         );
+        p.setProjectLeader(employee);
         model.addProject(p);
 
         activity = new Activity(activityId, "TestActivity", 10, 1, 2);

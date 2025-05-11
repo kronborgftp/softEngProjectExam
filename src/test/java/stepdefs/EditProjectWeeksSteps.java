@@ -37,7 +37,7 @@ public class EditProjectWeeksSteps {
                 .with(wf.weekOfYear(), 1)
                 .with(wf.dayOfWeek(), DayOfWeek.MONDAY.getValue());
         LocalDate end   = start.plusWeeks(initialWeeks);
-        project = new Project(projectId, "DemoProj", start, end, new java.util.ArrayList<>(), null);
+        project = new Project(projectId, "DemoProj", start, end);
         model.addProject(project);
     }
 

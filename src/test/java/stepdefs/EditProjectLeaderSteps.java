@@ -33,7 +33,8 @@ public class EditProjectLeaderSteps {
                 .with(wf.dayOfWeek(), DayOfWeek.MONDAY.getValue());
         LocalDate end = start.plusWeeks(1);
 
-        project = new Project(projectId, "Demo", start, end, new ArrayList<>(), original);
+        project = new Project(projectId, "Demo", start, end);
+        project.setProjectLeader(original);
         model.addProject(project);
     }
 

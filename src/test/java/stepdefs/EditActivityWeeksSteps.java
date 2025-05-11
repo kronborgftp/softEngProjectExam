@@ -32,7 +32,7 @@ public class EditActivityWeeksSteps {
                 .with(wf.weekOfYear(), 1)
                 .with(wf.dayOfWeek(), DayOfWeek.MONDAY.getValue());
         LocalDate end = start.plusWeeks(initialWeeks);
-        project = new Project(projectId, "DemoProject", start, end, new ArrayList<>(), null);
+        project = new Project(projectId, "DemoProject", start, end);
         model.addProject(project);
 
         // last argument is endWeek
