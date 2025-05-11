@@ -1,3 +1,8 @@
+/**
+ *
+ *
+ * @author Frederik and Lasse
+ */
 package view;
 
 import model.Activity;
@@ -9,6 +14,7 @@ import java.util.List;
 
 public class TimeEntryView {
 
+    //Written by Frederik
     public void printTimeLogged(TimeEntry entry) {
         if (entry.getHours() == -1) {
             System.out.println("Marked " + entry.getEmployee().getInitials() +
@@ -21,11 +27,12 @@ public class TimeEntryView {
         }
     }
 
-
+    //Written by Frederik
     public void printTimeEntryUpdated() {
         System.out.println("Time entry updated successfully.");
     }
 
+    //Written by Lasse
     public void printAllLoggedTime(List<TimeEntry> entries) {
         if (entries.isEmpty()) {
             System.out.println("No time entries recorded.");
@@ -50,6 +57,7 @@ public class TimeEntryView {
     }
 
 
+    //Written by Frederik
     public void printTimeEntriesForEmployee(Employee employee, List<TimeEntry> entries) {
         System.out.println("\nTime entries for " + employee.getName() + ":");
 

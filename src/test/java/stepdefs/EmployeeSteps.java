@@ -1,32 +1,29 @@
+/**
+ *
+ *
+ * @author entire file was written by Kim
+ */
 package stepdefs;
 
-import static org.junit.Assert.*;
-import java.util.*;
-
-import io.cucumber.java.Before;
-import io.cucumber.java.en.*;
-import model.*;
 import controller.EmployeeController;
+import controller.StatusHolder;
+import io.cucumber.java.Before;
+import io.cucumber.java.en.Given;
+import io.cucumber.java.en.Then;
+import io.cucumber.java.en.When;
+import model.AppModel;
 import view.AppView;
 import view.EmployeeView;
 
-import controller.StatusHolder;
+import java.util.Scanner;
+
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 public class EmployeeSteps { // this file was written by kim
     private AppModel model;
-    // private AppView appView;
     private EmployeeController employeeController;
-    // private Employee employee;
-    // private EmployeeView employeeView;
-    // private Project project; // mangler at tiføje
-    // private final List<Employee> employees = new ArrayList<>();
-    
 
-    // public EmployeeSteps(AppModel model, EmployeeController employeeController) {
-
-    //     this.model = model;
-    //     this.employeeController = employeeController;
-    // }
 
     @Before
     public void initialize_model_controller() {
@@ -34,11 +31,7 @@ public class EmployeeSteps { // this file was written by kim
         employeeController = new EmployeeController(new Scanner(System.in), model, new AppView(), new EmployeeView());
     }
 
-    // @Given("model and employee controller are initialized")
-    // public void the_system_is_ready_for_employee_registration() {
-    //     model = new AppModel();
-    //     employeeController = new EmployeeController(new Scanner(System.in), model, new AppView(), new EmployeeView());
-    // }
+
 
     @When("an employee registers with initials {string} and name {string}")
     public void anEmployeeRegistersWithInitialsAndName(String string, String string2) {

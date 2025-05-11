@@ -1,22 +1,22 @@
+/**
+ *
+ *
+ * @author Frederik, Lasse and Kim
+ */
 package controller;
 
 import model.AppModel;
 import model.Employee;
 import model.Project;
-import model.Activity;
 import view.AppView;
 import view.EmployeeView;
 import view.ProjectView;
 
 import java.time.DateTimeException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
-
-import java.time.LocalDate;
 import java.time.DayOfWeek;
-import java.time.format.DateTimeParseException;
+import java.time.LocalDate;
 import java.time.temporal.WeekFields;
+import java.util.Scanner;
 
 public class ProjectController {
     private final Scanner scanner;
@@ -36,6 +36,7 @@ public class ProjectController {
         this.employeeView = employeeView;
     }
 
+    //Written by all three members.
     public void createProject() {
         // LocalDate objects year + week
         WeekFields wf = WeekFields.ISO;
@@ -93,6 +94,7 @@ public class ProjectController {
         projectView.printProjectCreated(project);
     }
 
+    //Written by Kim
     public String lastIDNumber(String noOfProjectsByYear) {
         String IDNo = "";
         for (int i = 0; i < 3 - noOfProjectsByYear.length(); i++) {
@@ -101,11 +103,12 @@ public class ProjectController {
         return IDNo + noOfProjectsByYear;
     }
 
+    //Written by Lasse
     public void showAllProjects() {
         projectView.printProjectList(model.getAllProjects());
     }
 
-
+    //written by Frederik, refactored by Kim (Moved from other class)
     public void changeName(Project project) {
         appView.prompt("New Project Name");
         String name = scanner.nextLine();
@@ -113,6 +116,7 @@ public class ProjectController {
         projectView.printInfo("Project name updated.");
     }
 
+    //written by Frederik, refactored by Kim (Moved from other class)
     public void changeWeeks(Project project) {
         appView.prompt("New Start Year");
         int startYear = Integer.parseInt(scanner.nextLine());
@@ -131,6 +135,7 @@ public class ProjectController {
         projectView.printInfo("Project duration updated.");
     }
 
+    //written by Frederik, refactored by Kim (Moved from other class)
     public void changeLeader(Project project) {
         appView.prompt("New Leader Initials");
         Employee leader = model.getEmployeeByInitials(scanner.nextLine());

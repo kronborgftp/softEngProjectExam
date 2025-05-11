@@ -1,18 +1,18 @@
+/**
+ *
+ *
+ * @author Frederik, Lasse and Kim
+ * Most methods are written by Kim with input from both Lasse and Frederik
+ */
 package view;
 
-import java.util.List;
 
-import model.Employee;
-import model.AppModel;
-import controller.EmployeeController;
 import controller.StatusHolder;
-
-import java.util.ArrayList;
+import model.AppModel;
 
 public class AppView {
-    // private String statusMessage;
-    // private Employee loggedIn;
 
+    //Written by Kim
     public void printStartMenu() {
         menuTitle("start menu");
         option(1,"Log In");
@@ -25,6 +25,7 @@ public class AppView {
     }
 
 
+    //Written by Kim
     public void printMainMenu() {
         menuTitle("time management system");
         loggedIn();
@@ -52,6 +53,7 @@ public class AppView {
         prompt("Choose option");
     }
 
+    //Written by Kim
     public void printProjectManager() {
         menuTitle("project manager");
         loggedIn();
@@ -67,6 +69,7 @@ public class AppView {
         prompt("Choose option");
     }
 
+    //Written by Kim
     public void printEditProject() {
         menuTitle("edit project");
         currentProject();
@@ -84,6 +87,7 @@ public class AppView {
         prompt("Choose option");
     }
 
+    //Written by Kim
     public void printActivityManager() {
         menuTitle("activity manager");
         currentProject();
@@ -98,6 +102,7 @@ public class AppView {
         prompt("Choose option");
     }
 
+    //Written by Kim
     public void printEditActivity() {        
         menuTitle("edit activity");
         currentProject();
@@ -113,24 +118,28 @@ public class AppView {
         prompt("Choose option");
     }
 
+    //Written by Kim
     public void loggedIn() {
         if (AppModel.getLoggedIn() != null) {
             print("    Currently logged in: " + AppModel.getLoggedIn().getName() + " (" + AppModel.getLoggedIn().getInitials() + ")");
         }
     }
 
+    //Written by Kim
     public void currentProject() {
         print("    Current project: " + 
         AppModel.getCurrentProject().getProjectID() + 
         " (" + AppModel.getCurrentProject().getProjectName() + ")");
     }
 
+    //Written by Kim
     public void currentActivity() {
         print("    Current activity: " + 
         AppModel.getCurrentActivity().getActivityId() + 
         " (" + AppModel.getCurrentActivity().getActivityName() + ")");
     }
 
+    //Written by Kim
     public void menuTitle(String menu) {
         System.out.print("\n-==%%%  ");
         for (int i = 0; i < menu.length(); i++) {
@@ -140,30 +149,37 @@ public class AppView {
         System.out.println("   %%%==-");
     }
 
+    //Written by Kim
     public void newLine() {
         System.out.print("\n");
     }
 
+    //Written by Kim
     public void print(String option) {
         System.out.println(option);
     }
 
+    //Written by Kim
     public void option(int nr, String option) {
         System.out.println(String.valueOf(nr) + ". " + option);
     }
 
+    //Written by Frederik
     public void prompt(String message) {
         System.out.print(message + ": ");
     }
 
+    //Written by Frederik
     public void printInfo(String message) {
         System.out.println(message);
     }
 
+    //Written by Frederik
     public void printError(String message) {
         System.out.println("ERROR: " + message);
     }
 
+    //Written by Frederik
     public void printExit() {
         System.out.println("Exiting program...");
     }

@@ -1,3 +1,10 @@
+/**
+ *
+ *
+ * @author Kim (and Frederik)
+ *
+ * Frederik created the class, and made the first version. Kim wrote the version that you see today.
+ */
 package controller;
 
 import model.AppModel;
@@ -5,9 +12,7 @@ import model.Employee;
 import view.AppView;
 import view.EmployeeView;
 
-import java.io.ObjectInputFilter.Status;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
 
 public class EmployeeController {

@@ -1,3 +1,4 @@
+#written by Lasse
 Feature: Edit activity name
 
   Scenario: Successfully rename an existing activity

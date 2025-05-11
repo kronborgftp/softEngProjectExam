@@ -1,3 +1,9 @@
+/**
+ *
+ *
+ * @author Frederik and Kim
+ * Getters and Setters by Frederik
+ */
 package model;
 
 import java.util.ArrayList;
@@ -9,10 +15,13 @@ public class Employee {
     private List<Activity> assignedActivities;
 
     // %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+    //Written by Kim
     public Employee(String initials) {
         this.initials = (initials != null && initials.length() > 4) ? initials.substring(0, 4) : initials;
     }
 
+    //Written by Frederik
     public Employee(String initials, String name, List<Activity> assignedActivities) {
         this.initials = (initials != null && initials.length() > 4) ? initials.substring(0, 4) : initials;
         this.name = name;
@@ -21,6 +30,8 @@ public class Employee {
 
     // LOGIC
     // %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+    //Written by Frederik
     public void assignActivity(Activity activity) {
         if (!assignedActivities.contains(activity)) {
             assignedActivities.add(activity);
@@ -43,6 +54,8 @@ public class Employee {
 
     // Setters
     // %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+    //Written by Frederik
     public void setInitials(String initials) {
         this.initials = (initials != null && initials.length() > 4) ? initials.substring(0, 4) : initials;
     }

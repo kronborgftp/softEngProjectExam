@@ -1,21 +1,25 @@
+/**
+ *
+ *
+ * @author entire file was written by Lasse
+ */
 package stepdefs;
 
 import controller.TimeEntryController;
-import io.cucumber.java.en.*;
-import model.AppModel;
-import model.Employee;
-import model.Activity;
-import model.Project;
-import model.TimeEntry;
+import io.cucumber.java.en.Given;
+import io.cucumber.java.en.Then;
+import io.cucumber.java.en.When;
+import model.*;
+import view.ActivityView;
 import view.AppView;
 import view.TimeEntryView;
-import view.ActivityView;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 
 public class EditTimeEntrySteps {
     private AppModel model;

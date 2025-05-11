@@ -1,12 +1,14 @@
 package controller;
 
-import model.*;
-import java.util.ArrayList;
+import model.Activity;
+import model.AppModel;
+import model.Employee;
+import model.Project;
 
+import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.temporal.WeekFields;
-import java.time.DayOfWeek;
-import java.util.Locale;
+import java.util.ArrayList;
 
 public class Main {
     public static void main(String[] args) {

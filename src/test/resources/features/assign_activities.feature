@@ -1,3 +1,4 @@
+#Written by Kim
 Feature: Create activities
    Description: Creating and assigning activities associated with certain projects
    Actors: users, projects, activities

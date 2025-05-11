@@ -1,14 +1,23 @@
+/**
+ *
+ *
+ * @author Frederik, Lasse and Kim
+ */
 package controller;
 
-import model.*;
+import model.Activity;
+import model.AppModel;
+import model.Employee;
+import model.TimeEntry;
 import view.ActivityView;
 import view.AppView;
 import view.TimeEntryView;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.*;
-import java.util.stream.Collectors;
+import java.util.List;
+import java.util.Locale;
+import java.util.Scanner;
 
 public class TimeEntryController {
     private final Scanner scanner;
@@ -26,6 +35,7 @@ public class TimeEntryController {
         this.activityView = activityView;
     }
 
+    //Written by all three members.
     public void logTime() {
         Employee employee = AppModel.getLoggedIn();
         if (employee == null) {
@@ -65,11 +75,13 @@ public class TimeEntryController {
         timeEntryView.printTimeLogged(model.getTimeEntryById(timeEntryId));
     }
 
+    //Written by Lasse
     public void showAllLoggedHours() {
         timeEntryView.printAllLoggedTime(model.getAllTimeEntries());
     }
 
 
+    //written by Frederik, refactored by Kim (Moved from other class)
     public void editTimeEntry(Employee employee) {
         List<TimeEntry> entries = model.getAllTimeEntries().stream()
                 .filter(e -> e.getEmployee().getInitials().equalsIgnoreCase(employee.getInitials()))

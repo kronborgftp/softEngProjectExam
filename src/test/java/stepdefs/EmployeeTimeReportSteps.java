@@ -1,15 +1,26 @@
+/**
+ *
+ *
+ * @author entire file was written by Frederik
+ */
 package stepdefs;
 
 import controller.ReportController;
-import model.*;
-import view.*;
+import io.cucumber.java.en.Given;
+import io.cucumber.java.en.Then;
+import io.cucumber.java.en.When;
+import model.Activity;
+import model.AppModel;
+import model.Employee;
+import model.Project;
+import view.AppView;
+import view.ReportView;
 
-import io.cucumber.java.en.*;
-
-import java.util.*;
+import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.temporal.WeekFields;
-import java.time.DayOfWeek;
+import java.util.ArrayList;
+import java.util.Scanner;
 
 public class EmployeeTimeReportSteps {
 

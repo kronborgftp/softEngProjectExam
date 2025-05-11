@@ -1,4 +1,4 @@
-# Created by kronborgpaludan
+# written by Frederik
 Feature: Log time
 
   Scenario: Successfully log time for an assigned activity

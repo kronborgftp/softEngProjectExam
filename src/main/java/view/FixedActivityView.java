@@ -1,9 +1,11 @@
+/**
+ *
+ *
+ * @author Frederik
+ */
 package view;
 
-import model.FixedActivity;
 import model.TimeEntry;
-
-import java.util.Collection;
 
 public class FixedActivityView {
 

@@ -1,20 +1,28 @@
+/**
+ *
+ *
+ * @author entire file was written by Lasse
+ */
 package stepdefs;
 
 import controller.ActivityController;
-import io.cucumber.java.en.*;
+import io.cucumber.java.en.Given;
+import io.cucumber.java.en.Then;
+import io.cucumber.java.en.When;
+import model.Activity;
 import model.AppModel;
 import model.Project;
-import model.Activity;
 import view.AppView;
-import view.ProjectView;
 import view.EmployeeView;
+import view.ProjectView;
 
-import java.time.LocalDate;
 import java.time.DayOfWeek;
+import java.time.LocalDate;
 import java.time.temporal.WeekFields;
-import java.util.*;
+import java.util.Scanner;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 
 public class EditActivityBudgetSteps {
     private AppModel model = new AppModel();

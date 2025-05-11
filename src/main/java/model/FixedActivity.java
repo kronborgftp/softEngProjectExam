@@ -1,3 +1,8 @@
+/**
+ *
+ *
+ * @author Frederik
+ */
 package model;
 
 public class FixedActivity {

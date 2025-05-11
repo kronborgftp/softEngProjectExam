@@ -1,3 +1,8 @@
+/**
+ *
+ *
+ * @author Frederik and Lasse
+ */
 package view;
 
 import model.Activity;
@@ -5,16 +10,16 @@ import model.Employee;
 import model.Project;
 import model.TimeEntry;
 
-import java.util.List;
-import java.util.Map;
-
 import java.time.format.DateTimeFormatter;
+import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 
 public class ReportView {
 
     private static final DateTimeFormatter DANISH = DateTimeFormatter.ofPattern("dd-MM-yyyy").withLocale(new Locale("da", "DK"));
 
+    //Written by Frederik and Lasse
     public void printProjectTimeReport(Project project, Map<String, Double> hoursPerActivity,
                                        Map<String, Integer> budgetPerActivity) {
         System.out.println("\n========== PROJECT TIME REPORT ==========");
@@ -57,6 +62,7 @@ public class ReportView {
         }
     }
 
+    //Written by Frederik and Lasse
     public void printEmployeeTimeReport(Employee employee, List<TimeEntry> entries, Map<String, Double> hoursPerDay) {
         System.out.println("\n========== EMPLOYEE TIME REPORT ==========");
         System.out.println("Employee: " + employee.getName() + " (" + employee.getInitials() + ")");

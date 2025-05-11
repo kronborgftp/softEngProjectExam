@@ -1,3 +1,8 @@
+/**
+ *
+ *
+ * @author Frederik and Lasse
+ */
 package controller;
 
 import model.*;
@@ -23,6 +28,7 @@ public class ReportController {
         this.reportView = reportView;
     }
 
+    //Written by Frederik
     public void projectTimeReport() {
         appView.prompt("Project ID");
         String projectId = scanner.nextLine();
@@ -62,6 +68,7 @@ public class ReportController {
         reportView.printProjectTimeReport(project, hoursPerActivity, budgetPerActivity);
     }
 
+    //Written by Lasse - Input from Frederik about fixed activities.
     public void employeeTimeReport() {
         appView.prompt("Employee Initials");
         String initials = scanner.nextLine();
