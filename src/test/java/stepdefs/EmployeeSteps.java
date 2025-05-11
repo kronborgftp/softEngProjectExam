@@ -3,7 +3,7 @@ package stepdefs;
 import static org.junit.Assert.*;
 import java.util.*;
 
-// import io.cucumber.java.Before;
+import io.cucumber.java.Before;
 import io.cucumber.java.en.*;
 import model.*;
 import controller.EmployeeController;
@@ -28,15 +28,17 @@ public class EmployeeSteps { // this file was written by kim
     //     this.employeeController = employeeController;
     // }
 
-    // @Before
-    // public void resetStatus() {
-    //     StatusHolder.setStatus(null);
-    // }
-    @Given("model and employee controller are initialized")
-    public void the_system_is_ready_for_employee_registration() {
+    @Before
+    public void initialize_model_controller() {
         model = new AppModel();
         employeeController = new EmployeeController(new Scanner(System.in), model, new AppView(), new EmployeeView());
     }
+
+    // @Given("model and employee controller are initialized")
+    // public void the_system_is_ready_for_employee_registration() {
+    //     model = new AppModel();
+    //     employeeController = new EmployeeController(new Scanner(System.in), model, new AppView(), new EmployeeView());
+    // }
 
     @When("an employee registers with initials {string} and name {string}")
     public void anEmployeeRegistersWithInitialsAndName(String string, String string2) {
@@ -52,7 +54,8 @@ public class EmployeeSteps { // this file was written by kim
 
     @When("an employee logs in with initials {string}")
     public void anEmployeeLogsInWithInitials(String string) {
-        AppModel.setLoggedIn(model.getEmployeeByInitials(string));
+        // AppModel.setLoggedIn(model.getEmployeeByInitials(string));
+        employeeController.logIn(string);
     }
 
     @Then("the employee {string} is logged in with initials {string}")
@@ -88,16 +91,6 @@ public class EmployeeSteps { // this file was written by kim
         // AppModel.setLoggedIn(model.getEmployeeByInitials(s));
         employeeController.logIn(s);
     }
-
-    // @Then("the initials {string} no longer exists")
-    // public void the_initials_no_longer_exists(String s) {
-    //     // Write code here that turns the phrase above into concrete actions
-    // }
-
-    // @When("a user deletes employee initials {string}")
-    // public void a_user_deletes_employee_initials(String s) {
-    //     // Write code here that turns the phrase above into concrete actions
-    // }
 
 
 

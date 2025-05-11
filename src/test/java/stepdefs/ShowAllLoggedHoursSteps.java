@@ -96,7 +96,7 @@ public class ShowAllLoggedHoursSteps {
 
         Employee e = new Employee("JD", "John Doe", new ArrayList<>());
         model.addEmployee(e);
-        model.setLoggedIn(e);
+        AppModel.setLoggedIn(e);
 
         // Work entry
         Project project = new Project("P1", "Test Project", startDate, endDate);
@@ -134,7 +134,7 @@ public class ShowAllLoggedHoursSteps {
         assertTrue(output.contains("Vacation"));
         assertTrue(output.contains("05-05-2025"));
         assertTrue(output.contains("06-05-2025"));
-        assertTrue(output.contains("4.0"));
+        assertTrue(output.contains("4,0"));
         assertTrue(output.contains("ABSENT"));
     }
 
@@ -145,8 +145,8 @@ public class ShowAllLoggedHoursSteps {
         assertTrue(output.contains("Dev Work"));
         assertTrue(output.contains("01-05-2025"));
         assertTrue(output.contains("02-05-2025"));
-        assertTrue(output.contains("2.5"));
-        assertTrue(output.contains("3.0"));
+        assertTrue(output.contains("2,5"));
+        assertTrue(output.contains("3,0"));
         assertFalse(output.contains("ABSENT")); // Ensure no absence is printed
     }
 

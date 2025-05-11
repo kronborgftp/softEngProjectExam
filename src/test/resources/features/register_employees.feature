@@ -3,9 +3,6 @@ Feature: Employee Registration
   Desription: registration of employees
   Actors: users
 
-  Background:
-    Given model and employee controller are initialized
-
   Scenario: user registers successfully
     When an employee registers with initials "jdoe" and name "John Doe"
     Then an employee has registered as employee with initials "jdoe" and name "John Doe"

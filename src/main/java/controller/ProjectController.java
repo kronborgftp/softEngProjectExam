@@ -66,12 +66,14 @@ public class ProjectController {
                     .with(wf.weekOfYear(), endWeek)
                     .with(wf.dayOfWeek(), DayOfWeek.MONDAY.getValue());
         } catch (DateTimeException ex) {
+            StatusHolder.setStatus("Invalid year or week number");
             projectView.printError("Invalid year or week number");
             return;
         }
 
         // Start before end
         if (endDate.isBefore(startDate)) {
+            StatusHolder.setStatus("End week cannot be before start week");
             projectView.printError("End week (" + endWeek + "/" + endYear +
                     ") cannot be before start week (" +
                     startWeek + "/" + startYear + ").");
