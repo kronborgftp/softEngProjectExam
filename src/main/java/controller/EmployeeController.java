@@ -69,10 +69,7 @@ public class EmployeeController {
             model.addEmployee(e);
             employeeView.printEmployeeRegistered(e);
 
-        } //else {
-        //     appView.setStatus("ERROR: Register failed - Invalid initials");;
-        // }
-
+        } 
     }
     
     public void promptLogIn() {
