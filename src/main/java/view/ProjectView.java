@@ -1,31 +1,38 @@
+/**
+ *
+ *
+ * @author Frederik and Lasse
+ */
 package view;
 
-import model.Project;
 import model.Activity;
+import model.Project;
 
 import java.time.format.DateTimeFormatter;
-import java.time.LocalDate;
-
 import java.util.List;
 import java.util.Locale;
 
 public class ProjectView {
     private static final DateTimeFormatter DANISH = DateTimeFormatter.ofPattern("dd-MM-yyyy").withLocale(new Locale("da", "DK"));
 
+    //Written by Lasse
     public void printProjectCreated(Project p) {
         System.out.println("Created project: " + p.getProjectName() + " (" + p.getProjectID() + ")");
         System.out.println("  Duration: " + p.getStartDate().format(DANISH) + " til " + p.getEndDate().format(DANISH));
     }
 
+    //Written by Lasse
     public void printActivityAdded(String activityName) {
         System.out.println("Added activity: " + activityName);
     }
 
+    //Written by Lasse
     public void printInfo(String message) {
         System.out.println(message);
     }
 
 
+    //Written by Lasse
     public void printProject(Project p) {
         System.out.println("\n--- Project: " + p.getProjectName() + " (" + p.getProjectID() + ") ---");
         System.out.println("Duration: Week " + p.getStartDate() + " to " + p.getEndDate());
@@ -40,6 +47,7 @@ public class ProjectView {
         }
     }
 
+    //Written by Frederik
     public void printProjectList(List<Project> projects) {
         if (projects.isEmpty()) {
             System.out.println("No projects available.");
@@ -51,6 +59,7 @@ public class ProjectView {
         }
     }
 
+    //Written by Lasse
     public void printError(String message) {
         System.out.println(message);
     }

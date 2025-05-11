@@ -1,11 +1,20 @@
+/**
+ *
+ *
+ * @author entire file was written by Frederik
+ */
 package stepdefs;
 
-import io.cucumber.java.en.*;
 import io.cucumber.datatable.DataTable;
+import io.cucumber.java.en.Given;
+import io.cucumber.java.en.Then;
+import io.cucumber.java.en.When;
 import model.AppModel;
 import model.Employee;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 

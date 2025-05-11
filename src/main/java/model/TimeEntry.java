@@ -1,3 +1,8 @@
+/**
+ *
+ *
+ * @author Frederik
+ */
 package model;
 
 public class TimeEntry {
@@ -64,7 +69,4 @@ public class TimeEntry {
         this.hours = hours;
     }
 
-    public void setDate(String date) {
-        this.date = date;
-    }
 }

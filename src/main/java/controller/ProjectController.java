@@ -1,22 +1,22 @@
+/**
+ *
+ *
+ * @author Frederik, Lasse and Kim
+ */
 package controller;
 
 import model.AppModel;
 import model.Employee;
 import model.Project;
-import model.Activity;
 import view.AppView;
 import view.EmployeeView;
 import view.ProjectView;
 
 import java.time.DateTimeException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
-
-import java.time.LocalDate;
 import java.time.DayOfWeek;
-import java.time.format.DateTimeParseException;
+import java.time.LocalDate;
 import java.time.temporal.WeekFields;
+import java.util.Scanner;
 
 public class ProjectController {
     private final Scanner scanner;
@@ -36,6 +36,7 @@ public class ProjectController {
         this.employeeView = employeeView;
     }
 
+    //Written by all three members.
     public void createProject() {
         // LocalDate objects year + week
         WeekFields wf = WeekFields.ISO;
@@ -93,6 +94,7 @@ public class ProjectController {
         projectView.printProjectCreated(project);
     }
 
+    //Written by Kim
     public String lastIDNumber(String noOfProjectsByYear) {
         String IDNo = "";
         for (int i = 0; i < 3 - noOfProjectsByYear.length(); i++) {
@@ -101,43 +103,81 @@ public class ProjectController {
         return IDNo + noOfProjectsByYear;
     }
 
+    //Written by Lasse
     public void showAllProjects() {
         projectView.printProjectList(model.getAllProjects());
     }
 
-
+    //written by Frederik and Lasse refactored by Kim (Moved from other class)
     public void changeName(Project project) {
         appView.prompt("New Project Name");
-        String name = scanner.nextLine();
-        model.updateProjectName(project, name);
+        String newName = scanner.nextLine();
+
+        if (newName == null || newName.trim().isEmpty()) {
+            projectView.printError("Invalid name input.");
+            return;
+        }
+
+        if (newName.equals(project.getProjectName())) {
+            projectView.printError("Name must be different.");
+            return;
+        }
+
+        model.updateProjectName(project, newName);
         projectView.printInfo("Project name updated.");
     }
 
+    //written by Frederik and Lasse refactored by Kim (Moved from other class)
     public void changeWeeks(Project project) {
         appView.prompt("New Start Year");
-        int startYear = Integer.parseInt(scanner.nextLine());
         appView.prompt("New Start Week");
-        int startWeek = Integer.parseInt(scanner.nextLine());
         appView.prompt("New End Year");
-        int endYear = Integer.parseInt(scanner.nextLine());
         appView.prompt("New End Week");
-        int endWeek = Integer.parseInt(scanner.nextLine());
 
-        WeekFields wf = WeekFields.ISO;
-        LocalDate startDate = LocalDate.of(startYear, 1, 4).with(wf.weekOfYear(), startWeek).with(wf.dayOfWeek(), DayOfWeek.MONDAY.getValue());
-        LocalDate endDate   = LocalDate.of(endYear,   1, 4).with(wf.weekOfYear(), endWeek).with(wf.dayOfWeek(), DayOfWeek.MONDAY.getValue());
+        int startYear, startWeek, endYear, endWeek;
+        try {
+            startYear = Integer.parseInt(scanner.nextLine());
+            startWeek = Integer.parseInt(scanner.nextLine());
+            endYear   = Integer.parseInt(scanner.nextLine());
+            endWeek   = Integer.parseInt(scanner.nextLine());
+        } catch (NumberFormatException e) {
+            projectView.printError("Invalid weeks input.");
+            return;
+        }
 
-        model.updateProjectDates(project, startDate, endDate);
+        int delta = endWeek - startWeek;
+        if (delta < 0) {
+            projectView.printError("Weeks must be positive.");
+            return;
+        }
+        if (delta == 0) {
+            projectView.printError("End week must be after start week.");
+            return;
+        }
+
+        LocalDate originalStart = project.getStartDate();
+        LocalDate newEnd        = originalStart.plusWeeks(delta);
+
+        model.updateProjectDates(project, originalStart, newEnd);
         projectView.printInfo("Project duration updated.");
     }
 
+    //written by Frederik and Lasse refactored by Kim (Moved from other class)
     public void changeLeader(Project project) {
         appView.prompt("New Leader Initials");
-        Employee leader = model.getEmployeeByInitials(scanner.nextLine());
+        String input = scanner.nextLine();
+
+        // reject empty
+        if (input == null || input.trim().isEmpty()) {
+            employeeView.printError("Invalid initials.");
+            return;
+        }
+
+        Employee leader = model.getEmployeeByInitials(input);
         if (leader == null) {
             employeeView.printError("Employee not found.");
         } else {
-            model.changeProjectLeader(project, leader);
+            project.assignProjectLeader(leader);
             projectView.printInfo("Project leader updated.");
         }
     }

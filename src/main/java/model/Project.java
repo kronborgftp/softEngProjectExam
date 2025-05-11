@@ -1,8 +1,14 @@
+/**
+ *
+ *
+ * @author Frederik, Lasse and Kim
+ * Getters and Setters by Frederik and Lasse
+ */
 package model;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
-import java.time.LocalDate;
 
 public class Project {
     private String projectID;
@@ -12,6 +18,7 @@ public class Project {
     private List<Activity> activityList;
     private Employee projectLeader;
 
+    //Written by Lasse and Kim
     public Project(String projectID, String projectName, LocalDate startDate, LocalDate endDate) {
         this.projectID = projectID;
         this.projectName = projectName;
@@ -20,13 +27,14 @@ public class Project {
         this.activityList = new ArrayList<>();
     }
 
-    // le logic
+    // Written by Frederik
     public void addActivity(Activity activity) {
         if (!activityList.contains(activity)) {
             activityList.add(activity);
         }
     }
 
+    //Written by Lasse
     public void assignProjectLeader(Employee leader) {
         this.projectLeader = leader;
     }

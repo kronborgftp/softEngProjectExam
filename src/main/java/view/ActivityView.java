@@ -1,3 +1,8 @@
+/**
+ *
+ *
+ * @author Lasse
+ */
 package view;
 
 import model.Activity;

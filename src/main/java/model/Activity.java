@@ -1,3 +1,8 @@
+/**
+ *
+ *
+ * @author Frederik
+ */
 package model;
 
 import java.util.ArrayList;
@@ -80,7 +85,4 @@ public class Activity {
         this.endWeek = endWeek;
     }
 
-    public void setEmployees(List<Employee> employees) {
-        this.employees = employees;
-    }
 }

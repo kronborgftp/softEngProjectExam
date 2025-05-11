@@ -1,6 +1,14 @@
+/**
+ *
+ *
+ * @author Frederik
+ */
 package controller;
 
-import model.*;
+import model.Activity;
+import model.AppModel;
+import model.Employee;
+import model.TimeEntry;
 import view.AppView;
 import view.FixedActivityView;
 
@@ -26,6 +34,7 @@ public class FixedActivityController {
         this.view = view;
     }
 
+    //Written by Frederik
     public void logAbsence() {
         Employee employee = model.getLoggedIn();
         if (employee == null) {

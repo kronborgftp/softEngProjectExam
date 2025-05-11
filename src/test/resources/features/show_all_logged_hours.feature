@@ -1,4 +1,4 @@
-# Created by kronborgpaludan
+# written by Frederik
 Feature: Show all logged hours
 
   Scenario: Display only regular (work) time entries

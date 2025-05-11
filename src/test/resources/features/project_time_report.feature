@@ -1,4 +1,4 @@
-# Created by kronborgpaludan
+# written by Frederik
 Feature: Project Time Report
 
   Scenario: Generate a time report for a specific project

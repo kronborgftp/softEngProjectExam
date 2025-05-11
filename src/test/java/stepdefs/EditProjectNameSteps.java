@@ -1,3 +1,8 @@
+/**
+ *
+ *
+ * @author entire file was written by Lasse
+ */
 package stepdefs;
 
 import controller.ProjectController;
@@ -5,13 +10,12 @@ import io.cucumber.java.en.*;
 import model.AppModel;
 import model.Project;
 import view.AppView;
-import view.ProjectView;
 import view.EmployeeView;
+import view.ProjectView;
 
 import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.temporal.WeekFields;
-import java.util.ArrayList;
 import java.util.Scanner;
 
 import static org.junit.Assert.*;
@@ -21,6 +25,22 @@ public class EditProjectNameSteps {
     private Project project;
     private ProjectController controller;
     private Scanner scanner;
+
+    private static class ProjectViewSpy extends ProjectView {
+        private String lastError;
+        @Override
+        public void printError(String message) {
+            this.lastError = message;
+            super.printError(message);
+        }
+        public String getLastError() {
+            return lastError;
+        }
+    }
+
+    private ProjectViewSpy projectView = new ProjectViewSpy();
+    private AppView appView = new AppView();
+    private EmployeeView employeeView = new EmployeeView();
 
     @Given("a project {string} named {string} exists")
     public void a_project_named_exists(String projectId, String initialName) {
@@ -40,9 +60,9 @@ public class EditProjectNameSteps {
         controller = new ProjectController(
                 scanner,
                 model,
-                new AppView(),
-                new ProjectView(),
-                new EmployeeView()   // nu med EmployeeView som 5. parameter
+                appView,
+                projectView,
+                employeeView
         );
         controller.changeName(project);
     }
@@ -50,7 +70,13 @@ public class EditProjectNameSteps {
     @Then("the project name for {string} should be {string}")
     public void the_project_name_for_should_be(String projectId, String expectedName) {
         Project updated = model.getProjectById(projectId);
-        assertNotNull("Projektet skal findes", updated);
-        assertEquals("Projektets navn skal være ændret", expectedName, updated.getProjectName());
+        assertNotNull("Project must still exist", updated);
+        assertEquals("Project name should be updated", expectedName, updated.getProjectName());
+    }
+
+    @Then("I should see a project error message {string}")
+    public void i_should_see_a_project_error_message(String expected) {
+        assertEquals("Error message mismatch", expected, projectView.getLastError());
     }
 }
+

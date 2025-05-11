@@ -1,8 +1,17 @@
+/**
+ *
+ *
+ * @author Frederik, Lasse and Kim
+ *
+ * Everyone had their input on the design of the menus. Kim implemented those designs.
+ */
 package controller;
 
-import model.*;
+import model.Activity;
+import model.AppModel;
+import model.Employee;
+import model.Project;
 import view.*;
-import controller.StatusHolder;
 
 import java.util.Scanner;
 
@@ -29,8 +38,7 @@ public class AppController {
             scanner, appModel, appView, fixedActivityView
     );
 
-    private String statusMessage;
-
+    //Written by Kim
     public void run() {
         boolean running = true;
 
@@ -68,6 +76,7 @@ public class AppController {
     //     } 
     // }
 
+    //Written by Kim
     private void mainMenu(Employee e) {
         AppModel.setLoggedIn(e);
 
@@ -102,6 +111,7 @@ public class AppController {
         }
     }
 
+    //Written by Kim
     private void manageProjects() {
         boolean managingProjects = true;
 
@@ -126,6 +136,7 @@ public class AppController {
         }
     }
 
+    //Written by Kim
     private void editProject(Project p) {
         Project editingProject = p;
         AppModel.setCurrentProject(p);
@@ -149,6 +160,7 @@ public class AppController {
         }
     }
 
+    //Written by Kim
     private void manageActivities(Project p) {
         Project managingActivities = p;
 
@@ -171,6 +183,7 @@ public class AppController {
         }
     }
 
+    //Written by Kim
     private void editActivity(Activity a) {
         Activity editingActivity = a;
         AppModel.setCurrentActivity(a);
@@ -192,6 +205,7 @@ public class AppController {
         }
     }
 
+    //Written by Frederik
     public AppModel getModel() {
         return appModel;
     }

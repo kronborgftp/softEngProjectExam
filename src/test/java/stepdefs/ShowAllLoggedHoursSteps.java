@@ -1,19 +1,30 @@
+/**
+ *
+ *
+ * @author entire file was written by Frederik
+ */
 package stepdefs;
 
 import controller.TimeEntryController;
+import io.cucumber.java.en.Given;
+import io.cucumber.java.en.Then;
+import io.cucumber.java.en.When;
 import model.*;
-import view.*;
-
-import io.cucumber.java.en.*;
+import view.ActivityView;
+import view.AppView;
+import view.TimeEntryView;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.temporal.WeekFields;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Scanner;
+import java.util.UUID;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 public class ShowAllLoggedHoursSteps {
 

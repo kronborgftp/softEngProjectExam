@@ -1,61 +1,76 @@
+/**
+ *
+ *
+ * @author entire file was written by Lasse
+ */
 package stepdefs;
 
 import controller.ActivityController;
 import io.cucumber.java.en.*;
 import model.*;
-import view.AppView;
-import view.ProjectView;
-import view.EmployeeView;
-
+import view.*;
+import java.time.DayOfWeek;
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.Scanner;
-
+import java.time.temporal.WeekFields;
+import java.util.*;           // <-- for Scanner, List, ArrayList, etc.
 import static org.junit.Assert.*;
 
 public class EditActivityNameSteps {
-    private AppModel model;
+    private AppModel model = new AppModel();
     private ActivityController controller;
     private Project project;
     private Activity activity;
+    private Scanner scanner;
+
+    private static class ProjectViewSpy extends ProjectView {
+        private String lastError;
+        @Override public void printError(String message) {
+            this.lastError = message;
+            super.printError(message);
+        }
+        public String getLastError() {
+            return lastError;
+        }
+    }
+
+    private ProjectViewSpy projectView = new ProjectViewSpy();
+    private AppView appView = new AppView();
+    private EmployeeView employeeView = new EmployeeView();
 
     @Given("a project {string} with activity {string} named {string} exists")
-    public void a_project_with_activity_named_exists(String projectId,
-                                                     String activityId,
-                                                     String initialName) {
-        // initialize model + project + activity
-        model = new AppModel();
-        project = new Project(
-                projectId,
-                "DemoProject",
-                LocalDate.now(),
-                LocalDate.now().plusWeeks(1)
-        );
+    public void a_project_with_activity_named_exists(String pid, String aid, String name) {
+        WeekFields wf = WeekFields.ISO;
+        LocalDate start = LocalDate.of(2025,1,4)
+                .with(wf.weekOfYear(),1)
+                .with(wf.dayOfWeek(),DayOfWeek.MONDAY.getValue());
+        LocalDate end = start.plusWeeks(1);
+
+        project = new Project(pid, "Demo", start, end);
         model.addProject(project);
 
-        activity = new Activity(activityId, initialName, 10, 1, 2);
+        activity = new Activity(aid, name, 10, 1, 1);
         model.addActivityToProject(project, activity);
     }
 
-    @When("the user renames activity {string} to {string}")
-    public void the_user_renames_activity_to(String activityId, String newName) {
-        // feed the newName into the controller’s scanner
-        Scanner scanner = new Scanner(newName + "\n");
+    @When("the user edits name of activity {string} to {string}")
+    public void the_user_edits_name_of_activity_to(String aid, String newName) {
+        scanner = new Scanner(newName + "\n");
         controller = new ActivityController(
-                scanner,
-                model,
-                new AppView(),
-                new ProjectView(),
-                new EmployeeView()
+                scanner, model, appView, projectView, employeeView
         );
-        // invoke the existing changeName(...) method
         controller.changeName(activity);
     }
 
     @Then("the activity name for {string} should be {string}")
-    public void the_activity_name_for_should_be(String activityId, String expectedName) {
-        Activity updated = model.getActivityInProject(project, activityId);
-        assertNotNull("Activity should still exist", updated);
-        assertEquals(expectedName, updated.getActivityName());
+    public void the_activity_name_for_should_be(String aid, String expected) {
+        Activity updated = model.getActivityInProject(project, aid);
+        assertNotNull(updated);
+        assertEquals(expected, updated.getActivityName());
+    }
+
+    @Then("I should see a name‐error message {string}")
+    public void i_should_see_a_name_error_message(String expected) {
+        assertEquals(expected, projectView.getLastError());
     }
 }
+

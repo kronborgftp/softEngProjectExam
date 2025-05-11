@@ -1,14 +1,25 @@
+/**
+ *
+ *
+ * @author entire file was written by Frederik
+ */
 package stepdefs;
 
-import static org.junit.Assert.*;
-
-import io.cucumber.java.en.*;
-import model.*;
-import controller.*;
+import controller.FixedActivityController;
+import io.cucumber.java.en.And;
+import io.cucumber.java.en.Given;
+import io.cucumber.java.en.Then;
+import io.cucumber.java.en.When;
+import model.AppModel;
+import model.Employee;
 import view.AppView;
 import view.FixedActivityView;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Scanner;
+
+import static org.junit.Assert.assertEquals;
 
 public class LogAbsenceSteps {
     private final AppModel model = new AppModel();

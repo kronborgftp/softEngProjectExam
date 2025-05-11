@@ -1,3 +1,8 @@
+/**
+ *
+ *
+ * @author Kim wrote this file
+ */
 package controller;
 
 public class StatusHolder { // bruges til at holde status og andre typer messages

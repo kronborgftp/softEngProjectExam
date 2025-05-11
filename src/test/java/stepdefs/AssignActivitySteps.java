@@ -1,13 +1,24 @@
+/**
+ *
+ *
+ * @author entire file was written by Frederik
+ */
 package stepdefs;
 
 import controller.AppController;
-import model.*;
-import static org.junit.Assert.*;
-
-import io.cucumber.java.en.*;
+import io.cucumber.java.en.Given;
+import io.cucumber.java.en.Then;
+import io.cucumber.java.en.When;
+import model.Activity;
+import model.AppModel;
+import model.Employee;
+import model.Project;
 
 import java.time.LocalDate;
-import java.util.*;
+import java.util.ArrayList;
+
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
 
 public class AssignActivitySteps {
 

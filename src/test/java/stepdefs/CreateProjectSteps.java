@@ -1,19 +1,24 @@
+/**
+ *
+ *
+ * @author entire file was written by Kim
+ */
 package stepdefs;
 
-import static org.junit.Assert.*;
-import java.util.ArrayList;
-import java.util.Scanner;
-
-import controller.EmployeeController;
-import io.cucumber.java.en.*;
-import model.AppModel;
-import model.Employee;
-import model.Project;
 import controller.ProjectController;
-// import net.bytebuddy.asm.Advice.Local;
-import view.*;
+import io.cucumber.java.en.Given;
+import io.cucumber.java.en.Then;
+import io.cucumber.java.en.When;
+import model.AppModel;
+import model.Project;
+import view.AppView;
+import view.EmployeeView;
+import view.ProjectView;
 
 import java.time.LocalDate;
+import java.util.Scanner;
+
+import static org.junit.Assert.assertEquals;
 
 public class CreateProjectSteps { // this file was written by kim
     private AppModel model;
