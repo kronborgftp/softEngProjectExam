@@ -37,23 +37,24 @@ public class ProjectController {
     }
 
     public void createProject() {
-        appView.prompt("Project ID");
-        String projectId = scanner.nextLine();
-        appView.prompt("Project Name");
-        String name = scanner.nextLine();
-        appView.prompt("Start Year");
-        int startYear = Integer.parseInt(scanner.nextLine());
-        appView.prompt("Start Week");
-        int startWeek = Integer.parseInt(scanner.nextLine());
-        appView.prompt("End Year");
-        int endYear = Integer.parseInt(scanner.nextLine());
-        appView.prompt("End Week");
-        int endWeek = Integer.parseInt(scanner.nextLine());
-
         // LocalDate objects year + week
         WeekFields wf = WeekFields.ISO;
         LocalDate startDate;
         LocalDate endDate;
+        
+        String projectId = LocalDate.now().getYear() + String.valueOf(model.getProjectCountByYear(LocalDate.now().getYear()));
+
+        int startYear = LocalDate.now().getYear();
+        int startWeek = LocalDate.now().get(wf.weekOfYear());
+        
+        appView.prompt("Project Name");
+        String name = scanner.nextLine();
+        appView.prompt("Expected End Year");
+        int endYear = Integer.parseInt(scanner.nextLine());
+        appView.prompt("Expected End Week");
+        int endWeek = Integer.parseInt(scanner.nextLine());
+
+
         try {
             startDate = LocalDate.of(startYear, 1, 4)
                     .with(wf.weekOfYear(), startWeek)
@@ -74,15 +75,15 @@ public class ProjectController {
             return;
         }
 
-        appView.prompt("Leader Initials");
-        Employee leader = model.getEmployeeByInitials(scanner.nextLine());
-        if (leader == null) {
-            appView.printError("Leader not found. Project creation cancelled.");
-            return;
-        }
+        // appView.prompt("Leader Initials");
+        // Employee leader = model.getEmployeeByInitials(scanner.nextLine());
+        // if (leader == null) {
+        //     appView.printError("Leader not found. Project creation cancelled.");
+        //     return;
+        // }
 
         Project project = new Project(projectId, name, startDate, endDate);
-        project.assignProjectLeader(leader);
+        // project.assignProjectLeader(leader);
         model.addProject(project);
         projectView.printProjectCreated(project);
     }
